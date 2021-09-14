@@ -4,20 +4,19 @@ using UnityEngine.EventSystems;
 
 public class ButtonTransioner : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler,IPointerDownHandler,IPointerUpHandler,IPointerClickHandler
 {
-    public Color32 m_NormalColor = Color.white;
-    public Color32 m_HoverColor = Color.gray;
-    public Color32 m_DownColor = Color.white;
-
-    public static Image[] colorimgs = new Image[12];
+    public static Image[] colorimgs = new Image[11];
     public static GameObject showimg, slider1img;
     public static GameObject[] btns = new GameObject[12];
     public static int btn_color = 0;
-    public static Color[] Colorbtns = new Color[12];
+    public static Color[] Colorbtns = new Color[11];
     public static Slider Sslider1;
     public static GameObject Gslider1;
-    public static float[] ScolorValue = new float[12];
+    
+    float H, S, V;
 
     private Image m_Image = null;
+    public GameObject PadB, PadC;
+
     private void Awake()
     {
         m_Image = GetComponent<Image>();
@@ -47,26 +46,16 @@ public class ButtonTransioner : MonoBehaviour, IPointerEnterHandler,IPointerExit
         Colorbtns[9] = Color.HSVToRGB(78 / 360.0f, 1, 84 / 100.0f);
         Colorbtns[10] = Color.HSVToRGB(0, 49 / 100.0f, 77 / 100.0f);
 
-        ScolorValue[0] = 39;
-        ScolorValue[1] = 21;
-        ScolorValue[2] = 13;
-        ScolorValue[3] = 0;
-        ScolorValue[4] = 0;
-        ScolorValue[5] = 43;
-        ScolorValue[6] = 29;
-        ScolorValue[7] = 27;
-        ScolorValue[8] = 0;
-        ScolorValue[9] = 100;
-        ScolorValue[10] = 49;
-
         showimg = GameObject.FindGameObjectWithTag("showimage");
         slider1img = GameObject.FindGameObjectWithTag("slider1img");
         Gslider1 = GameObject.FindGameObjectWithTag("Gslider1");
+        PadB = GameObject.Find("Player/SteamVRObjects/LeftHand/PadB");
+        PadC = GameObject.Find("Player/SteamVRObjects/LeftHand/PadC");
     }
 
     void Start()
     {
-        for (int i = 0; i < 12; i++)
+        for (int i = 0; i < 11; i++)
         {
             //btns[i].AddComponent<Image>();
             colorimgs[i] = btns[i].GetComponent<Image>();
@@ -75,6 +64,7 @@ public class ButtonTransioner : MonoBehaviour, IPointerEnterHandler,IPointerExit
         showimg.GetComponent<Image>();
         slider1img.GetComponent<Image>();
         Sslider1 = Gslider1.GetComponent<Slider>();
+       
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -88,9 +78,9 @@ public class ButtonTransioner : MonoBehaviour, IPointerEnterHandler,IPointerExit
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        
-
-
+        FindTag();
+        Slider1();
+  
     }
     public void OnPointerUp(PointerEventData eventData)
     {
@@ -100,25 +90,17 @@ public class ButtonTransioner : MonoBehaviour, IPointerEnterHandler,IPointerExit
     {
         FindTag();
         Slider1();
-        ValueChangeCheck0();
     }
+    
     public void Slider1()
     {
-        //抓顏色在區塊的位置指給handler用
-        if (btn_color == 0)
-        {
-            Sslider1.value = ScolorValue[0];
-            //showimg.GetComponent<Image>().color = Color.HSVToRGB(34 / 360.0f, Sslider1.value / 100.0f, 87 / 100.0f);
-        }
-        //抓S值0-100去給Colorbtns[]用
+        Color.RGBToHSV(showimg.GetComponent<Image>().color, out H, out S, out V);
+        Sslider1.value = S * 100.0f;
         Sslider1.onValueChanged.AddListener(delegate { ValueChangeCheck0(); });
     }
     public void ValueChangeCheck0()
     {
-        //float temp = Sslider1.value;
-        //if (Sslider1.value > temp)
-        showimg.GetComponent<Image>().color = Color.HSVToRGB(34 / 360.0f, Sslider1.value, 87 / 100.0f);
-
+        showimg.GetComponent<Image>().color = Color.HSVToRGB(H, Sslider1.value/100f, V); 
     }
     public void FindTag()
     {
@@ -126,7 +108,6 @@ public class ButtonTransioner : MonoBehaviour, IPointerEnterHandler,IPointerExit
         {
             btn_color = 0;
             showimg.GetComponent<Image>().color = Colorbtns[0];
-            
         }
         else if (gameObject.tag == "button1")
         {
@@ -181,7 +162,8 @@ public class ButtonTransioner : MonoBehaviour, IPointerEnterHandler,IPointerExit
         else if (gameObject.tag == "button11")
         {
             btn_color = 11;
-            showimg.GetComponent<Image>().color = Colorbtns[11];
+            PadB.SetActive(true);
+            PadC.SetActive(false);
         }
     }
 
