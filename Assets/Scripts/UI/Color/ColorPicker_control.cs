@@ -21,6 +21,7 @@ public class ColorPicker_control : MonoBehaviour
         color_Htemp = 0f;
         color_Stemp = 1f;
         color_Vtemp = 1f;
+        dot = GameObject.Find("Player/SteamVRObjects/RightHand/PR_Pointer/Dot");
     }
     
     void Update()
