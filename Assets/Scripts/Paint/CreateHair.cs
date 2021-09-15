@@ -7,9 +7,9 @@ public class CreateHair : MonoBehaviour
     int TriggerDown = 0;  //沒被按下
     int HairCounter = 0; //Hair片數
     public static int HairWidth = 1;//髮片寬度
-    public static int HairStyleState = 3;//髮片風格選擇
+    public static int HairStyleState = 2;//髮片風格選擇
 
-    float length = 0.025f; //點距離，原本0.05
+    float length = 0.015f; //點距離，原本0.05
     public int InputRange = 1;//(寬度Range 1~10)
     public int InputRangeThickness = 1; //(厚度Range 1~10)
     public float TwistCurve = 0.9f;
@@ -32,7 +32,7 @@ public class CreateHair : MonoBehaviour
     public SteamVR_Action_Boolean spawn = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("InteractUI");
 
     public Texture HairTexture, HairNormal;
-    public GameObject HairModelG,HairModelB;
+    public GameObject HairModelG,HairModelB,HairPos;
     float AimHairG;
 
 
@@ -48,6 +48,7 @@ public class CreateHair : MonoBehaviour
         redoObject = new GameObject();
         HairModelG = GameObject.Find("Girl_Sit/HairModelG");
         HairModelB = GameObject.Find("Boy_Sit/HairModelB");
+        HairPos = GameObject.Find("Salon/Trolley/Salon_tool/paint1/pCylinder6ylinder6");
     }
 
     private void Start()
@@ -71,7 +72,7 @@ public class CreateHair : MonoBehaviour
                 HairModel.Add(Model); //加入list
                 Model.transform.SetParent(HairModelG.transform);//還需要判定到底是做男做女
                 HairModel[HairCounter].name = "HairModel" + HairCounter; //設定名字 
-                OldPos = NewPos = Pose.transform.position;
+                OldPos = NewPos = HairPos.transform.position;
                 PointPos.Add(OldPos);
                 undo = 0;
                 TriggerDown = 1;
@@ -79,7 +80,7 @@ public class CreateHair : MonoBehaviour
         }
         if (TriggerDown == 1) //被按下
         {
-            NewPos = Pose.transform.position;
+            NewPos = HairPos.transform.position;
             float dist = Vector3.Distance(OldPos, NewPos); //計算舊點到新點，位置的距離
             if (dist > length) //距離大於設定的長度
             {
@@ -90,7 +91,7 @@ public class CreateHair : MonoBehaviour
                 NewPos = NormaizelVec + OldPos;
                 PointPos.Add(NewPos);
                 PosCreater = gameObject.GetComponent<PosGenerate>(); //加入PosGenerate
-                PosCreater.VectorCross(Pose.transform.up, Pose.transform.forward, Pose.transform.right);
+                PosCreater.VectorCross(HairPos.transform.up, HairPos.transform.forward, HairPos.transform.right);
                 //PosCreater.GetPosition(OldPos, NewPos, InputRange);
                 if (HairStyleState == 1) PosCreater.Straight_HairStyle(PointPos, InputRange, InputRangeThickness);
                 if (HairStyleState == 2) PosCreater.Dimand_HairStyle(PointPos, InputRange, InputRangeThickness);

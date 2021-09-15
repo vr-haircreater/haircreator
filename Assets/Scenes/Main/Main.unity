@@ -10863,6 +10863,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4363202421310949674, guid: b904aa351562c22468c0fca63bb9cd21,
+        type: 3}
+      propertyPath: m_Name
+      value: pCylinder6ylinder6
+      objectReference: {fileID: 0}
     - target: {fileID: -2985485948610124828, guid: b904aa351562c22468c0fca63bb9cd21,
         type: 3}
       propertyPath: m_Layer
@@ -12059,7 +12064,7 @@ PrefabInstance:
     - target: {fileID: 6730876920160973791, guid: f8466dcfd038eed40a58ed6f4f935e41,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8466dcfd038eed40a58ed6f4f935e41, type: 3}

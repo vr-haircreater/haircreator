@@ -10,29 +10,6 @@ public class PosGenerate : MonoBehaviour
     public int HairWidth = CreateHair.HairWidth;
     public Vector3 cross1, cross2;
 
-    public void GetPosition(Vector3 OldPos, Vector3 NewPos, int range)
-    {
-        float w = range * 0.005f;
-        if (GetPointPos == null)
-        {
-            GetPointPos.Add(OldPos - cross1 * w);
-            GetPointPos.Add(OldPos + cross2 * w);
-            GetPointPos.Add(OldPos + cross1 * w);
-            GetPointPos.Add(OldPos - cross2 * w);
-
-            GetPointPos.Add(NewPos - cross1 * w);
-            GetPointPos.Add(NewPos + cross2 * w);
-            GetPointPos.Add(NewPos + cross1 * w);
-            GetPointPos.Add(NewPos - cross2 * w);
-        }
-        else
-        {
-            GetPointPos.Add(NewPos - cross1 * w);
-            GetPointPos.Add(NewPos + cross2 * w);
-            GetPointPos.Add(NewPos + cross1 * w);
-            GetPointPos.Add(NewPos - cross2 * w);
-        }
-    }
     public void VectorCross(Vector3 up, Vector3 forward, Vector3 right)
     {
         cross1 = Vector3.Cross(up, forward);//x
@@ -107,7 +84,7 @@ public class PosGenerate : MonoBehaviour
         float w1 = range * 0.005f / (GetPointPos.Count / 2);
         float w = range * 0.005f * 0.2f;
         float t = thickness * 0.002f;
-        float waveSize = 0.0005f;
+        float waveSize = 0.001f;
         float angle = -Mathf.PI;
 
         for (int i = 0; i < GetPointPos.Count; i++)
@@ -148,7 +125,7 @@ public class PosGenerate : MonoBehaviour
         float w = range * 0.005f * 0.2f;
         float t1 = thickness * 0.001f / (GetPointPos.Count / 2);
         float t = thickness * 0.001f * 0.2f;
-        float d = Mathf.PI * 10f;
+        float d = Mathf.PI;
         float a = 0.01f;
 
         for (int i = 0; i < GetPointPos.Count; i++)
