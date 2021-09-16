@@ -21,7 +21,7 @@ public class Gather1 : MonoBehaviour
 
     public SteamVR_Action_Boolean TriggerClick = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("GrabPinch");//板機鍵按鈕
     public SteamVR_Action_Boolean m_Grip = null;
-
+    public GameObject HairPaint;
     
 
     void Awake()
@@ -30,7 +30,7 @@ public class Gather1 : MonoBehaviour
         //cpicker_material = Resources.Load<Material>("Materials/forCanvas");
         Pose = GetComponent<SteamVR_Behaviour_Pose>();
         m_Joint = GetComponent<FixedJoint>();
-
+        HairPaint = GameObject.Find("Salon/Trolley/Salon_tool/paint1");
     }
 
     void Start()

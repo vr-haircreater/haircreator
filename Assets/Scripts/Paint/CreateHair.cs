@@ -19,6 +19,7 @@ public class CreateHair : MonoBehaviour
 
     public static List<Vector3> PointPos = new List<Vector3>(); //Pos座標存取
     public static List<Vector3> UpdatePointPos = new List<Vector3>();//變形更新點座標
+    public static List<Vector3> direction = new List<Vector3>();
     public List<GameObject> HairModel = new List<GameObject>(); //髮片Gameobj存取
 
     public MeshGenerate MeshCreater; //呼叫 MeshGenerate.cs 中的東西給 MeshCreater 用
@@ -49,10 +50,6 @@ public class CreateHair : MonoBehaviour
         HairModelG = GameObject.Find("Girl_Sit/HairModelG");
         HairModelB = GameObject.Find("Boy_Sit/HairModelB");
         HairPos = GameObject.Find("Salon/Trolley/Salon_tool/paint1/pCylinder6ylinder6");
-    }
-
-    private void Start()
-    {
         PosCreater = gameObject.AddComponent<PosGenerate>(); //加入PosGenerate
         HairTexture = Resources.Load<Texture2D>("Textures/F00_000_Hair_00");
         HairNormal = Resources.Load<Texture2D>("Textures/F00_000_Hair_00_nml");
@@ -73,6 +70,7 @@ public class CreateHair : MonoBehaviour
                 Model.transform.SetParent(HairModelG.transform);//還需要判定到底是做男做女
                 HairModel[HairCounter].name = "HairModel" + HairCounter; //設定名字 
                 OldPos = NewPos = HairPos.transform.position;
+                PosCreater.VectorCross(HairPos.transform.up, HairPos.transform.forward, HairPos.transform.right);
                 PointPos.Add(OldPos);
                 undo = 0;
                 TriggerDown = 1;
@@ -121,6 +119,7 @@ public class CreateHair : MonoBehaviour
                     HairModel.RemoveAt(least);
                 }
                 PointPos.Clear();
+                direction.Clear();
                 Gather1.GridState = false;
                 TriggerDown = 0;
             }
