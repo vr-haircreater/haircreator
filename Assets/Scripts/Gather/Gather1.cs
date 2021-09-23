@@ -47,19 +47,20 @@ public class Gather1 : MonoBehaviour
     {
         //Debug.Log("右:"+ Pose.transform.position);
         //cpicker_material.color = cpicker.color;
+        if (m_Grip.GetStateDown(Pose.inputSource)) Drop();
         if (icon == 1) //Paint
         {
-            if (m_Grip.GetStateDown(Pose.inputSource)) Drop();
+            GetComponent<CreateHair>().enabled = true;
         }
         if (icon == 2) //Eraser
         {
             GetComponent<CreateHair>().enabled = true;
-            if (m_Grip.GetStateDown(Pose.inputSource)) Drop();
+
         }
         if (icon == 3) //Clear
         {
             GetComponent<CreateHair>().enabled = true;
-            if (m_Grip.GetStateDown(Pose.inputSource)) Drop();
+            
         }
         if (icon == 0)
         {
@@ -80,7 +81,6 @@ public class Gather1 : MonoBehaviour
         {
             m_object = other.gameObject;
             state = 1;
-
         }
         if (other.gameObject.CompareTag("Eraser"))
         {

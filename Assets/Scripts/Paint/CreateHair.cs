@@ -36,17 +36,17 @@ public class CreateHair : MonoBehaviour
     public GameObject HairModelG,HairModelB,HairPos;
     float AimHairG;
 
-
-
     //undo & redo
-    Stack<GameObject> StackHairModel = new Stack<GameObject>();
-    GameObject redoObject;
-    int undo = 0;
+    public List<GameObject> ListExistHair = new List<GameObject>(); //給Undo用
+    Stack<GameObject> StackExistHair = new Stack<GameObject>(); //給Redo用
+    GameObject PushObj, PopObj;
+    GameObject ExistHair;
+    int u_Freq = 0, c_Freq = 0;
+    int TempListExistHair = 0;
 
     private void Awake()
     {
         Pose = GetComponent<SteamVR_Behaviour_Pose>();
-        redoObject = new GameObject();
         HairModelG = GameObject.Find("Girl_Sit/HairModelG");
         HairModelB = GameObject.Find("Boy_Sit/HairModelB");
         HairPos = GameObject.Find("Salon/Trolley/Salon_tool/paint1/pCylinder6ylinder6");
@@ -57,9 +57,17 @@ public class CreateHair : MonoBehaviour
 
     void Update()
     {
-        AimHairG = Vector3.Distance(HairModelG.transform.position, Pose.transform.position);
-        
+        Dawer();
+        Undo();
+        Redo();
+        Clear();
+        //Eraser();
         Control();
+        AimHairG = Vector3.Distance(HairModelG.transform.position, Pose.transform.position);
+                
+    }
+    void Dawer() 
+    {
         if (TriggerDown == 0 && Gather1.icon == 1) //沒被按下
         {
             if (TriggerClick.GetStateDown(Pose.inputSource)) //偵測被按下的瞬間
@@ -72,7 +80,6 @@ public class CreateHair : MonoBehaviour
                 OldPos = NewPos = HairPos.transform.position;
                 PosCreater.VectorCross(HairPos.transform.up, HairPos.transform.forward, HairPos.transform.right);
                 PointPos.Add(OldPos);
-                undo = 0;
                 TriggerDown = 1;
             }
         }
@@ -145,24 +152,6 @@ public class CreateHair : MonoBehaviour
         if (Input.GetKeyDown("a") && TwistCurve > 0.5f) TwistCurve -= 0.1f;
         if (Input.GetKeyDown("d") && TwistCurve < 0.8f) TwistCurve += 0.1f;//越大越捲
 
-
-        if (Input.GetKeyDown("u"))
-        {
-            undo = 1;
-            redoObject = Instantiate(HairModel[HairModel.Count - 1]);
-            StackHairModel.Push(redoObject);
-            redoObject.SetActive(false);
-            Destroy(HairModel[HairModel.Count - 1]);
-            HairModel.RemoveAt(HairModel.Count - 1);
-        }
-        if (Input.GetKeyDown("r") && undo == 1)
-        {
-            GameObject tempobject;
-            tempobject = StackHairModel.Pop();
-            HairModel.Add(tempobject);
-            tempobject.SetActive(true);
-            if (StackHairModel.Count == 0) undo = 0;
-        }
         if (Gather1.icon == 2) 
         { 
         
@@ -173,4 +162,93 @@ public class CreateHair : MonoBehaviour
         }
 
     }
+
+    void Undo()
+    {
+        if (Input.GetKeyDown("u") && c_Freq == 0) //clear had not be excuted, undo use PushStaff.
+        {
+            u_Freq += 1;
+            PushStuff();
+            Debug.Log("uF:" + u_Freq + "cF:" + c_Freq);
+        }
+        if (Input.GetKeyDown("u") && c_Freq == 1) //clear had been excuted, undo use PopStaff.
+        {
+            u_Freq = 1; // after clear function excuted, undo can be excuted once.
+            for (int i = 0; i < TempListExistHair; i++)
+            {
+                PopStuff();
+            }
+            Debug.Log("uF:" + u_Freq + "cF:" + c_Freq);
+        }
+    }
+    void Redo()
+    {
+        //redo need to be excuted after undo, but not after clear function.
+        if (Input.GetKeyDown("r") && u_Freq != 0 && c_Freq == 0)
+        {
+            PopStuff();
+            u_Freq -= 1;
+            Debug.Log("uF:" + u_Freq + "cF:" + c_Freq);
+        }
+        if (Input.GetKeyDown("r") && u_Freq != 0 && c_Freq == 1)
+        {
+            for (int i = 0; i < TempListExistHair; i++)
+            {
+                PushStuff();
+            }
+            u_Freq = 0;
+            Debug.Log("uF:" + u_Freq + "cF:" + c_Freq);
+        }
+    }
+
+    void Clear()
+    {
+        //if clear excuted, rerecord the undo count. (till next clear)
+        if (Input.GetKeyDown("c"))
+        {
+            u_Freq = 0; // Undo count return to zero.
+            StackExistHair.Clear();
+            TempListExistHair = ListExistHair.Count;
+            for (int i = 0; i < TempListExistHair; i++)  //All in.
+            {
+                PushStuff();
+            }
+            c_Freq = 1; //clear functions had been excuted. (for undo)
+            Debug.Log("uF:" + u_Freq + "cF:" + c_Freq);
+        }
+    }
+
+    void Eraser()
+    {
+        if (EraserCollider.Contact != null)
+        {
+            PushObj = Instantiate(EraserCollider.Contact);
+            StackExistHair.Push(PushObj);
+            EraserCollider.Contact.SetActive(false);
+            Destroy(EraserCollider.Contact);
+        }
+        
+    }
+
+    void ResetPos()
+    {
+        OldPos = NewPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
+    }
+
+    void PushStuff() //push staff into 
+    {
+        PushObj = Instantiate(ListExistHair[ListExistHair.Count - 1]); //生成ListExitstHair中count-1的物件
+        StackExistHair.Push(PushObj); //生成的物件(pushobj)push進stack存，之後要redo要用
+        PushObj.SetActive(false); //場景上不再看得見
+        Destroy(ListExistHair[ListExistHair.Count - 1]); //刪除ListExitstHair中count-1的物件
+        ListExistHair.RemoveAt(ListExistHair.Count - 1); //從ListExistHair中移除count-1的物件
+    }
+
+    void PopStuff()
+    {
+        PopObj = StackExistHair.Pop(); //從stack中pop東西出來
+        ListExistHair.Add(PopObj); //加回ListExitstsHair中
+        PopObj.SetActive(true); //場景上要看得見
+    }
+
 }

@@ -13,6 +13,8 @@ public class MeshGenerate : MonoBehaviour
     Vector4[] tangents;
     int[] triangle;
 
+    MeshCollider HairCollider;
+    Rigidbody HairRigidbody;
 
     public void GenerateMesh(List<Vector3> GetPointPos, int Getwidth)
     {
@@ -26,6 +28,23 @@ public class MeshGenerate : MonoBehaviour
         GetComponent<MeshFilter>().mesh = mesh = new Mesh();
         GetComponent<MeshRenderer>().material = GethairColor;
         mesh.name = "HairModel";
+
+        if (gameObject.GetComponent<MeshCollider>() == null)
+        {
+            HairCollider = gameObject.AddComponent<MeshCollider>();
+        }
+        else HairCollider = gameObject.GetComponent<MeshCollider>();
+        HairCollider.sharedMesh = mesh;
+        HairCollider.convex = true;
+        HairCollider.isTrigger = true;
+
+        if (gameObject.GetComponent<Rigidbody>() == null)
+        {
+            HairRigidbody = gameObject.AddComponent<Rigidbody>();
+        }
+        else HairRigidbody = gameObject.GetComponent<Rigidbody>();
+        HairRigidbody.isKinematic = true;
+        
 
         vertice = new Vector3[GetPointPos.Count];
         uv = new Vector2[GetPointPos.Count];
@@ -54,21 +73,6 @@ public class MeshGenerate : MonoBehaviour
         mesh.vertices = vertice;//mesh網格點生成
         mesh.uv = uv;
         mesh.tangents = tangents;
-
-        /*
-        int point;
-        if (GetPointPos.Count < 1) point = 0;//計算網格數
-        else point = ((GetPointPos.Count / (3 + (Getwidth - 1) * 2) - 1)) * 2 * Getwidth;
-        triangle = new int[point * 6 ];//計算需要多少三角形點座標
-
-        int t = 0;
-        int k = 0;
-        for (int vi = 0, x = 1; x <= point; x++, vi += k)
-        {
-            t = SetQuad(triangle, t, vi, vi + 1, vi + 3 + (2 * (Getwidth - 1)), vi + 4 + (2 * (Getwidth - 1)));
-            if (x % (Getwidth * 2) != point % (Getwidth * 2)) k = 1;  //在同一行
-            else k = 2;  //對vi的累加  (需換行時)
-        }*/
 
         int point = GetPointPos.Count - 2;
         triangle = new int[point * 6];
