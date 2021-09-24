@@ -20,13 +20,11 @@ public class PosGenerate : MonoBehaviour
         directionA.Add(cross2);
     }
 
-    public void Straight_HairStyle(List<Vector3> GetPointPos, int range, int thickness)
+    public void Straight_HairStyle(List<Vector3> GetPointPos, int range, int thickness,bool HairTail)
     {
-        float w1;
         float w = range * 0.005f * 0.2f;
         float t = thickness * 0.001f;
-        if (GetPointPos.Count <= 6) w1 = (range * 0.005f) / GetPointPos.Count;
-        else w1 = (range * 0.005f) / range;
+        float w1 = range * 0.005f / (GetPointPos.Count / 2);
 
         TempPoint.Clear();
         for (int i = 0, n = 0; i < GetPointPos.Count; i++, n+=2)
@@ -35,41 +33,14 @@ public class PosGenerate : MonoBehaviour
             TempPoint.Add(GetPointPos[i] + directionA[n + 1] * t);
             TempPoint.Add(GetPointPos[i] + directionA[n] * w);
             TempPoint.Add(GetPointPos[i] - directionA[n + 1] * t);
-            if (w < range * 0.005f) w += w1;
-        }
-        GetUpdatePointPos.Clear();
-        GetUpdatePointPos.AddRange(TempPoint);
-    }
-
-    public void Dimand_HairStyle(List<Vector3> GetPointPos, int range, int thickness)
-    {
-        float t1;
-        float w1 = range * 0.005f / (GetPointPos.Count / 2);
-        float w = range * 0.005f * 0.2f;
-        float t = thickness * 0.001f;
-
-        TempPoint.Clear();
-        for (int i = 0, n = 0; i < GetPointPos.Count; i++, n+=2)
-        {
-            if (i == GetPointPos.Count - 1 && GetPointPos.Count > 2)
-            {
-                for (int j = 0; j < 4; j++) TempPoint.Add(GetPointPos[i]);
-            }
-            else
-            {
-                TempPoint.Add(GetPointPos[i] - directionA[n] * w);
-                TempPoint.Add(GetPointPos[i] + directionA[n + 1] * t);
-                TempPoint.Add(GetPointPos[i] + directionA[n] * w);
-                TempPoint.Add(GetPointPos[i] - directionA[n + 1] * t);
-            }
             if (w < range * 0.005f && i < GetPointPos.Count / 2) w += w1;
-            else if (i > GetPointPos.Count / 2) w -= w1;
+            if (i > GetPointPos.Count / 2 && HairTail == true) w -= w1;
         }
         GetUpdatePointPos.Clear();
         GetUpdatePointPos.AddRange(TempPoint);
-
     }
-    public void WaveHairStyle(List<Vector3> GetPointPos, int range, int thickness, float WaveCurve)
+
+    public void WaveHairStyle(List<Vector3> GetPointPos, int range, int thickness, float WaveCurve, bool HairTail)
     {
         TempPoint.Clear();
         float w1 = range * 0.005f / (GetPointPos.Count / 2);
@@ -95,12 +66,12 @@ public class PosGenerate : MonoBehaviour
                 TempPoint.Add(Vec + directionA[n + 1] * t);
                 TempPoint.Add(Vec + directionA[n] * w);
                 TempPoint.Add(Vec - directionA[n + 1] * t);
-
             }
             //if (w < range * 0.005f) w += w1;
             if (w < range * 0.005f && i < GetPointPos.Count / 2) w += w1;
             else if (i > GetPointPos.Count / 2) w -= w1;
-            if (waveSize < 0.03f && i % 7 == 0) waveSize += 0.01f;
+            if (waveSize < 0.02f && i % 7 == 0 && i < GetPointPos.Count/2) waveSize += 0.005f;
+            if (waveSize < 0.02f && i % 7 == 0 && i > GetPointPos.Count / 2) waveSize -= 0.005f;
             //if (i > GetPointPos.Count - 5) waveSize = 0.01f;
             angle += WaveCurve;//0.9f
         }
@@ -109,13 +80,11 @@ public class PosGenerate : MonoBehaviour
         GetUpdatePointPos.AddRange(TempPoint);
     }
 
-    public void TwistHairStyle(List<Vector3> GetPointPos, int range, int thickness, float TwistCurve)
+    public void TwistHairStyle(List<Vector3> GetPointPos, int range, float TwistCurve,bool HairTail)
     {
         TempPoint.Clear();
         float w1 = range * 0.005f / (GetPointPos.Count / 2);
         float w = range * 0.005f * 0.2f;
-        float t1 = thickness * 0.001f / (GetPointPos.Count / 2);
-        float t = thickness * 0.001f * 0.2f;
         float d = Mathf.PI;
         float a = 0.01f;
 
@@ -123,30 +92,21 @@ public class PosGenerate : MonoBehaviour
         {
             float x = a * Mathf.Sin(d);
             float y = a * Mathf.Cos(d);
-            float z = i;
-
-            Vector3 Vec;
-            if (i == 0) Vec = new Vector3(GetPointPos[i].x, GetPointPos[i].y, GetPointPos[i].z);
-            else
-            {
-                Vector3 temp1 = directionA[n] * x, temp2 = directionA[n + 1] * y;
-                Vec = GetPointPos[i] + temp1 + temp2;
-            }
+           
+            Vector3 temp1 = directionA[n] * x, temp2 = directionA[n + 1] * y;
+            Vector3 Vec = GetPointPos[i] + temp1 + temp2;
+            
             TempPoint.Add(Vec - directionA[n] * w);
-            TempPoint.Add(Vec + directionA[n + 1] * t);
+            TempPoint.Add(Vec + directionA[n + 1] * w);
             TempPoint.Add(Vec + directionA[n] * w);
-            TempPoint.Add(Vec - directionA[n + 1] * t);
+            TempPoint.Add(Vec - directionA[n + 1] * w);
 
             d += TwistCurve;//原:0.5f
-            //if (a < 2 && i % 10 == 0) a += 0.5f;
-            if (a < 0.05f && i % 10 == 0) a += 0.01f;
+            if (a < 0.05f && i % (10 * TwistCurve) == 0 && i < GetPointPos.Count/2) a += 0.01f;
+            if (i % (10* TwistCurve) == 0 && i > GetPointPos.Count / 2) a -= 0.01f;
             if (w < range * 0.005f && i < GetPointPos.Count / 2) w += w1;
-            if (t < thickness * 0.005f && i < GetPointPos.Count / 2) t += t1;
-            /*if (i > GetPointPos.Count / 2)
-            {
-                w -= w1;
-                t -= t1;
-            }*/
+            if (i > GetPointPos.Count / 2 && HairTail == true) w -= w1;
+       
         }
         GetUpdatePointPos.Clear();
         GetUpdatePointPos.AddRange(TempPoint);

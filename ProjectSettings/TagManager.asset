@@ -23,6 +23,11 @@ TagManager:
   - showimage
   - slider1img
   - Gslider1
+  - Straight_HairStyle
+  - WaveHairStyle
+  - TwistHairStyle
+  - Wslider1
+  - Tslider1
   layers:
   - Default
   - TransparentFX

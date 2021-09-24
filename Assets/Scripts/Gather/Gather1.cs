@@ -11,7 +11,8 @@ public class Gather1 : MonoBehaviour
     int call = 0;
     public static bool GridState;
     GameObject RightHand;
-    public static bool RightDown = false; 
+    public static bool RightDown = false;
+    public bool PointWake = false;
 
     //Rigidbody ri;
     
@@ -21,16 +22,20 @@ public class Gather1 : MonoBehaviour
 
     public SteamVR_Action_Boolean TriggerClick = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("GrabPinch");//板機鍵按鈕
     public SteamVR_Action_Boolean m_Grip = null;
-    public GameObject HairPaint;
-    
+    public GameObject HairPaint,Point;
+
+    public Transform Salontool,Trolley,PaintPos;
+    public GameObject Salontool2;
+
+
 
     void Awake()
     {
         RightHand = GameObject.Find("Player/SteamVRObjects/RightHand");
-        //cpicker_material = Resources.Load<Material>("Materials/forCanvas");
         Pose = GetComponent<SteamVR_Behaviour_Pose>();
         m_Joint = GetComponent<FixedJoint>();
         HairPaint = GameObject.Find("Salon/Trolley/Salon_tool/paint1");
+        Point = GameObject.Find("Player/SteamVRObjects/RightHand/PR_Pointer");
     }
 
     void Start()
@@ -47,25 +52,27 @@ public class Gather1 : MonoBehaviour
     {
         //Debug.Log("右:"+ Pose.transform.position);
         //cpicker_material.color = cpicker.color;
+        if (m_Grip.GetStateDown(Pose.inputSource) && PointWake == true)
+        {
+            if (m_object != null) Drop();
+            Point.SetActive(false);
+            PointWake = false;
+        }
+        else if (m_Grip.GetStateDown(Pose.inputSource) && PointWake==false)
+        {
+            if(m_object != null ) Drop();
+            Point.SetActive(true);
+            PointWake = true;
+        }
         if (m_Grip.GetStateDown(Pose.inputSource)) Drop();
-        if (icon == 1) //Paint
-        {
-            GetComponent<CreateHair>().enabled = true;
-        }
-        if (icon == 2) //Eraser
-        {
-            GetComponent<CreateHair>().enabled = true;
 
-        }
-        if (icon == 3) //Clear
-        {
-            GetComponent<CreateHair>().enabled = true;
-            
-        }
         if (icon == 0)
         {
-            if (TriggerClick.GetStateDown(Pose.inputSource)) Pickup();
-            //GetComponent<CreateHair>().enabled = false;
+            if (TriggerClick.GetStateDown(Pose.inputSource))
+            {
+                Pickup();
+                PointWake = false;
+            }
         }
         if (TriggerClick.GetStateDown(Pose.inputSource))
         {
@@ -129,21 +136,23 @@ public class Gather1 : MonoBehaviour
         Rigidbody target = m_object.GetComponent<Rigidbody>();
         m_Joint.connectedBody = target;
         m_object.GetComponent<InteractableContrallor>().m_ActiveHand = this;
+
         icon = state;
     }
     public void Drop()
     {
         if (m_object == null) return;
-
+        
         Rigidbody target = m_object.GetComponent<Rigidbody>();
         target.velocity = Pose.GetVelocity();
         target.angularVelocity = Pose.GetAngularVelocity();
         m_Joint.connectedBody = null;
         m_object.GetComponent<InteractableContrallor>().m_ActiveHand = null;
+        //m_object.transform.position = Salontool2.transform.position+new Vector3(0.8184392f, 0.2870926f, -4.964572f);
         m_object = null;
         icon = 0;
         state = 0;
-
+        //PaintPos.transform.localPosition = new Vector3(0.8184392f, 0.2870926f, -4.964572f); 
     }
 
 }
