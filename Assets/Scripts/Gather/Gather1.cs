@@ -25,9 +25,9 @@ public class Gather1 : MonoBehaviour
     public GameObject HairPaint,Point;
 
     public Transform Salontool,Trolley,PaintPos;
-    public GameObject Salontool2;
+    public GameObject Salontool2,something;
 
-
+    Vector3 ObjectPos;
 
     void Awake()
     {
@@ -64,7 +64,11 @@ public class Gather1 : MonoBehaviour
             Point.SetActive(true);
             PointWake = true;
         }
-        if (m_Grip.GetStateDown(Pose.inputSource)) Drop();
+        if (m_Grip.GetStateDown(Pose.inputSource))
+        {
+            Drop();
+
+        }
 
         if (icon == 0)
         {
@@ -129,6 +133,10 @@ public class Gather1 : MonoBehaviour
     public void Pickup()
     {
         if (m_object == null) return;
+
+        something = m_object;
+        ObjectPos = something.transform.localPosition;
+        Debug.Log("PickUp" + ObjectPos);
         if (m_object.GetComponent<InteractableContrallor>().m_ActiveHand != null)
         {
             m_object.GetComponent<InteractableContrallor>().m_ActiveHand.Drop();
@@ -146,12 +154,15 @@ public class Gather1 : MonoBehaviour
         Rigidbody target = m_object.GetComponent<Rigidbody>();
         target.velocity = Pose.GetVelocity();
         target.angularVelocity = Pose.GetAngularVelocity();
+        
         m_Joint.connectedBody = null;
         m_object.GetComponent<InteractableContrallor>().m_ActiveHand = null;
-        //m_object.transform.position = Salontool2.transform.position+new Vector3(0.8184392f, 0.2870926f, -4.964572f);
         m_object = null;
         icon = 0;
         state = 0;
+
+        something.transform.position = Trolley.transform.position + Salontool.transform.localPosition + ObjectPos;
+        Debug.Log("Drop" + something.transform.localPosition);
         //PaintPos.transform.localPosition = new Vector3(0.8184392f, 0.2870926f, -4.964572f); 
     }
 
