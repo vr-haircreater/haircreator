@@ -50,8 +50,8 @@ public class ColorPicker_control : MonoBehaviour
             {
                 //print("H:"+mousePos);
                 
-                h_slider.transform.position = new Vector3(mousePos.x, mousePos.y, mousePos.z);
-                color_Htemp = (mousePos.x - hPos.x) / 0.15f;
+                //h_slider.transform.position = new Vector3(mousePos.x, mousePos.y, mousePos.z);
+                //color_Htemp = (mousePos.x - hPos.x) / 0.15f;
             }
             Debug.Log("Pos:" + mousePos);
             Debug.Log("SVPos" + svPos);

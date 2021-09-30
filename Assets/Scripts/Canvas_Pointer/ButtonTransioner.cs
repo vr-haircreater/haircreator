@@ -2,24 +2,24 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ButtonTransioner : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler,IPointerDownHandler,IPointerUpHandler,IPointerClickHandler
+public class ButtonTransioner : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler
 {
     public static Image[] colorimgs = new Image[11];
     public static GameObject showimg, slider1img;
     public static GameObject[] btns = new GameObject[12];
     public static int btn_color = 0;
     public static Color[] Colorbtns = new Color[11];
-    public static Slider Sslider1,Sslider2,Sslider3;
+    public static Slider Sslider1, Sslider2, Sslider3;
     public static GameObject Gslider1, Wslider1, Tslider1;
     public static Color HairColor;
 
     public static int HairWidth;
     public static int HairThickness;
-    
+
     float H, S, V;
 
     private Image m_Image = null;
-    public GameObject PadB, PadC;
+    //public GameObject PadB, PadC;
 
     public static int HairStyleState = 1;
 
@@ -57,8 +57,8 @@ public class ButtonTransioner : MonoBehaviour, IPointerEnterHandler,IPointerExit
         Gslider1 = GameObject.FindGameObjectWithTag("Gslider1");
         Wslider1 = GameObject.FindGameObjectWithTag("Wslider1");
         Tslider1 = GameObject.FindGameObjectWithTag("Tslider1"); ;
-        PadB = GameObject.Find("Player/SteamVRObjects/LeftHand/PadB");
-        PadC = GameObject.Find("Player/SteamVRObjects/LeftHand/PadC");
+        //PadB = GameObject.Find("Player/SteamVRObjects/LeftHand/PadB");
+        //PadC = GameObject.Find("Player/SteamVRObjects/LeftHand/PadC");
 
         HairColor = Colorbtns[0];
     }
@@ -92,7 +92,7 @@ public class ButtonTransioner : MonoBehaviour, IPointerEnterHandler,IPointerExit
     public void OnPointerExit(PointerEventData eventData)
     {
 
-        
+
     }
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -113,13 +113,13 @@ public class ButtonTransioner : MonoBehaviour, IPointerEnterHandler,IPointerExit
         SliderW();
         SliderT();
     }
-    
+
     public void Slider1()
     {
         Color.RGBToHSV(showimg.GetComponent<Image>().color, out H, out S, out V);
         Sslider2.value = S * 100.0f;
         Sslider2.onValueChanged.AddListener(delegate { ValueChangeCheck0(); });
-  
+
     }
     public void SliderW()
     {
@@ -131,7 +131,7 @@ public class ButtonTransioner : MonoBehaviour, IPointerEnterHandler,IPointerExit
     }
     public void ValueChangeCheck0()
     {
-        showimg.GetComponent<Image>().color = Color.HSVToRGB(H, Sslider1.value/100f, V);
+        showimg.GetComponent<Image>().color = Color.HSVToRGB(H, Sslider1.value / 100f, V);
         HairColor = showimg.GetComponent<Image>().color;
     }
     public void FindTag()
@@ -193,10 +193,12 @@ public class ButtonTransioner : MonoBehaviour, IPointerEnterHandler,IPointerExit
         }
         else if (gameObject.tag == "button11")
         {
-            btn_color = 11;
-            PadB.SetActive(true);
-            PadC.SetActive(false);
+            //btn_color = 11;
+            CallerPad.PadBShow();
+            //PadB.SetActive(true);
+            //PadC.SetActive(false);
         }
+        //=====choose
         else if (gameObject.tag == "Straight_HairStyle")
         {
             HairStyleState = 1;
@@ -208,6 +210,19 @@ public class ButtonTransioner : MonoBehaviour, IPointerEnterHandler,IPointerExit
         else if (gameObject.tag == "TwistHairStyle")
         {
             HairStyleState = 3;
+        }
+        //=====lower
+        else if (gameObject.tag == "UndoButton")
+        {
+            CreateHair.Undo();
+        }
+        else if (gameObject.tag == "SaveButton")
+        {
+            
+        }
+        else if (gameObject.tag == "RedoButton")
+        {
+            CreateHair.Redo();
         }
     }
 

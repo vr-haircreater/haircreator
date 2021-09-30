@@ -28,6 +28,9 @@ TagManager:
   - TwistHairStyle
   - Wslider1
   - Tslider1
+  - UndoButton
+  - RedoButton
+  - SaveButton
   layers:
   - Default
   - TransparentFX
