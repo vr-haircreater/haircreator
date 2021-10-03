@@ -22,7 +22,7 @@ public class MeshGenerate : MonoBehaviour
         HairShader = Shader.Find("Diffuse Fast");
         GethairColor.shader = HairShader;
         //GethairColor.color = new Color(222f / 255, 184f / 255, 135f / 255);
-        GethairColor.color = ButtonTransioner.HairColor;
+        GethairColor.color = ButtonTransitioner.HairColor;
         //GethairColor.color = Gather1.cpicker_material.color;
         //GethairColor.color = CreateHair.cpicker;
         //GethairColor.color = Gather1.cpicker.color;

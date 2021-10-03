@@ -82,7 +82,7 @@ public class CreateHair : MonoBehaviour
                 PosCreater.VectorCross(HairPos.transform.up, HairPos.transform.forward, HairPos.transform.right);
                 PointPos.Add(OldPos);
 
-                Debug.Log("HairStytle" + ButtonTransioner.HairStyleState);
+                Debug.Log("HairStytle" + ButtonTransitioner.HairStyleState);
 
                 TriggerDown = 1;
             }
@@ -102,9 +102,9 @@ public class CreateHair : MonoBehaviour
                 PosCreater = gameObject.GetComponent<PosGenerate>(); //加入PosGenerate
                 PosCreater.VectorCross(HairPos.transform.up, HairPos.transform.forward, HairPos.transform.right);
                 //PosCreater.GetPosition(OldPos, NewPos, InputRange);
-                if (ButtonTransioner.HairStyleState == 1) PosCreater.Straight_HairStyle(PointPos, ButtonTransioner.HairWidth, ButtonTransioner.HairThickness, HairTail);
-                if (ButtonTransioner.HairStyleState == 2) PosCreater.WaveHairStyle(PointPos, ButtonTransioner.HairWidth, ButtonTransioner.HairThickness, WaveCurve, HairTail);
-                if (ButtonTransioner.HairStyleState == 3) PosCreater.TwistHairStyle(PointPos, ButtonTransioner.HairWidth, TwistCurve, HairTail);
+                if (ButtonTransitioner.HairStyleState == 1) PosCreater.Straight_HairStyle(PointPos, ButtonTransitioner.HairWidth, ButtonTransitioner.HairThickness, HairTail);
+                if (ButtonTransitioner.HairStyleState == 2) PosCreater.WaveHairStyle(PointPos, ButtonTransitioner.HairWidth, ButtonTransitioner.HairThickness, WaveCurve, HairTail);
+                if (ButtonTransitioner.HairStyleState == 3) PosCreater.TwistHairStyle(PointPos, ButtonTransitioner.HairWidth, TwistCurve, HairTail);
                 OldPos = NewPos;
             }
 
