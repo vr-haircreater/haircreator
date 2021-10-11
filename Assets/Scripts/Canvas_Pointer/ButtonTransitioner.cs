@@ -56,7 +56,7 @@ public class ButtonTransitioner : MonoBehaviour, IPointerEnterHandler, IPointerE
         slider1img = GameObject.FindGameObjectWithTag("slider1img");
         Gslider1 = GameObject.FindGameObjectWithTag("Gslider1");
         Wslider1 = GameObject.FindGameObjectWithTag("Wslider1");
-        Tslider1 = GameObject.FindGameObjectWithTag("Tslider1"); ;
+        Tslider1 = GameObject.FindGameObjectWithTag("Tslider1"); 
         //PadB = GameObject.Find("Player/SteamVRObjects/LeftHand/PadB");
         //PadC = GameObject.Find("Player/SteamVRObjects/LeftHand/PadC");
 
@@ -73,6 +73,8 @@ public class ButtonTransitioner : MonoBehaviour, IPointerEnterHandler, IPointerE
         }
         showimg.GetComponent<Image>();
         slider1img.GetComponent<Image>();
+
+        //將gameobject slider的slider功能指給程式中的Sslider用
         Sslider1 = Gslider1.GetComponent<Slider>();
         Sslider2 = Wslider1.GetComponent<Slider>();
         Sslider3 = Tslider1.GetComponent<Slider>();
@@ -92,15 +94,13 @@ public class ButtonTransitioner : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void OnPointerExit(PointerEventData eventData)
     {
 
-
     }
     public void OnPointerDown(PointerEventData eventData)
     {
         FindTag();
-        Slider1();
+        //Slider1();
         SliderW();
         SliderT();
-
     }
     public void OnPointerUp(PointerEventData eventData)
     {
@@ -108,24 +108,24 @@ public class ButtonTransitioner : MonoBehaviour, IPointerEnterHandler, IPointerE
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        FindTag();
-        Slider1();
+        //FindTag();
+        //Slider1();
         SliderW();
         SliderT();
     }
 
-    public void Slider1()
+    public void Slider1() //調動深淺
     {
+        print("改顏色"); //看呼叫的密集程度 應該要很快即兇手是122行
         Color.RGBToHSV(showimg.GetComponent<Image>().color, out H, out S, out V);
-        Sslider2.value = S * 100.0f;
-        Sslider2.onValueChanged.AddListener(delegate { ValueChangeCheck0(); });
-
+        Sslider1.value = S * 100.0f;
+        Sslider1.onValueChanged.AddListener(delegate { ValueChangeCheck0(); }); //一直ADD
     }
-    public void SliderW()
+    public void SliderW() //粗細
     {
         HairWidth = (int)Sslider2.value;
     }
-    public void SliderT()
+    public void SliderT() //薄厚
     {
         HairThickness = (int)Sslider3.value;
     }
@@ -136,6 +136,7 @@ public class ButtonTransitioner : MonoBehaviour, IPointerEnterHandler, IPointerE
     }
     public void FindTag()
     {
+        //===== PadA-Buttons
         if (gameObject.tag == "button0")
         {
             btn_color = 0;
@@ -195,34 +196,71 @@ public class ButtonTransitioner : MonoBehaviour, IPointerEnterHandler, IPointerE
         {
             //btn_color = 11;
             CallerPad.PadBShow();
+            Debug.Log("am i ?");
             //PadB.SetActive(true);
             //PadC.SetActive(false);
         }
-        //=====choose
-        else if (gameObject.tag == "Straight_HairStyle")
+        //===== PadA-Bar 在上面一堆slider的地方
+        else if (gameObject.tag == "Gslider1") //
+        {
+            Slider1();
+        }
+        //===== PadA-choose 直/波浪/螺旋
+        else if (gameObject.tag == "Straight_HairStyle") //直
         {
             HairStyleState = 1;
         }
-        else if (gameObject.tag == "WaveHairStyle")
+        else if (gameObject.tag == "WaveHairStyle") //波浪
         {
             HairStyleState = 2;
         }
-        else if (gameObject.tag == "TwistHairStyle")
+        else if (gameObject.tag == "TwistHairStyle") //螺旋
         {
             HairStyleState = 3;
         }
-        //=====lower
+        else if (gameObject.tag == "ArrowButton")
+        {
+            CallerPad.PadCShow();
+        }
+        //===== PadA-lower (BUG:undo刪兩個)
         else if (gameObject.tag == "UndoButton")
         {
             CreateHair.Undo();
         }
         else if (gameObject.tag == "SaveButton")
         {
-            
+            CallerPad.PadDShow();
         }
         else if (gameObject.tag == "RedoButton")
         {
             CreateHair.Redo();
+        }
+        //===== PadB-yes/no (顏色等敏真寫完)
+        else if (gameObject.tag == "PadBYes")
+        {
+            CallerPad.PadAShow();
+        }
+        else if (gameObject.tag == "PadBNo")
+        {
+            CallerPad.PadAShow();
+        }
+        //===== PadC-yes/no (Save等宜均加存檔部分)
+        else if (gameObject.tag == "PadCYes")
+        {
+            CallerPad.PadAShow();
+        }
+        else if (gameObject.tag == "PadCNo")
+        {
+            CallerPad.PadAShow();
+        }
+        //===== PadD-yes/no (宜均要加其他tag上去)
+        else if (gameObject.tag == "PadDYes")
+        {
+            CallerPad.PadAShow();
+        }
+        else if (gameObject.tag == "PadDNo")
+        {
+            CallerPad.PadAShow();
         }
     }
 

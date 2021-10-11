@@ -31,6 +31,15 @@ TagManager:
   - UndoButton
   - RedoButton
   - SaveButton
+  - projectile
+  - FxTemporaire
+  - ArrowButton
+  - PadCYes
+  - PadCNo
+  - PadDYes
+  - PadDNo
+  - PadBYes
+  - PadBNo
   layers:
   - Default
   - TransparentFX
