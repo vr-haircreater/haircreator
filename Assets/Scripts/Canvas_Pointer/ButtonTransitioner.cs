@@ -23,6 +23,7 @@ public class ButtonTransitioner : MonoBehaviour, IPointerEnterHandler, IPointerE
     //public GameObject PadB, PadC;
 
     public static int HairStyleState = 1;
+    public VRMSave SaveModel;
 
     private void Awake()
     {
@@ -232,6 +233,9 @@ public class ButtonTransitioner : MonoBehaviour, IPointerEnterHandler, IPointerE
         //===== PadC-yes/no (Save等宜均加存檔部分)
         if (gameObject.tag == "PadCYes")
         {
+            if(gameObject.GetComponent<VRMSave>() == null) SaveModel = gameObject.AddComponent<VRMSave>();
+            else SaveModel = gameObject.GetComponent<VRMSave>();
+            SaveModel.OnExportClicked();
             CallerPad.PadAShow();
         }
         else if (gameObject.tag == "PadCNo")
