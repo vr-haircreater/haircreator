@@ -12,8 +12,8 @@ public class ButtonTransitioner : MonoBehaviour, IPointerEnterHandler, IPointerE
     public static Slider Sslider1, Sslider2, Sslider3;
     public static GameObject Gslider1, Wslider1, Tslider1;
     public static Color HairColor;
-    public GameObject PadA;
-
+    public GameObject PadA,Point;
+  
     public static int HairWidth;
     public static int HairThickness;
 
@@ -33,6 +33,7 @@ public class ButtonTransitioner : MonoBehaviour, IPointerEnterHandler, IPointerE
         //PadB = GameObject.Find("Player/SteamVRObjects/LeftHand/PadB");
         //PadC = GameObject.Find("Player/SteamVRObjects/LeftHand/PadC");
         PadA = GameObject.Find("Player/SteamVRObjects/LeftHand/PadA");
+        Point = GameObject.Find("Player/SteamVRObjects/RightHand/PR_Pointer");
         if (PadA.activeSelf == true) FindPadAObject();
 
     }
@@ -50,18 +51,19 @@ public class ButtonTransitioner : MonoBehaviour, IPointerEnterHandler, IPointerE
         {
             HairColor = showimg.GetComponent<Image>().color;
             SliderW();
-            SliderT();
+            SliderT();  
             Slider1();
         }
     }
-
+   
     public void OnPointerEnter(PointerEventData eventData)
     {
+        Point.SetActive(true);
 
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-
+        Point.SetActive(false);
     }
     public void OnPointerDown(PointerEventData eventData)
     {
