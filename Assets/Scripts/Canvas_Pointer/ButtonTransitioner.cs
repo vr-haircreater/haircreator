@@ -17,6 +17,8 @@ public class ButtonTransitioner : MonoBehaviour, IPointerEnterHandler, IPointerE
     public static int HairWidth;
     public static int HairThickness;
 
+    public static bool HairTail = true;
+
     float H, S, V;
 
     private Image m_Image = null;
@@ -255,6 +257,27 @@ public class ButtonTransitioner : MonoBehaviour, IPointerEnterHandler, IPointerE
         {
             CallerPad.PadAShow();
         }
+        else if (gameObject.tag == "HairTip")
+        {
+            
+        }
+        else if (gameObject.tag == "HairStraight")
+        {
+            
+        }
+        else if (gameObject.tag == "SmallRoll")
+        {
+           
+        }
+        else if (gameObject.tag == "MediumRoll")
+        {
+           
+        }
+        else if (gameObject.tag == "BigRoll")
+        {
+           
+        }
+
 
     }
 

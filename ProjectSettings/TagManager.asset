@@ -40,6 +40,11 @@ TagManager:
   - PadDNo
   - PadBYes
   - PadBNo
+  - HairTip
+  - HairStraight
+  - SmallRoll
+  - MediumRoll
+  - BigRoll
   layers:
   - Default
   - TransparentFX
