@@ -18,7 +18,7 @@ public class EraserCollider : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision) //Eraser
     {
-        Debug.Log("Get");
+        //Debug.Log("Get");
         Contact = GameObject.Find(collision.gameObject.name);
     }
 }

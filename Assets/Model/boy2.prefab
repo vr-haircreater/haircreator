@@ -274,7 +274,7 @@ SkinnedMeshRenderer:
     firstSubMesh: 0
     subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
+  m_ProbeAnchor: {fileID: 7338142710068036153}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_ReceiveGI: 1
@@ -589,6 +589,7 @@ GameObject:
   - component: {fileID: 4749384366926689423}
   - component: {fileID: 5340176814294399110}
   - component: {fileID: 7905358583688313226}
+  - component: {fileID: 1741217711379245714}
   m_Layer: 0
   m_Name: boy2
   m_TagString: Untagged
@@ -689,10 +690,6 @@ MonoBehaviour:
   FirstPersonBone: {fileID: 7338142710068036153}
   FirstPersonOffset: {x: 0, y: 0.06, z: 0}
   Renderers:
-  - Renderer: {fileID: 3751399030967366448}
-    FirstPersonFlag: 0
-  - Renderer: {fileID: 1878664265187438030}
-    FirstPersonFlag: 0
   - Renderer: {fileID: 3751399030967366448}
     FirstPersonFlag: 0
   - Renderer: {fileID: 1878664265187438030}
@@ -874,6 +871,18 @@ MonoBehaviour:
       m_RotationOrder: 4
     CurveXRangeDegree: 90
     CurveYRangeDegree: 10
+--- !u!114 &1741217711379245714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842518010285145296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 423fb0cccbe420047ac28163cce68db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &851930411405016574
 GameObject:
   m_ObjectHideFlags: 0
@@ -3057,7 +3066,7 @@ SkinnedMeshRenderer:
     firstSubMesh: 0
     subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
+  m_ProbeAnchor: {fileID: 7338142710068036153}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_ReceiveGI: 1

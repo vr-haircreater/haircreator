@@ -50,7 +50,7 @@ public class CreateHair : MonoBehaviour
         Pose = GetComponent<SteamVR_Behaviour_Pose>();
         HairModelG = GameObject.Find("GirlSit/Hairs");
         HairModelB = GameObject.Find("BoySit/Hairs");
-        HairPos = GameObject.Find("Salon/Trolley/Salon_tool/paint1/pCylinder6ylinder6");
+        HairPos = GameObject.Find("Salon/Trolley/paint1/pCylinder6ylinder6");
         PosCreater = gameObject.AddComponent<PosGenerate>(); //加入PosGenerate
         HairTexture = Resources.Load<Texture2D>("Textures/F00_000_Hair_00");
         HairNormal = Resources.Load<Texture2D>("Textures/F00_000_Hair_00_nml");

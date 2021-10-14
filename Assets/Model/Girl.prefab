@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 2540092257810692758}
   - component: {fileID: 7902589717654785006}
   - component: {fileID: 6653760533476582629}
+  - component: {fileID: 1148101661419282087}
   m_Layer: 0
   m_Name: Girl
   m_TagString: Untagged
@@ -178,10 +179,6 @@ MonoBehaviour:
   FirstPersonBone: {fileID: 332168028128963485}
   FirstPersonOffset: {x: 0, y: 0.06, z: 0}
   Renderers:
-  - Renderer: {fileID: 1665247881279177168}
-    FirstPersonFlag: 0
-  - Renderer: {fileID: 5624168446945611739}
-    FirstPersonFlag: 0
   - Renderer: {fileID: 1665247881279177168}
     FirstPersonFlag: 0
   - Renderer: {fileID: 5624168446945611739}
@@ -363,6 +360,18 @@ MonoBehaviour:
       m_RotationOrder: 4
     CurveXRangeDegree: 90
     CurveYRangeDegree: 10
+--- !u!114 &1148101661419282087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359687156019832726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 423fb0cccbe420047ac28163cce68db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &552445571723623233
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,7 +497,7 @@ SkinnedMeshRenderer:
     firstSubMesh: 0
     subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
+  m_ProbeAnchor: {fileID: 332168028128963485}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_ReceiveGI: 1
@@ -2596,7 +2605,7 @@ SkinnedMeshRenderer:
     firstSubMesh: 0
     subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
+  m_ProbeAnchor: {fileID: 332168028128963485}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_ReceiveGI: 1

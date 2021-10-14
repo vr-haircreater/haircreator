@@ -8,34 +8,33 @@ public class Gather1 : MonoBehaviour
 {
     public static int icon;
     public int state;
-    int call = 0;
     public static bool GridState;
     GameObject RightHand;
     public static bool RightDown = false;
-    public bool PointWake = false;
 
-    //Rigidbody ri;
     
     public static SteamVR_Behaviour_Pose Pose = null;
-    private FixedJoint m_Joint = null;
-    private GameObject m_object = null;
+    public FixedJoint m_Joint = null;
+    public static GameObject m_object = null;
 
     public SteamVR_Action_Boolean TriggerClick = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("GrabPinch");//板機鍵按鈕
     public SteamVR_Action_Boolean m_Grip = null;
     public GameObject HairPaint,Point;
 
-    public Transform Salontool,Trolley,PaintPos;
-    public GameObject Salontool2,something;
+    public Transform Salon,Trolley,PaintPos;
+
 
     Vector3 ObjectPos;
+    Quaternion objRotatePos,TrolleyRotate;
 
     void Awake()
     {
         RightHand = GameObject.Find("Player/SteamVRObjects/RightHand");
         Pose = GetComponent<SteamVR_Behaviour_Pose>();
         m_Joint = GetComponent<FixedJoint>();
-        HairPaint = GameObject.Find("Salon/Trolley/Salon_tool/paint1");
+        HairPaint = GameObject.Find("Salon/Trolley/paint1");
         Point = GameObject.Find("Player/SteamVRObjects/RightHand/PR_Pointer");
+        
     }
 
     void Start()
@@ -52,22 +51,10 @@ public class Gather1 : MonoBehaviour
     {
         //Debug.Log("右:"+ Pose.transform.position);
         //cpicker_material.color = cpicker.color;
-        if (m_Grip.GetStateDown(Pose.inputSource) && PointWake == true)
-        {
-            if (m_object != null) Drop();
-            Point.SetActive(false);
-            PointWake = false;
-        }
-        else if (m_Grip.GetStateDown(Pose.inputSource) && PointWake==false)
-        {
-            if(m_object != null ) Drop();
-            Point.SetActive(true);
-            PointWake = true;
-        }
+    
         if (m_Grip.GetStateDown(Pose.inputSource))
         {
             Drop();
-
         }
 
         if (icon == 0)
@@ -75,7 +62,6 @@ public class Gather1 : MonoBehaviour
             if (TriggerClick.GetStateDown(Pose.inputSource))
             {
                 Pickup();
-                PointWake = false;
             }
         }
         if (TriggerClick.GetStateDown(Pose.inputSource))
@@ -134,8 +120,10 @@ public class Gather1 : MonoBehaviour
     {
         if (m_object == null) return;
 
-        something = m_object;
-        ObjectPos = something.transform.localPosition;
+        //something = m_object;
+        
+        ObjectPos = m_object.transform.localPosition;
+        objRotatePos = m_object.transform.localRotation;
         Debug.Log("PickUp" + ObjectPos);
         if (m_object.GetComponent<InteractableContrallor>().m_ActiveHand != null)
         {
@@ -157,13 +145,13 @@ public class Gather1 : MonoBehaviour
         
         m_Joint.connectedBody = null;
         m_object.GetComponent<InteractableContrallor>().m_ActiveHand = null;
+        TrolleyRotate = Trolley.transform.rotation;
+        m_object.transform.position = Salon.position + Trolley.localPosition + ObjectPos;
+        m_object.transform.localRotation = Quaternion.Euler(objRotatePos.x, objRotatePos.y, objRotatePos.z);
+
         m_object = null;
         icon = 0;
         state = 0;
-
-        something.transform.position = Trolley.transform.position + Salontool.transform.localPosition + ObjectPos;
-        Debug.Log("Drop" + something.transform.localPosition);
-        //PaintPos.transform.localPosition = new Vector3(0.8184392f, 0.2870926f, -4.964572f); 
     }
 
 }
