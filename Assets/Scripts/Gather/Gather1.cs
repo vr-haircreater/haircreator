@@ -19,9 +19,9 @@ public class Gather1 : MonoBehaviour
 
     public SteamVR_Action_Boolean TriggerClick = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("GrabPinch");//板機鍵按鈕
     public SteamVR_Action_Boolean m_Grip = null;
-    public GameObject HairPaint,Point;
+    
 
-    public Transform Salon,Trolley,PaintPos;
+    public Transform ClearPos,EraserPos,PaintPos,erasercopy,paintcopy,clearcopy;
 
 
     Vector3 ObjectPos;
@@ -32,8 +32,6 @@ public class Gather1 : MonoBehaviour
         RightHand = GameObject.Find("Player/SteamVRObjects/RightHand");
         Pose = GetComponent<SteamVR_Behaviour_Pose>();
         m_Joint = GetComponent<FixedJoint>();
-        HairPaint = GameObject.Find("Salon/Trolley/paint1");
-        Point = GameObject.Find("Player/SteamVRObjects/RightHand/PR_Pointer");
         
     }
 
@@ -145,13 +143,34 @@ public class Gather1 : MonoBehaviour
         
         m_Joint.connectedBody = null;
         m_object.GetComponent<InteractableContrallor>().m_ActiveHand = null;
-        TrolleyRotate = Trolley.transform.rotation;
-        m_object.transform.position = Salon.position + Trolley.localPosition + ObjectPos;
-        m_object.transform.localRotation = Quaternion.Euler(objRotatePos.x, objRotatePos.y, objRotatePos.z);
 
+        if (m_object.name == "eraser1")
+        {
+            m_object.transform.rotation = erasercopy.rotation;
+            m_object.transform.position = erasercopy.position;
+        }
+        if (m_object.name == "paint1")
+        {
+            m_object.transform.rotation = paintcopy.rotation;
+            m_object.transform.position = paintcopy.position;
+        }
+        if (m_object.name == "clear1")
+        {
+            m_object.transform.rotation = clearcopy.rotation;
+            m_object.transform.position = clearcopy.position;
+        }
+        
         m_object = null;
         icon = 0;
         state = 0;
+    }
+
+    public void GetobjPos() 
+    {
+        if (PaintPos.position.y < 0.2f) PaintPos.position = paintcopy.position;
+        if (PaintPos.position.y < 0.2f) PaintPos.position = erasercopy.position;
+        if (PaintPos.position.y < 0.2f) PaintPos.position = clearcopy.position;
+
     }
 
 }

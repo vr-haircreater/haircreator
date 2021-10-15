@@ -12,7 +12,7 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
     public static Slider Sslider1, Sslider2, Sslider3;
     public static GameObject Gslider1, Wslider1, Tslider1;
     public static Color HairColor;
-    public GameObject PadA;
+    public GameObject PadA,role;
   
     public static int HairWidth;
     public static int HairThickness;
@@ -25,7 +25,7 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
     //public GameObject PadB, PadC;
 
     public static int HairStyleState = 1;
-    public VRMSave SaveModel;
+    public Animator animator;
 
     private void Awake()
     {
@@ -34,6 +34,8 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         //PadC = GameObject.Find("Player/SteamVRObjects/LeftHand/PadC");
         PadA = GameObject.Find("Player/SteamVRObjects/LeftHand/PadA");
         
+        
+
         if (PadA.activeSelf == true) FindPadAObject();
 
     }
@@ -69,11 +71,7 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         }
         if (CallerPad.state == 1) FindPadBTag();
         if (CallerPad.state == 2) FindPadDTag();
-        if (CallerPad.state == 3)
-        {
-            Debug.Log("Hi");
-            FindPadCTag();
-        }
+
         /*if (PadA.activeSelf == true) { 
            
         }*/
@@ -195,7 +193,13 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         }
         else if (gameObject.tag == "SaveButton")
         {
+            //animator.SetTrigger("Pose1");
+            animator = GameObject.Find("GirlSit").GetComponent<Animator>();//之後要考慮男女
+            animator.SetTrigger("Pose");
+            role = GameObject.Find("GirlSit");
+            role.transform.position = new Vector3(0.094f,0.12f,3.92f);
             CallerPad.PadDShow();
+            
         }
         else if (gameObject.tag == "RedoButton")
         {
@@ -216,22 +220,7 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         }
 
     }
-    public void FindPadCTag()
-    {
-        //===== PadC-yes/no (Save等宜均加存檔部分)
-        if (gameObject.tag == "PadCYes")
-        {
-            if(gameObject.GetComponent<VRMSave>() == null) SaveModel = gameObject.AddComponent<VRMSave>();
-            else SaveModel = gameObject.GetComponent<VRMSave>();
-            SaveModel.OnExportClicked();
-            CallerPad.PadAShow();
-        }
-        else if (gameObject.tag == "PadCNo")
-        {
-            CallerPad.PadAShow();
-        }
-
-    }
+  
     public void FindPadDTag()
     {
         //===== PadD-yes/no (宜均要加其他tag上去)
