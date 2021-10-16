@@ -12,7 +12,7 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
     public static Slider Sslider1, Sslider2, Sslider3;
     public static GameObject Gslider1, Wslider1, Tslider1;
     public static Color HairColor;
-    public GameObject PadA,role;
+    public GameObject PadA,role,rolehair;
   
     public static int HairWidth;
     public static int HairThickness;
@@ -33,8 +33,6 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         //PadB = GameObject.Find("Player/SteamVRObjects/LeftHand/PadB");
         //PadC = GameObject.Find("Player/SteamVRObjects/LeftHand/PadC");
         PadA = GameObject.Find("Player/SteamVRObjects/LeftHand/PadA");
-        
-        
 
         if (PadA.activeSelf == true) FindPadAObject();
 
@@ -198,6 +196,8 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
             animator.SetTrigger("Pose");
             role = GameObject.Find("GirlSit");
             role.transform.position = new Vector3(0.094f,0.12f,3.92f);
+            rolehair = GameObject.Find("GirlSit/Hairs");
+            rolehair.transform.localPosition = new Vector3(0f,0.066f,0.143f);
             CallerPad.PadDShow();
             
         }
@@ -213,6 +213,7 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         if (gameObject.tag == "PadBYes")
         {
             CallerPad.PadAShow();
+            showimg.GetComponent<Image>().color = ColorPicker_control.colorshow.color;
         }
         else if (gameObject.tag == "PadBNo")
         {
@@ -234,23 +235,23 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         }
         else if (gameObject.tag == "HairTip")
         {
-            
+            CreateHair.HairTail = true;
         }
         else if (gameObject.tag == "HairStraight")
         {
-            
+            CreateHair.HairTail = false;
         }
         else if (gameObject.tag == "SmallRoll")
         {
-           
+            CreateHair.Curve = 0.6f;
         }
         else if (gameObject.tag == "MediumRoll")
         {
-           
+            CreateHair.Curve = 0.8f;
         }
         else if (gameObject.tag == "BigRoll")
         {
-           
+            CreateHair.Curve = 1.0f;
         }
 
 

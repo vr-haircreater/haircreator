@@ -8,13 +8,13 @@ public class CreateHair : MonoBehaviour
     int HairCounter = 0; //Hair片數
     public static int HairWidth = 1;//髮片寬度
     
-    public bool HairTail = true;
+    public static bool HairTail = true;
 
     float length = 0.015f; //點距離，原本0.05
     //public int InputRange = 3;//(寬度Range 1~6)
     //public int InputRangeThickness = 1; //(厚度Range 1~6)
-    public float TwistCurve = 0.6f;
-    public float WaveCurve = 1.0f;
+    public static float Curve = 0.6f;
+
 
     public static Vector3 NewPos, OldPos; //抓新舊點
 
@@ -27,8 +27,6 @@ public class CreateHair : MonoBehaviour
     public PosGenerate PosCreater; //呼叫 PosGenerate.cs 中的東西給 PosCreater 用
 
     public SteamVR_Action_Boolean TriggerClick = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("GrabPinch");//板機鍵按鈕
-    public SteamVR_Action_Boolean LClick = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("SnapTurnRight");//left按鈕
-    public SteamVR_Action_Boolean RClick = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("SnapTurnLeft");//right按鈕
     public static SteamVR_Behaviour_Pose Pose;//手把偵測與座標
 
     public SteamVR_Action_Boolean spawn = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("InteractUI");
@@ -59,11 +57,6 @@ public class CreateHair : MonoBehaviour
     void Update()
     {
         Dawer();
-        //Undo();
-        //Redo();
-        //Clear();
-        //Eraser();
-        Control();
         AimHairG = Vector3.Distance(HairModelG.transform.position, Pose.transform.position);
                 
     }
@@ -103,8 +96,8 @@ public class CreateHair : MonoBehaviour
                 PosCreater.VectorCross(HairPos.transform.up, HairPos.transform.forward, HairPos.transform.right);
                 //PosCreater.GetPosition(OldPos, NewPos, InputRange);
                 if (ButtonTransitioner.HairStyleState == 1) PosCreater.Straight_HairStyle(PointPos, ButtonTransitioner.HairWidth, ButtonTransitioner.HairThickness, HairTail);
-                if (ButtonTransitioner.HairStyleState == 2) PosCreater.WaveHairStyle(PointPos, ButtonTransitioner.HairWidth, ButtonTransitioner.HairThickness, WaveCurve, HairTail);
-                if (ButtonTransitioner.HairStyleState == 3) PosCreater.TwistHairStyle(PointPos, ButtonTransitioner.HairWidth, TwistCurve, HairTail);
+                if (ButtonTransitioner.HairStyleState == 2) PosCreater.WaveHairStyle(PointPos, ButtonTransitioner.HairWidth, ButtonTransitioner.HairThickness, Curve, HairTail);
+                if (ButtonTransitioner.HairStyleState == 3) PosCreater.TwistHairStyle(PointPos, ButtonTransitioner.HairWidth, Curve, HairTail);
                 OldPos = NewPos;
             }
 
@@ -146,24 +139,6 @@ public class CreateHair : MonoBehaviour
             }
         }
         
-    }
-    void Control()
-    {
-
-        if (Input.GetKeyDown("s") && WaveCurve > 0.2f) WaveCurve -= 0.1f;
-        if (Input.GetKeyDown("w") && WaveCurve < 0.8f) WaveCurve += 0.1f;
-        if (Input.GetKeyDown("a") && TwistCurve > 0.5f) TwistCurve -= 0.1f;
-        if (Input.GetKeyDown("d") && TwistCurve < 0.8f) TwistCurve += 0.1f;//越大越捲
-
-        if (Gather1.icon == 2) 
-        { 
-        
-        }
-        if (Gather1.icon == 3) 
-        {
-        
-        }
-
     }
 
     public static void Undo()

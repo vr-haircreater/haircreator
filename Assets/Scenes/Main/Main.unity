@@ -268,6 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!4 &102331978 stripped
 Transform:
@@ -294,6 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1 &360950988
 GameObject:
@@ -1203,6 +1205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1 &770264729 stripped
 GameObject:
@@ -1223,6 +1226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1 &786477771 stripped
 GameObject:
@@ -1489,6 +1493,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   SaveModel: {fileID: 0}
+  role: {fileID: 0}
 --- !u!1001 &948686490
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1758,7 +1763,6 @@ MonoBehaviour:
   color_Htemp: 0
   color_Stemp: 0
   color_Vtemp: 0
-  colorshow: {fileID: 2100000, guid: 73a0a588b376a0d4a99db8ca5b15c1cb, type: 2}
 --- !u!114 &1065330530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2030,17 +2034,17 @@ PrefabInstance:
     - target: {fileID: 7879918698096669229, guid: c49beeb93d25b524ba3ad60ade314d40,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.9811321
+      value: 0.9433962
       objectReference: {fileID: 0}
     - target: {fileID: 7879918698096669229, guid: c49beeb93d25b524ba3ad60ade314d40,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.9765041
+      value: 0.7164471
       objectReference: {fileID: 0}
     - target: {fileID: 7879918698096669229, guid: c49beeb93d25b524ba3ad60ade314d40,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.9765041
+      value: 0.7164471
       objectReference: {fileID: 0}
     - target: {fileID: 7879918698096669231, guid: c49beeb93d25b524ba3ad60ade314d40,
         type: 3}
@@ -2115,6 +2119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1097505659
 MonoBehaviour:
@@ -2129,6 +2134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1097505660
 MonoBehaviour:
@@ -2397,6 +2403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1001 &1258491247
 PrefabInstance:
@@ -3777,6 +3784,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491268
 MonoBehaviour:
@@ -3791,6 +3799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491269
 MonoBehaviour:
@@ -3805,6 +3814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491270
 MonoBehaviour:
@@ -3819,6 +3829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491271
 MonoBehaviour:
@@ -3833,6 +3844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491272
 MonoBehaviour:
@@ -3847,6 +3859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491273
 MonoBehaviour:
@@ -3861,6 +3874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491274
 MonoBehaviour:
@@ -3875,6 +3889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491275
 MonoBehaviour:
@@ -3889,6 +3904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491276
 MonoBehaviour:
@@ -3903,6 +3919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491277
 MonoBehaviour:
@@ -3917,6 +3934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491278
 MonoBehaviour:
@@ -3931,6 +3949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491279
 MonoBehaviour:
@@ -3945,6 +3964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491280
 MonoBehaviour:
@@ -3959,6 +3979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491281
 MonoBehaviour:
@@ -3973,6 +3994,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491282
 MonoBehaviour:
@@ -3987,6 +4009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491284
 MonoBehaviour:
@@ -4001,6 +4024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491285
 MonoBehaviour:
@@ -4015,6 +4039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1 &1277568922
 GameObject:
@@ -4353,6 +4378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1 &1469918866
 GameObject:
@@ -4593,6 +4619,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   SaveModel: {fileID: 0}
+  role: {fileID: 0}
 --- !u!1 &1686806621 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4813928746747d141b16c955581d6a0e,
@@ -6299,6 +6326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1 &2019194721
 GameObject:
@@ -6657,6 +6685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PadA: {fileID: 0}
+  role: {fileID: 0}
   animator: {fileID: 0}
 --- !u!4 &2112664022 stripped
 Transform:
