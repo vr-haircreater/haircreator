@@ -1846,7 +1846,6 @@ MonoBehaviour:
   color_Htemp: 0
   color_Stemp: 0
   color_Vtemp: 0
-  colorshow: {fileID: 2100000, guid: 73a0a588b376a0d4a99db8ca5b15c1cb, type: 2}
 --- !u!114 &1065330530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2118,17 +2117,17 @@ PrefabInstance:
     - target: {fileID: 7879918698096669229, guid: c49beeb93d25b524ba3ad60ade314d40,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.9811321
+      value: 0.9433962
       objectReference: {fileID: 0}
     - target: {fileID: 7879918698096669229, guid: c49beeb93d25b524ba3ad60ade314d40,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.9765041
+      value: 0.7164471
       objectReference: {fileID: 0}
     - target: {fileID: 7879918698096669229, guid: c49beeb93d25b524ba3ad60ade314d40,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.9765041
+      value: 0.7164471
       objectReference: {fileID: 0}
     - target: {fileID: 7879918698096669231, guid: c49beeb93d25b524ba3ad60ade314d40,
         type: 3}

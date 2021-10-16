@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using Valve.VR;
+using UnityEngine.UI;
 
 public class ColorPicker_control : MonoBehaviour
 {    
@@ -10,9 +11,9 @@ public class ColorPicker_control : MonoBehaviour
     public GameObject dot;
     Vector3 svPos,hPos,mousePos, SVsliderPos, HsliderPos;
     public float svWidth=200, svHeight=200, hWidth=16, hHeight=200, color_Htemp, color_Stemp, color_Vtemp;
-    public Material colorshow;
+    public static Material colorshow;
     Vector3 Crossx, Crossy, Crossz,SVNewPos,dotPos;
-
+    Vector3 degx, degy;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class ColorPicker_control : MonoBehaviour
         color_Stemp = 1f;
         color_Vtemp = 1f;
         dot = GameObject.Find("Player/SteamVRObjects/RightHand/PR_Pointer/Dot");
+        colorshow = GameObject.Find("Player/SteamVRObjects/LeftHand/PadB/PanelB/colorshow").GetComponent<Image>().material;
     }
     
     void Update()
@@ -39,7 +41,7 @@ public class ColorPicker_control : MonoBehaviour
             mousePos = dot.transform.position;
             HsliderPos = h_slider.transform.position;
             //print("mouse:"+mousePos);
-            if (mousePos.x >= (svPos.x - 0.1399244f / 2) && mousePos.x <= (svPos.x + 0.1399244f/2) && mousePos.y <= (svPos.y + 0.1299029f / 2) && mousePos.y >= (svPos.y - 0.1299029f/2))
+            if (mousePos.x >= (svPos.x - 0.1399244f / 2) && mousePos.x <= (svPos.x  + 0.1399244f/2) && mousePos.y <= (svPos.y  + 0.1299029f / 2) && mousePos.y >= (svPos.y- 0.1299029f/2))
             {
                 //print("SV:"+mousePos);
                 //SVsliderPos = sv_slider.transform.position;
@@ -69,24 +71,20 @@ public class ColorPicker_control : MonoBehaviour
 
     public void VectorCross() 
     {
-        /*Crossx = Vector3.Cross(sv_img.transform.forward, sv_img.transform.up);//x 
-        Crossy = Vector3.Cross(sv_img.transform.forward, sv_img.transform.right);//y
+        Crossx = Vector3.Cross(sv_img.transform.forward, sv_img.transform.up).normalized;//x 
+        Crossy = Vector3.Cross(sv_img.transform.forward, sv_img.transform.right).normalized;//y
         Crossz = Vector3.Cross(sv_img.transform.up, sv_img.transform.right);//z*/
 
-        
+        Vector3 degx0 = new Vector3(sv_img.transform.position.x* Crossx.x, sv_img.transform.position.y * Crossx.y, sv_img.transform.position.z * Crossx.z);
+        Vector3 degy0 = new Vector3(sv_img.transform.position.x * Crossy.x, sv_img.transform.position.y * Crossy.y, sv_img.transform.position.z * Crossy.z);
 
-        Crossx.Normalize();
-        Crossy.Normalize();
-        Crossz.Normalize();
+        degx = sv_img.transform.position - degx0;
+        degy = sv_img.transform.position - degy0;
 
-        //Crossx = new Vector3(Crossx.x *sv_img.transform.position.x, Crossx.y * sv_img.transform.position.y, Crossx.z * sv_img.transform.position.z);
-        //Crossy = new Vector3(Crossy.x * sv_img.transform.position.x, Crossy.y * sv_img.transform.position.y, Crossy.z * sv_img.transform.position.z);
-        //Crossz = new Vector3(Crossz.x * sv_img.transform.position.x, Crossz.y * sv_img.transform.position.y, Crossz.z * sv_img.transform.position.z);
 
-        dotPos = Crossx + Crossy + Crossz;
-        Debug.Log(Crossx);
 
-        Debug.Log("沒轉"+sv_img.transform.position + "轉" + SVNewPos);
+        Debug.Log("沒轉"+sv_img.transform.position + "轉" + Crossx);
+        Debug.Log("差"+degx);
         //Debug.Log("轉"+ SVNewPos);
 
         
