@@ -178,24 +178,21 @@ public class CreateHair : MonoBehaviour
         }
     }
 
-    public static void Clear()
+    public static void Clear() //state == 3;
     {
         //if clear excuted, rerecord the undo count. (till next clear)
-        if (Input.GetKeyDown("c"))
+        u_Freq = 0; // Undo count return to zero.
+        StackExistHair.Clear();
+        TempListExistHair = ListExistHair.Count;
+        for (int i = 0; i < TempListExistHair; i++)  //All in.
         {
-            u_Freq = 0; // Undo count return to zero.
-            StackExistHair.Clear();
-            TempListExistHair = ListExistHair.Count;
-            for (int i = 0; i < TempListExistHair; i++)  //All in.
-            {
-                PushStuff();
-            }
-            c_Freq = 1; //clear functions had been excuted. (for undo)
-            Debug.Log("uF:" + u_Freq + "cF:" + c_Freq);
+            PushStuff();
         }
+        c_Freq = 1; //clear functions had been excuted. (for undo)
+        //Debug.Log("uF:" + u_Freq + "cF:" + c_Freq);  
     }
 
-    public static void Eraser()
+    public static void Eraser() //Gather1.state ==2;
     {
         if (EraserCollider.Contact != null)
         {

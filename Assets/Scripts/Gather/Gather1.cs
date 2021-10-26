@@ -19,7 +19,7 @@ public class Gather1 : MonoBehaviour
 
     public SteamVR_Action_Boolean TriggerClick = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("GrabPinch");//板機鍵按鈕
     public SteamVR_Action_Boolean m_Grip = null;
-    
+    int tempforstate23 = 0;
 
     public Transform ClearPos,EraserPos,PaintPos,erasercopy,paintcopy,clearcopy;
 
@@ -65,33 +65,89 @@ public class Gather1 : MonoBehaviour
         if (TriggerClick.GetStateDown(Pose.inputSource))
         {
             //Debug.Log(Pose.transform.position);
-            RightDown = true;
+            RightDown = true; 
         }
         if (TriggerClick.GetStateUp(Pose.inputSource)) RightDown = false;
-    }
 
+        /*if(m_object!= null)
+        {
+            if (m_object.name == "Eraser1")//if(state==2)
+                forState23();
+
+            if(state==3)//if (m_object.name == "Clear1")
+                forState23();
+        }
+        */
+        if(m_object!=null)
+        forState23();
+
+    }
+    public void forState23()
+    {       
+        if (m_object.name == "eraser1") //if(state ==2)
+        {
+            //Debug.Log("into state 2");
+            if (TriggerClick.GetStateDown(Pose.inputSource) && tempforstate23 == 1)
+            {
+                CreateHair.Eraser();
+                Debug.Log("2");
+            }
+            if (TriggerClick.GetStateDown(Pose.inputSource)&& tempforstate23==0)
+            {
+                tempforstate23 = 1;                 
+                Debug.Log("0");                
+            }
+            if (TriggerClick.GetStateUp(Pose.inputSource))
+            {
+                Debug.Log("1");                
+            }
+            
+
+        }
+        if (m_object.name == "clear1")
+        {
+            //Debug.Log("into state 3");
+            if (TriggerClick.GetStateDown(Pose.inputSource) && tempforstate23 == 1)
+            {
+                CreateHair.Clear();
+                Debug.Log("2");
+            }
+            if (TriggerClick.GetStateDown(Pose.inputSource) && tempforstate23 == 0)
+            {
+                tempforstate23 = 1;
+                Debug.Log("0");
+            }
+            if (TriggerClick.GetStateUp(Pose.inputSource))
+            {
+                Debug.Log("1");
+            }
+            
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Paint"))
         {
             m_object = other.gameObject;
-            state = 1;
+            state = 1;           
         }
         if (other.gameObject.CompareTag("Eraser"))
         {
             m_object = other.gameObject;
-            state = 2;
+            state = 2; 
+            //forState23();
         }
         if (other.gameObject.CompareTag("Clear"))
         {
             m_object = other.gameObject;
             state = 3;
+            //forState23();
         }
         if (other.gameObject.CompareTag("Grid")) 
         {
             GridState = true;
         }
-
+        
     }
     private void OnTriggerExit(Collider other)
     {
@@ -112,6 +168,8 @@ public class Gather1 : MonoBehaviour
             GridState = false;
         }
 
+        //if (m_object != null) Debug.Log("1234");
+        //if (m_object == null) Debug.Log("mobj is null now.");
     }
 
     public void Pickup()
