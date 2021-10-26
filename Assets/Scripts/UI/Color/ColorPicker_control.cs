@@ -13,7 +13,7 @@ public class ColorPicker_control : MonoBehaviour
     public float svWidth=200, svHeight=200, hWidth=16, hHeight=200, color_Htemp, color_Stemp, color_Vtemp;
     public static Material colorshow;
     Vector3 Crossx, Crossy, Crossz,SVNewPos,dotPos;
-    Vector3 degx, degy;
+    Vector3 N_MousePos;
 
     void Start()
     {
@@ -31,63 +31,47 @@ public class ColorPicker_control : MonoBehaviour
     {
         VectorCross();
         svPos = sv_img.transform.position;
-        hPos = h_img.transform.position;
- 
+        hPos = h_img.transform.position; 
         SVsliderPos = sv_slider.transform.position;
         HsliderPos = h_slider.transform.position;
-
+        
         if (Gather1.RightDown==true)
-        {
+        {            
             mousePos = dot.transform.position;
             HsliderPos = h_slider.transform.position;
-            //print("mouse:"+mousePos);
-            if (mousePos.x >= (svPos.x - 0.1399244f / 2) && mousePos.x <= (svPos.x  + 0.1399244f/2) && mousePos.y <= (svPos.y  + 0.1299029f / 2) && mousePos.y >= (svPos.y- 0.1299029f/2))
+            SVsliderPos = sv_slider.transform.position;
+
+            Debug.Log("X:" + Crossx + "Y:" + Crossy + "Z:" + Crossz);
+            VectorCross();
+            sv_slider.transform.position = new Vector3(N_MousePos.x, N_MousePos.y, mousePos.z);
+
+            GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            sphere.transform.position = N_MousePos;
+            sphere.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+            
+            if (N_MousePos.x >= (svPos.x - 0.1399244f / 2) && N_MousePos.x <= (svPos.x  + 0.1399244f/2) && N_MousePos.y <= (svPos.y  + 0.1299029f / 2) && N_MousePos.y >= (svPos.y- 0.1299029f/2))
             {
-                //print("SV:"+mousePos);
-                //SVsliderPos = sv_slider.transform.position;
-                sv_slider.transform.position = new Vector3(mousePos.x, mousePos.y, mousePos.z);
-                color_Stemp = (mousePos.x - (svPos.x - (0.1399244f / 2))) / 0.1399244f;
-                color_Vtemp = (mousePos.y - svPos.y + 0.1299029f / 2) / 0.1299029f;
+                color_Stemp = (N_MousePos.x - (svPos.x - (0.1399244f / 2))) / 0.1399244f;
+                color_Vtemp = (N_MousePos.y - svPos.y + 0.1299029f / 2) / 0.1299029f;
                 Debug.Log("Y");
             }
             if (mousePos.x >= hPos.x - 0.1483383f/2 && mousePos.x <= (hPos.x + 0.1483383f/2) && mousePos.y <= hPos.y + 0.006989386f/2 && mousePos.y >= hPos.y - 0.006989386f/2)
             {
-                //print("H:"+mousePos);
-                
                 h_slider.transform.position = new Vector3(mousePos.x, hPos.y, hPos.z);
                 color_Htemp = (mousePos.x - hPos.x + (0.1483383f / 2)) / 0.1483383f;
             }
-            //Debug.Log("Pos:" + mousePos);
-            //Debug.Log("SVPos" + svPos);
         }
-
-
         color_H = color_Htemp;
         color_S = color_Stemp;
         color_V = color_Vtemp;
         colorshow.color = Color.HSVToRGB(color_H,color_S, color_V);
-        //print(/*color_H + "," + color_S + "," + */color_V);
     }
 
     public void VectorCross() 
     {
-        Crossx = Vector3.Cross(sv_img.transform.forward, sv_img.transform.up).normalized;//x 
-        Crossy = Vector3.Cross(sv_img.transform.forward, sv_img.transform.right).normalized;//y
+        Crossx = Vector3.Cross(sv_img.transform.forward, sv_img.transform.up);//x 
+        Crossy = Vector3.Cross(sv_img.transform.forward, sv_img.transform.right);//y
         Crossz = Vector3.Cross(sv_img.transform.up, sv_img.transform.right);//z*/
-
-        Vector3 degx0 = new Vector3(sv_img.transform.position.x* Crossx.x, sv_img.transform.position.y * Crossx.y, sv_img.transform.position.z * Crossx.z);
-        Vector3 degy0 = new Vector3(sv_img.transform.position.x * Crossy.x, sv_img.transform.position.y * Crossy.y, sv_img.transform.position.z * Crossy.z);
-
-        degx = sv_img.transform.position - degx0;
-        degy = sv_img.transform.position - degy0;
-
-
-
-        Debug.Log("沒轉"+sv_img.transform.position + "轉" + Crossx);
-        Debug.Log("差"+degx);
-        //Debug.Log("轉"+ SVNewPos);
-
-        
-    
+        N_MousePos = new Vector3(Vector3.Dot(mousePos, Crossx), Vector3.Dot(mousePos, Crossy), Vector3.Dot(mousePos, Crossz));
     }
 }
