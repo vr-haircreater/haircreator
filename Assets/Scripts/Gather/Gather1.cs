@@ -7,7 +7,7 @@ using Valve.VR;
 public class Gather1 : MonoBehaviour
 {
     public static int icon;
-    public int state;
+    public static int state;
     public static bool GridState;
     GameObject RightHand;
     public static bool RightDown = false;
@@ -49,7 +49,7 @@ public class Gather1 : MonoBehaviour
     {
         //Debug.Log("右:"+ Pose.transform.position);
         //cpicker_material.color = cpicker.color;
-    
+        GetobjPos();
         if (m_Grip.GetStateDown(Pose.inputSource))
         {
             Drop();
@@ -130,7 +130,7 @@ public class Gather1 : MonoBehaviour
         Rigidbody target = m_object.GetComponent<Rigidbody>();
         m_Joint.connectedBody = target;
         m_object.GetComponent<InteractableContrallor>().m_ActiveHand = this;
-
+       
         icon = state;
     }
     public void Drop()
@@ -167,9 +167,9 @@ public class Gather1 : MonoBehaviour
 
     public void GetobjPos() 
     {
-        if (PaintPos.position.y < 0.2f) PaintPos.position = paintcopy.position;
-        if (PaintPos.position.y < 0.2f) PaintPos.position = erasercopy.position;
-        if (PaintPos.position.y < 0.2f) PaintPos.position = clearcopy.position;
+        /*if (PaintPos.localPosition.y < 0.1f) PaintPos.position = paintcopy.position;
+        if (PaintPos.localPosition.y < 0.1f) PaintPos.position = erasercopy.position;
+        if (PaintPos.localPosition.y < 0.1f) PaintPos.position = clearcopy.position;*/
 
     }
 
