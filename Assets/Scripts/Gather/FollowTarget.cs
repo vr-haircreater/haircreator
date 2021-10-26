@@ -21,7 +21,7 @@ public class FollowTarget : MonoBehaviour
         navAgent.SetDestination(target.transform.position);
         navAgent.speed = 1.5f;
         navAgent.autoBraking = true;
-        navAgent.stoppingDistance = 1;
+        navAgent.stoppingDistance = 1.5f;
         navAgent.height = 0.8f;
         navAgent.radius = 0.3f;
     }
