@@ -29,11 +29,9 @@ public class ColorPicker_control : MonoBehaviour
     
     void Update()
     {
-        VectorCross();
         svPos = sv_img.transform.position;
         hPos = h_img.transform.position; 
-        SVsliderPos = sv_slider.transform.position;
-        HsliderPos = h_slider.transform.position;
+
         
         if (Gather1.RightDown==true)
         {            
@@ -41,23 +39,31 @@ public class ColorPicker_control : MonoBehaviour
             HsliderPos = h_slider.transform.position;
             SVsliderPos = sv_slider.transform.position;
 
-            Debug.Log("X:" + Crossx + "Y:" + Crossy + "Z:" + Crossz);
-            VectorCross();
-            sv_slider.transform.position = new Vector3(N_MousePos.x, N_MousePos.y, mousePos.z);
-
-            GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            sphere.transform.position = N_MousePos;
-            sphere.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+      
+            sv_slider.transform.position = new Vector3(mousePos.x, mousePos.y, mousePos.z);
             
-            if (N_MousePos.x >= (svPos.x - 0.1399244f / 2) && N_MousePos.x <= (svPos.x  + 0.1399244f/2) && N_MousePos.y <= (svPos.y  + 0.1299029f / 2) && N_MousePos.y >= (svPos.y- 0.1299029f/2))
+            if (mousePos.x >= (svPos.x - 0.1399244f / 2) && mousePos.x <= (svPos.x  + 0.1399244f/2) && mousePos.y <= (svPos.y  + 0.1299029f / 2) && mousePos.y >= (svPos.y- 0.1299029f/2))
             {
-                color_Stemp = (N_MousePos.x - (svPos.x - (0.1399244f / 2))) / 0.1399244f;
-                color_Vtemp = (N_MousePos.y - svPos.y + 0.1299029f / 2) / 0.1299029f;
-                Debug.Log("Y");
+                /*color_Stemp = (mousePos.x - (svPos.x - 0.1399244f / 2)) / 0.1399244f;
+                color_Vtemp = (mousePos.y - (svPos.y + 0.1299029f / 2)) / 0.1299029f;
+                Debug.Log("Y");*/
+
+                Vector3 Now_mos = mousePos - (svPos + new Vector3(-0.1399244f / 2f, 0.1299029f / 2f, 0f));
+                Vector3 vlux = Vector3.Cross(sv_img.transform.up, sv_img.transform.forward).normalized;//x
+                Vector3 vluy = Vector3.Cross(sv_img.transform.right, sv_img.transform.forward).normalized;//y
+                Vector3 vluz = Vector3.Cross(sv_img.transform.up, sv_img.transform.right).normalized;//z
+           
+                N_MousePos = new Vector3(Vector3.Dot(Now_mos, vlux), Vector3.Dot(Now_mos, vluy), Vector3.Dot(Now_mos, vluz));
+                
+                color_Stemp = Mathf.Abs(N_MousePos.x) / 0.1399244f;
+                color_Vtemp = Mathf.Abs(N_MousePos.y) / 0.1299029f;
+
+                Debug.Log("X:" + color_Stemp);
+                Debug.Log("Y:" + color_Vtemp);
             }
             if (mousePos.x >= hPos.x - 0.1483383f/2 && mousePos.x <= (hPos.x + 0.1483383f/2) && mousePos.y <= hPos.y + 0.006989386f/2 && mousePos.y >= hPos.y - 0.006989386f/2)
             {
-                h_slider.transform.position = new Vector3(mousePos.x, hPos.y, hPos.z);
+                 h_slider.transform.position = new Vector3(mousePos.x, hPos.y, hPos.z);
                 color_Htemp = (mousePos.x - hPos.x + (0.1483383f / 2)) / 0.1483383f;
             }
         }
@@ -72,6 +78,6 @@ public class ColorPicker_control : MonoBehaviour
         Crossx = Vector3.Cross(sv_img.transform.forward, sv_img.transform.up);//x 
         Crossy = Vector3.Cross(sv_img.transform.forward, sv_img.transform.right);//y
         Crossz = Vector3.Cross(sv_img.transform.up, sv_img.transform.right);//z*/
-        N_MousePos = new Vector3(Vector3.Dot(mousePos, Crossx), Vector3.Dot(mousePos, Crossy), Vector3.Dot(mousePos, Crossz));
+        N_MousePos = new Vector3(Vector3.Dot(mousePos, Crossx), Vector3.Dot(mousePos, Crossy), Vector3.Dot(mousePos, Crossz));//初始V1 * 轉換矩陣 = V2;
     }
 }
