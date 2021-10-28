@@ -1,15 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Collections;
+using System.Collections.Generic;
 
-public class ColorPicker_sv : MonoBehaviour
+
+public class ColorPicker_sv : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     Texture2D tex2d;
     public RawImage Rawimage_sv;
 
     int TexPixelLength = 360;
     Color[,] arrayColor;
+
+    public static bool CollGet = false;
 
     void Start()
     {
@@ -24,17 +28,17 @@ public class ColorPicker_sv : MonoBehaviour
 
     Color[] CalcArryColor(float color_H)
     {
-        for(int i = 0; i < TexPixelLength; i++)
+        for (int i = 0; i < TexPixelLength; i++)
         {
             for (int j = 0; j < TexPixelLength; j++)
             {
-                arrayColor[i, j] = Color.HSVToRGB(color_H, i * (1/360.0f), (1/360.0f)*j);
+                arrayColor[i, j] = Color.HSVToRGB(color_H, i * (1 / 360.0f), (1 / 360.0f) * j);
             }
         }
         List<Color> listColor = new List<Color>();
-        for(int i = 0; i < TexPixelLength; i++)
+        for (int i = 0; i < TexPixelLength; i++)
         {
-            for(int j = 0; j < TexPixelLength; j++)
+            for (int j = 0; j < TexPixelLength; j++)
             {
                 listColor.Add(arrayColor[j, i]);
             }
@@ -48,4 +52,17 @@ public class ColorPicker_sv : MonoBehaviour
         tex2d.SetPixels(CalcArray);
         tex2d.Apply();
     }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        CollGet = true;
+
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        CollGet = false;
+
+    }
+
 }
+    
+

@@ -45,6 +45,7 @@ TagManager:
   - SmallRoll
   - MediumRoll
   - BigRoll
+  - coll_SV
   layers:
   - Default
   - TransparentFX

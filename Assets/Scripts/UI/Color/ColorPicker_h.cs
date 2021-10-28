@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 
-public class ColorPicker_h : MonoBehaviour
+public class ColorPicker_h : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     Texture2D tex2d;
     public RawImage Rawimage_h;
     int TexPixelWdith = 16;
     int TexPixelHeight = 360;
     Color[,] arrayColor;
+
+    public static bool CollGet_H = false;
+
     void Start()
     {
         arrayColor = new Color[TexPixelWdith, TexPixelHeight];
@@ -40,5 +44,16 @@ public class ColorPicker_h : MonoBehaviour
             }
         }
         return listColor.ToArray();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        CollGet_H = true;
+
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        CollGet_H = false;
+
     }
 }
