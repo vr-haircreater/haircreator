@@ -27,7 +27,6 @@ public class Lasercontroller : MonoBehaviour, IPointerEnterHandler, IPointerExit
         foreach (Transform obj in Gather1.m_object.transform)
         {
             obj.GetComponent<MeshRenderer>().enabled = false;
-            obj.GetComponent<Collider>().isTrigger = true;
         }
         Gather1.icon = 4;
 
@@ -39,7 +38,6 @@ public class Lasercontroller : MonoBehaviour, IPointerEnterHandler, IPointerExit
         foreach (Transform obj in Gather1.m_object.transform)
         {
             obj.GetComponent<MeshRenderer>().enabled = true;
-            obj.GetComponent<Collider>().isTrigger = false;
         }
         Gather1.icon = Gather1.state;
 

@@ -38,12 +38,6 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
 
     }
 
-    void Start()
-    {
-
-
-
-    }
     public void Update()
     {
 
@@ -192,12 +186,10 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         else if (gameObject.tag == "SaveButton")
         {
             //animator.SetTrigger("Pose1");
-            animator = GameObject.Find("GirlSit").GetComponent<Animator>();//之後要考慮男女
+            animator = GameObject.Find("Girl").GetComponent<Animator>();//之後要考慮男女
             animator.SetTrigger("Pose");
-            role = GameObject.Find("GirlSit");
+            role = GameObject.Find("Girl");
             role.transform.position = new Vector3(0.094f,0.12f,3.92f);
-            rolehair = GameObject.Find("GirlSit/Hairs");
-            rolehair.transform.localPosition = new Vector3(0f,0.066f,0.143f);
             CallerPad.PadDShow();
             
         }

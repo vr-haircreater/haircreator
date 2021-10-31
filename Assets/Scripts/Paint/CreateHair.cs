@@ -22,6 +22,7 @@ public class CreateHair : MonoBehaviour
     public static List<Vector3> UpdatePointPos = new List<Vector3>();//變形更新點座標
     public static List<Vector3> direction = new List<Vector3>();
     public List<GameObject> HairModel = new List<GameObject>(); //髮片Gameobj存取
+    public List<GameObject> HairModelRig = new List<GameObject>();//髮片骨架
 
     public MeshGenerate MeshCreater; //呼叫 MeshGenerate.cs 中的東西給 MeshCreater 用
     public PosGenerate PosCreater; //呼叫 PosGenerate.cs 中的東西給 PosCreater 用
@@ -46,8 +47,8 @@ public class CreateHair : MonoBehaviour
     private void Awake()
     {
         Pose = GetComponent<SteamVR_Behaviour_Pose>();
-        HairModelG = GameObject.Find("GirlSit/Hairs");
-        HairModelB = GameObject.Find("BoySit/Hairs");
+        HairModelG = GameObject.Find("Girl/Hairs");
+        HairModelB = GameObject.Find("Boy2/Hairs");
         HairPos = GameObject.Find("Salon/Trolley/paint1/pCylinder6ylinder6");
         PosCreater = gameObject.AddComponent<PosGenerate>(); //加入PosGenerate
         HairTexture = Resources.Load<Texture2D>("Textures/F00_000_Hair_00");
@@ -57,7 +58,7 @@ public class CreateHair : MonoBehaviour
     void Update()
     {
         Dawer();
-        AimHairG = Vector3.Distance(HairModelG.transform.position, Pose.transform.position);
+        //AimHairG = Vector3.Distance(HairModelG.transform.position, Pose.transform.position);
                 
     }
     void Dawer() 
@@ -74,6 +75,10 @@ public class CreateHair : MonoBehaviour
                 OldPos = NewPos = HairPos.transform.position;
                 PosCreater.VectorCross(HairPos.transform.up, HairPos.transform.forward, HairPos.transform.right);
                 PointPos.Add(OldPos);
+                GameObject HairRig = new GameObject();
+                HairRig.transform.SetParent(GameObject.Find("Girl/Root/J_Bip_C_Hips/J_Bip_C_Spine/J_Bip_C_Chest/J_Bip_C_UpperChest/J_Bip_C_Neck/J_Bip_C_Head").transform);
+                HairModelRig.Add(HairRig);
+                HairModelRig[HairCounter].name = "HairRig" + HairCounter;
 
                 Debug.Log("HairStytle" + ButtonTransitioner.HairStyleState);
 
@@ -106,7 +111,7 @@ public class CreateHair : MonoBehaviour
                 if (HairModel[HairCounter].GetComponent<MeshGenerate>() == null)
                     MeshCreater = HairModel[HairCounter].AddComponent<MeshGenerate>();
                 else MeshCreater = HairModel[HairCounter].GetComponent<MeshGenerate>();
-                MeshCreater.GenerateMesh(UpdatePointPos, HairWidth);
+                MeshCreater.GenerateMesh(PointPos,UpdatePointPos, HairWidth, HairCounter);
                 MeshGenerate.GethairColor.SetTexture("_MainTex", HairTexture);
                 MeshGenerate.GethairColor.SetTexture("_BumpMap", HairNormal);
             }
@@ -125,7 +130,9 @@ public class CreateHair : MonoBehaviour
                     //清除不夠長所以沒加到程式碼的的髮片gameobj
                     int least = HairModel.Count - 1;
                     Destroy(HairModel[least]);
-                    HairModel.RemoveAt(least);
+                    HairModel.RemoveAt(least);                    
+                    Destroy(HairModelRig[least]);
+                    HairModelRig.RemoveAt(least);
                 }
                 PointPos.Clear();
                 direction.Clear();
