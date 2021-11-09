@@ -31,7 +31,7 @@ public class VRMSave : MonoBehaviour
 
     public void OnExportClicked()
     {
-        model = GameObject.Find("GirlSit");
+        model = GameObject.Find("Girl");
 
         //#if UNITY_STANDALONE_WIN
 #if false

@@ -49,6 +49,7 @@ public class PosGenerate : MonoBehaviour
         float waveSize = 0.001f;
         float angle = -Mathf.PI;
 
+        WaveCurve += 0.1f;
         for (int i = 0, n = 0; i < GetPointPos.Count; i++, n+=2)
         {
             float y = -Mathf.Sin(angle);//正負的影響
@@ -70,8 +71,8 @@ public class PosGenerate : MonoBehaviour
             //if (w < range * 0.005f) w += w1;
             if (w < range * 0.005f && i < GetPointPos.Count / 2) w += w1;
             else if (i > GetPointPos.Count / 2) w -= w1;
-            if (waveSize < 0.02f && i % 7 == 0 && i < GetPointPos.Count/2) waveSize += 0.005f;
-            if (waveSize < 0.02f && i % 7 == 0 && i > GetPointPos.Count / 2) waveSize -= 0.005f;
+            if (waveSize < 0.01f && i % 7 == 0 && i < GetPointPos.Count/2) waveSize += 0.005f;
+            if (waveSize < 0.01f && i % 7 == 0 && i > GetPointPos.Count / 2) waveSize -= 0.005f;
             //if (i > GetPointPos.Count - 5) waveSize = 0.01f;
             angle += WaveCurve;//0.9f
         }
@@ -86,7 +87,7 @@ public class PosGenerate : MonoBehaviour
         float w1 = range * 0.005f / (GetPointPos.Count / 2);
         float w = range * 0.005f * 0.2f;
         float d = Mathf.PI;
-        float a = 0.01f;
+        float a = 0.005f;
 
         for (int i = 0, n = 0; i < GetPointPos.Count; i++, n+=2)
         {
@@ -96,13 +97,13 @@ public class PosGenerate : MonoBehaviour
             Vector3 temp1 = directionA[n] * x, temp2 = directionA[n + 1] * y;
             Vector3 Vec = GetPointPos[i] + temp1 + temp2;
             
-            TempPoint.Add(Vec - directionA[n] * w);
-            TempPoint.Add(Vec + directionA[n + 1] * w);
-            TempPoint.Add(Vec + directionA[n] * w);
-            TempPoint.Add(Vec - directionA[n + 1] * w);
+            TempPoint.Add(Vec - directionA[n] * w * 0.5f);
+            TempPoint.Add(Vec + directionA[n + 1] * w * 0.5f);
+            TempPoint.Add(Vec + directionA[n] * w * 0.5f);
+            TempPoint.Add(Vec - directionA[n + 1] * w * 0.5f);
 
             d += TwistCurve;//原:0.5f
-            if (a < 0.05f && i % (10 * TwistCurve) == 0 && i < GetPointPos.Count/2) a += 0.01f;
+            if (a < 0.01f && i % (10 * TwistCurve) == 0 && i < GetPointPos.Count/2) a += 0.01f;
             if (i % (10* TwistCurve) == 0 && i > GetPointPos.Count / 2) a -= 0.01f;
             if (w < range * 0.005f && i < GetPointPos.Count / 2) w += w1;
             if (i > GetPointPos.Count / 2 && HairTail == true) w -= w1;

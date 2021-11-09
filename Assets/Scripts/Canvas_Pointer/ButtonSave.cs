@@ -8,7 +8,7 @@ public class ButtonSave : MonoBehaviour, IPointerDownHandler
 {
     public Animator animator;
     public VRMSave SaveModel;
-    public GameObject role,rolehair;
+    public GameObject role;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +27,6 @@ public class ButtonSave : MonoBehaviour, IPointerDownHandler
 
     public void FindPadCTag()
     {
-        //===== PadC-yes/no (Save等宜均加存檔部分)
         if (gameObject.tag == "PadCYes")
         {
           
@@ -35,22 +34,19 @@ public class ButtonSave : MonoBehaviour, IPointerDownHandler
             else SaveModel = gameObject.GetComponent<VRMSave>();
             SaveModel.OnExportClicked();
             CallerPad.PadAShow();
-            animator = GameObject.Find("GirlSit").GetComponent<Animator>();
+            animator = GameObject.Find("Girl").GetComponent<Animator>();
             animator.SetTrigger("Pose2");
-            role = GameObject.Find("GirlSit");
-            role.transform.position = new Vector3(0.094f, -0.204f, 3.39f);
-            rolehair = GameObject.Find("GirlSit/Hairs");
-            rolehair.transform.localPosition = new Vector3(0f,0f,0f);
+            role = GameObject.Find("Girl");
+            role.transform.position = new Vector3(0.094f, -0.138f, 3.442f);
+
         }
         else if (gameObject.tag == "PadCNo")
         {
             CallerPad.PadAShow();
-            animator = GameObject.Find("GirlSit").GetComponent<Animator>();
+            animator = GameObject.Find("Girl").GetComponent<Animator>();
             animator.SetTrigger("Pose2");
-            role = GameObject.Find("GirlSit");
-            role.transform.position = new Vector3(0.094f, -0.204f, 3.39f);
-            rolehair = GameObject.Find("GirlSit/Hairs");
-            rolehair.transform.localPosition = new Vector3(0f, 0f, 0f);
+            role = GameObject.Find("Girl");
+            role.transform.position = new Vector3(0.094f, -0.034f, 3.478f);
         }
 
     }
