@@ -14,15 +14,12 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
     public static Color HairColor;
     public GameObject PadA,role,rolehair;
   
-    public static int HairWidth;
-    public static int HairThickness;
+    public static int HairWidth;//調整寬度
+    public static int HairThickness;//調整厚度
 
     public static bool HairTail = true;
 
     float H, S, V;
-
-    //private Image m_Image = null;
-    //public GameObject PadB, PadC;
 
     public static int HairStyleState = 1;
     public Animator animator;
@@ -64,9 +61,6 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         if (CallerPad.state == 1) FindPadBTag();
         if (CallerPad.state == 2) FindPadDTag();
 
-        /*if (PadA.activeSelf == true) { 
-           
-        }*/
     }
    
 
@@ -82,6 +76,7 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
     }
     public void SliderT() //薄厚
     {
+        if (Sslider3.value > Sslider2.value) Sslider3.value = Sslider2.value;
         HairThickness = (int)Sslider3.value;
     }
     public void ValueChangeCheck0()
@@ -235,15 +230,18 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         }
         else if (gameObject.tag == "SmallRoll")
         {
-            CreateHair.Curve = 0.6f;
+            CreateHair.Curve1 = 0.6f;
+            CreateHair.Curve2 = 0.4f;
         }
         else if (gameObject.tag == "MediumRoll")
         {
-            CreateHair.Curve = 0.8f;
+            CreateHair.Curve1 = 0.8f;
+            CreateHair.Curve2 = 0.8f;
         }
         else if (gameObject.tag == "BigRoll")
         {
-            CreateHair.Curve = 1.0f;
+            CreateHair.Curve1 = 1.0f;
+            CreateHair.Curve2 = 1.1f;
         }
 
 
