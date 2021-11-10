@@ -13,7 +13,8 @@ public class CreateHair : MonoBehaviour
     float length = 0.015f; //點距離，原本0.05
     //public int InputRange = 3;//(寬度Range 1~6)
     //public int InputRangeThickness = 1; //(厚度Range 1~6)
-    public static float Curve = 0.6f;
+    public static float Curve1 = 0.6f;
+    public static float Curve2 = 0.6f;
 
 
     public static Vector3 NewPos, OldPos; //抓新舊點
@@ -49,7 +50,7 @@ public class CreateHair : MonoBehaviour
         Pose = GetComponent<SteamVR_Behaviour_Pose>();
         HairModelG = GameObject.Find("Girl/Hairs");
         HairModelB = GameObject.Find("Boy2/Hairs");
-        HairPos = GameObject.Find("Salon/Trolley/paint1/pCylinder6ylinder6");
+        HairPos = GameObject.Find("Salon/Trolley/paint1/HairPoint");
         PosCreater = gameObject.AddComponent<PosGenerate>(); //加入PosGenerate
         HairTexture = Resources.Load<Texture2D>("Textures/F00_000_Hair_00");
         HairNormal = Resources.Load<Texture2D>("Textures/F00_000_Hair_00_nml");
@@ -101,8 +102,8 @@ public class CreateHair : MonoBehaviour
                 PosCreater.VectorCross(HairPos.transform.up, HairPos.transform.forward, HairPos.transform.right);
                 //PosCreater.GetPosition(OldPos, NewPos, InputRange);
                 if (ButtonTransitioner.HairStyleState == 1) PosCreater.Straight_HairStyle(PointPos, ButtonTransitioner.HairWidth, ButtonTransitioner.HairThickness, HairTail);
-                if (ButtonTransitioner.HairStyleState == 2) PosCreater.WaveHairStyle(PointPos, ButtonTransitioner.HairWidth, ButtonTransitioner.HairThickness, Curve, HairTail);
-                if (ButtonTransitioner.HairStyleState == 3) PosCreater.TwistHairStyle(PointPos, ButtonTransitioner.HairWidth, Curve, HairTail);
+                if (ButtonTransitioner.HairStyleState == 2) PosCreater.WaveHairStyle(PointPos, ButtonTransitioner.HairWidth, ButtonTransitioner.HairThickness, Curve1, HairTail);
+                if (ButtonTransitioner.HairStyleState == 3) PosCreater.TwistHairStyle(PointPos, ButtonTransitioner.HairWidth, Curve2, HairTail);
                 OldPos = NewPos;
             }
 

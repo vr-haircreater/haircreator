@@ -23,18 +23,24 @@ public class PosGenerate : MonoBehaviour
     public void Straight_HairStyle(List<Vector3> GetPointPos, int range, int thickness,bool HairTail)
     {
         float w = range * 0.005f * 0.2f;
-        float t = thickness * 0.001f;
+        float t = thickness * 0.002f;
         float w1 = range * 0.005f / (GetPointPos.Count / 2);
 
         TempPoint.Clear();
         for (int i = 0, n = 0; i < GetPointPos.Count; i++, n+=2)
         {
-            TempPoint.Add(GetPointPos[i] - directionA[n] * w);
-            TempPoint.Add(GetPointPos[i] + directionA[n + 1] * t);
-            TempPoint.Add(GetPointPos[i] + directionA[n] * w);
-            TempPoint.Add(GetPointPos[i] - directionA[n + 1] * t);
-            if (w < range * 0.005f && i < GetPointPos.Count / 2) w += w1;
-            if (i > GetPointPos.Count / 2 && HairTail == true) w -= w1;
+            if (i == GetPointPos.Count - 1 && HairTail == true)
+            {
+                for (int j = 0; j < 4; j++) TempPoint.Add(GetPointPos[i]);
+            }
+            else {
+                TempPoint.Add(GetPointPos[i] - directionA[n] * w);
+                TempPoint.Add(GetPointPos[i] + directionA[n + 1] * t);
+                TempPoint.Add(GetPointPos[i] + directionA[n] * w);
+                TempPoint.Add(GetPointPos[i] - directionA[n + 1] * t);
+                if (w < range * 0.005f && i < GetPointPos.Count / 2) w += w1;
+                if (i > GetPointPos.Count / 2 && HairTail == true) w -= w1;
+            }
         }
         GetUpdatePointPos.Clear();
         GetUpdatePointPos.AddRange(TempPoint);
@@ -46,7 +52,7 @@ public class PosGenerate : MonoBehaviour
         float w1 = range * 0.005f / (GetPointPos.Count / 2);
         float w = range * 0.005f * 0.2f;
         float t = thickness * 0.002f;
-        float waveSize = 0.001f;
+        float waveSize = 0.001f; //向量長度
         float angle = -Mathf.PI;
 
         WaveCurve += 0.1f;

@@ -61,6 +61,10 @@ public class Gather1 : MonoBehaviour
             {
                 Pickup();
             }
+            else if (TriggerClick.GetStateUp(Pose.inputSource) && m_object != null) 
+            {
+                icon = state;//放開才能換功能
+            }
         }
         if (TriggerClick.GetStateDown(Pose.inputSource))
         {
@@ -175,9 +179,12 @@ public class Gather1 : MonoBehaviour
     public void Pickup()
     {
         if (m_object == null) return;
+        /*
+        m_object.transform.SetParent(GameObject.Find("Player/SteamVRObjects/RightHand").transform);
+        m_object.transform.localPosition = new Vector3(0f, 0f, 0f);
+        m_object.transform.localRotation = new Quaternion(0f, 0f, 0f, 0f);
+        */
 
-        //something = m_object;
-        
         ObjectPos = m_object.transform.localPosition;
         objRotatePos = m_object.transform.localRotation;
         Debug.Log("PickUp" + ObjectPos);
@@ -188,8 +195,7 @@ public class Gather1 : MonoBehaviour
         Rigidbody target = m_object.GetComponent<Rigidbody>();
         m_Joint.connectedBody = target;
         m_object.GetComponent<InteractableContrallor>().m_ActiveHand = this;
-       
-        icon = state;
+
     }
     public void Drop()
     {
@@ -225,9 +231,9 @@ public class Gather1 : MonoBehaviour
 
     public void GetobjPos() 
     {
-        /*if (PaintPos.localPosition.y < 0.1f) PaintPos.position = paintcopy.position;
-        if (PaintPos.localPosition.y < 0.1f) PaintPos.position = erasercopy.position;
-        if (PaintPos.localPosition.y < 0.1f) PaintPos.position = clearcopy.position;*/
+        if (PaintPos.localPosition.y < 0.1f) PaintPos.position = paintcopy.position;
+        if (ClearPos.localPosition.y < 0.1f) ClearPos.position = erasercopy.position;
+        if (EraserPos.localPosition.y < 0.1f) EraserPos.position = clearcopy.position;
 
     }
 
