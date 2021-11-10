@@ -147,10 +147,7 @@ public class Gather1 : MonoBehaviour
             state = 3;
             //forState23();
         }
-        if (other.gameObject.CompareTag("Grid")) 
-        {
-            GridState = true;
-        }
+
         
     }
     private void OnTriggerExit(Collider other)
@@ -167,10 +164,7 @@ public class Gather1 : MonoBehaviour
         {
             m_object = null;
         }
-        if (other.gameObject.CompareTag("Grid"))
-        {
-            GridState = false;
-        }
+
 
         //if (m_object != null) Debug.Log("1234");
         //if (m_object == null) Debug.Log("mobj is null now.");
@@ -185,9 +179,9 @@ public class Gather1 : MonoBehaviour
         m_object.transform.localRotation = new Quaternion(0f, 0f, 0f, 0f);
         */
 
-        ObjectPos = m_object.transform.localPosition;
-        objRotatePos = m_object.transform.localRotation;
-        Debug.Log("PickUp" + ObjectPos);
+        //ObjectPos = m_object.transform.localPosition;
+        //objRotatePos = m_object.transform.localRotation;
+        //Debug.Log("PickUp" + ObjectPos);
         if (m_object.GetComponent<InteractableContrallor>().m_ActiveHand != null)
         {
             m_object.GetComponent<InteractableContrallor>().m_ActiveHand.Drop();
@@ -232,8 +226,8 @@ public class Gather1 : MonoBehaviour
     public void GetobjPos() 
     {
         if (PaintPos.localPosition.y < 0.1f) PaintPos.position = paintcopy.position;
-        if (ClearPos.localPosition.y < 0.1f) ClearPos.position = erasercopy.position;
-        if (EraserPos.localPosition.y < 0.1f) EraserPos.position = clearcopy.position;
+        if (ClearPos.localPosition.y < 0.1f) ClearPos.position = clearcopy.position;
+        if (EraserPos.localPosition.y < 0.1f) EraserPos.position = erasercopy.position;
 
     }
 
