@@ -12,6 +12,8 @@ public class ColorPicker_control : MonoBehaviour
     Vector3 svPos,hPos,mousePos, SVsliderPos, HsliderPos;
     public float svWidth=200, svHeight=200, hWidth=16, hHeight=200, color_Htemp, color_Stemp, color_Vtemp;
     public static Material colorshow;
+    public Material headcolor;
+    public Material headcolortemp;
 
     Vector3 p0, pvx1, pvx0;//起始原點、滑鼠座標、相對座標
     Vector3 V1, N_mouse;
@@ -30,6 +32,7 @@ public class ColorPicker_control : MonoBehaviour
         color_Vtemp = 1f;
         dot = GameObject.Find("Player/SteamVRObjects/RightHand/PR_Pointer/Dot");
         colorshow = GameObject.Find("Player/SteamVRObjects/LeftHand/PadB/PanelB/colorshow").GetComponent<Image>().material;
+        
 
         ColorPanel = GameObject.Find("Player/SteamVRObjects/LeftHand/PadB");
         pvx0 = new Vector3(-0.1399244f/2, -0.1399244f / 2, 0);//改
@@ -69,8 +72,27 @@ public class ColorPicker_control : MonoBehaviour
         color_H = color_Htemp;
         color_S = color_Stemp;
         color_V = color_Vtemp;
-        colorshow.color = Color.HSVToRGB(color_H,color_S, color_V);
+        if (ButtonTransitioner.btn10down==1) //頭皮顏色 
+        {
+            if (ButtonTransitioner.headcolorN == 0)
+            {
+                headcolor.color = headcolortemp.color;
+                ButtonTransitioner.headcolorN = 3;
+            }
+            headcolor.color = Color.HSVToRGB(color_H, color_S, color_V);
+            colorshow.color = Color.HSVToRGB(color_H, color_S, color_V);
+        }
+        else//髮片顏色
+        {
+            colorshow.color = Color.HSVToRGB(color_H, color_S, color_V);
+        }
+        
     }
+    //public void headcolorYN()
+    //{
+    //    if (ButtonTransitioner.headcolorN == 2) headcolor.color = headcolortemp.color;
+    //    if (ButtonTransitioner.headcolorN == 1) headcolortemp.color = headcolor.color;
+    //}
 
     private static Vector3 Calcute_Cross(GameObject obj, Vector3 Vec)
     {
