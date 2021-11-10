@@ -36,10 +36,11 @@ public class PanelA : MonoBehaviour
         Colorbtns[4] = new Color(173f / 255, 173f / 255, 173f / 255);
         Colorbtns[5] = new Color(253f / 255, 190f / 255, 145f / 255);
         Colorbtns[6] = new Color(180f / 255, 237f / 255, 254f / 255);
-        Colorbtns[7] = new Color(250f / 255, 187f / 255, 255f / 255);
-        Colorbtns[8] = new Color(255f / 255, 255f / 255, 255f / 255);
-        Colorbtns[9] = new Color(149f / 255, 213f / 255, 000f / 255);
-        Colorbtns[10] = new Color(196f / 255, 100f / 255, 100f / 255);
+        //Colorbtns[7] = new Color(250f / 255, 187f / 255, 255f / 255);
+        Colorbtns[7] = new Color(255f / 255, 255f / 255, 255f / 255);
+        Colorbtns[8] = new Color(149f / 255, 213f / 255, 000f / 255);
+        Colorbtns[9] = new Color(196f / 255, 100f / 255, 100f / 255);
+        Colorbtns[10] = new Color(0f / 255, 0f / 255, 0f / 255);
         Colorbtns[11] = new Color(0f / 255, 0f / 255, 0f / 255);
 
         showimg = GameObject.FindGameObjectWithTag("showimage");

@@ -16,6 +16,7 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
   
     public static int HairWidth;//調整寬度
     public static int HairThickness;//調整厚度
+    public static int btn10down=0, headcolorN=0;
 
     public static bool HairTail = true;
 
@@ -138,12 +139,14 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
             btn_color = 9;
             showimg.GetComponent<Image>().color = Colorbtns[9];
         }
-        else if (gameObject.tag == "button10")
+        else if (gameObject.tag == "button10") //頭皮顏色
         {
-            btn_color = 10;
-            showimg.GetComponent<Image>().color = Colorbtns[10];
+            //btn_color = 10;
+            btn10down = 1;
+            headcolorN = 0;
+            CallerPad.PadBShow();
         }
-        else if (gameObject.tag == "button11")
+        else if (gameObject.tag == "button11") //髮片顏色
         {
             //btn_color = 11;
             CallerPad.PadBShow();
@@ -196,14 +199,18 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
     }
     public void FindPadBTag()
     {
-        //===== PadB-yes/no (顏色等敏真寫完)
+        //===== PadB-yes/no 
         if (gameObject.tag == "PadBYes")
         {
+            headcolorN = 1;
+            btn10down = 0;
             CallerPad.PadAShow();
             showimg.GetComponent<Image>().color = ColorPicker_control.colorshow.color;
         }
-        else if (gameObject.tag == "PadBNo")
+        else if (gameObject.tag == "PadBNo") //按取消未成功返回前一個顏色
         {
+            headcolorN = 2;
+            btn10down = 0;
             CallerPad.PadAShow();
         }
 
@@ -271,10 +278,9 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         Colorbtns[4] = Color.HSVToRGB(0, 0f, 68.0f / 100.0f);
         Colorbtns[5] = Color.HSVToRGB(25.0f / 360.0f, 43.0f / 100.0f, 99.0f / 100.0f);
         Colorbtns[6] = Color.HSVToRGB(194.0f / 360.0f, 29.0f / 100.0f, 1.0f);
-        Colorbtns[7] = Color.HSVToRGB(296.0f / 360.0f, 27.0f / 100.0f, 1.0f);
-        Colorbtns[8] = Color.HSVToRGB(0, 0, 1.0f);
-        Colorbtns[9] = Color.HSVToRGB(78.0f / 360.0f, 1.0f, 84.0f / 100.0f);
-        Colorbtns[10] = Color.HSVToRGB(0, 49.0f / 100.0f, 77.0f / 100.0f);
+        Colorbtns[7] = Color.HSVToRGB(0, 0, 1.0f);
+        Colorbtns[8] = Color.HSVToRGB(78.0f / 360.0f, 1.0f, 84.0f / 100.0f);
+        Colorbtns[9] = Color.HSVToRGB(0, 49.0f / 100.0f, 77.0f / 100.0f);
 
         showimg = GameObject.FindGameObjectWithTag("showimage");
         slider1img = GameObject.FindGameObjectWithTag("slider1img");
@@ -282,7 +288,7 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         Wslider1 = GameObject.FindGameObjectWithTag("Wslider1");
         Tslider1 = GameObject.FindGameObjectWithTag("Tslider1");
 
-        for (int i = 0; i < 11; i++)
+        for (int i = 0; i < 10; i++)
         {
             //btns[i].AddComponent<Image>();
             colorimgs[i] = btns[i].GetComponent<Image>();
