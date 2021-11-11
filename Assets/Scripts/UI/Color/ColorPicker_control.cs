@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using Valve.VR;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class ColorPicker_control : MonoBehaviour
 {    
@@ -13,13 +14,12 @@ public class ColorPicker_control : MonoBehaviour
     public float svWidth=200, svHeight=200, hWidth=16, hHeight=200, color_Htemp, color_Stemp, color_Vtemp;
     public static Material colorshow;
     public Material headcolor;
+    public static Material headcolort = null;
     public Material headcolortemp;
 
     Vector3 p0, pvx1, pvx0;//起始原點、滑鼠座標、相對座標
     Vector3 V1, N_mouse;
 
-    public LineRenderer mouseLine;
-    Vector3[] positions = new Vector3[6];
 
 
     void Start()
@@ -32,25 +32,23 @@ public class ColorPicker_control : MonoBehaviour
         color_Vtemp = 1f;
         dot = GameObject.Find("Player/SteamVRObjects/RightHand/PR_Pointer/Dot");
         colorshow = GameObject.Find("Player/SteamVRObjects/LeftHand/PadB/PanelB/colorshow").GetComponent<Image>().material;
-        
-
         ColorPanel = GameObject.Find("Player/SteamVRObjects/LeftHand/PadB");
         pvx0 = new Vector3(-0.1399244f/2, -0.1399244f / 2, 0);//改
 
-        mouseLine = GetComponent<LineRenderer>();
-        mouseLine.material = new Material(Shader.Find("Sprites/Default"));
-        mouseLine.SetWidth(0.5f, 0.5f);
+        headcolort = new Material(Shader.Find("Specular"));
+        AssetDatabase.CreateAsset(headcolort, "Assets/Materials/headcolortemp2.mat");
+        headcolort.color = headcolor.color;
+
     }
     
     void Update()
     {
         GetTurePos();
-
         svPos = sv_img.transform.position;
         hPos = h_img.transform.position; 
 
         
-        if (Gather1.RightDown==true)
+        if (GatherControl.ColorRightDown==true)//要按下才變顏色
         {            
             mousePos = dot.transform.position;
             HsliderPos = h_slider.transform.position;
@@ -74,11 +72,11 @@ public class ColorPicker_control : MonoBehaviour
         color_V = color_Vtemp;
         if (ButtonTransitioner.btn10down==1) //頭皮顏色 
         {
-            if (ButtonTransitioner.headcolorN == 0)
-            {
-                headcolor.color = headcolortemp.color;
-                ButtonTransitioner.headcolorN = 3;
-            }
+            //if (ButtonTransitioner.headcolorN == 0)
+            //{
+            //    headcolor.color = headcolortemp.color;
+            //    ButtonTransitioner.headcolorN = 3;
+            //}
             headcolor.color = Color.HSVToRGB(color_H, color_S, color_V);
             colorshow.color = Color.HSVToRGB(color_H, color_S, color_V);
         }
@@ -100,7 +98,6 @@ public class ColorPicker_control : MonoBehaviour
         Vector3 cy = Vector3.Cross(obj.transform.right, obj.transform.forward).normalized;
         Vector3 cz = Vector3.Cross(obj.transform.up, obj.transform.right).normalized;
         Vector3 newVec = new Vector3(Vector3.Dot(Vec, cx), Vector3.Dot(Vec, cy), Vector3.Dot(Vec, cz));
-
         return newVec;
     }
 
@@ -108,30 +105,18 @@ public class ColorPicker_control : MonoBehaviour
     {
         pvx1 = Calcute_Cross(ColorPanel, pvx0);
         p0 = sv_img.transform.position + pvx1;
-        positions[0] = p0;
 
-        if (Gather1.RightDown == true)
-        {
-            mousePos = dot.transform.position;
-        }
+        if (GatherControl.ColorRightDown == true) mousePos = dot.transform.position;
 
         //滑鼠Move
-        positions[1] = mousePos;
         N_mouse = mousePos - p0;
         V1 = Calcute_Cross(ColorPanel, N_mouse);
-        positions[2] = p0;
 
         //XVector
         Vector3 cx1 = Vector3.Cross(ColorPanel.transform.forward, ColorPanel.transform.up).normalized;
-        positions[3] = p0 - new Vector3(V1.x * cx1.x, V1.x * cx1.y, V1.x * cx1.z);
-        positions[4] = p0;
 
         //YVector
         Vector3 cy1 = Vector3.Cross(ColorPanel.transform.forward, ColorPanel.transform.right).normalized;
-        positions[5] = p0 - new Vector3(V1.y * cy1.x, V1.y * cy1.y, V1.y * cy1.z);
-
-        mouseLine.positionCount = positions.Length;
-        mouseLine.SetPositions(positions);
 
     }
 }

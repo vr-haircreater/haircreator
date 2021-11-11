@@ -15,8 +15,6 @@ public class CreateHair : MonoBehaviour
     //public int InputRangeThickness = 1; //(厚度Range 1~6)
     public static float Curve1 = 0.6f;
     public static float Curve2 = 0.6f;
-
-
     public static Vector3 NewPos, OldPos; //抓新舊點
 
     public static List<Vector3> PointPos = new List<Vector3>(); //Pos座標存取
@@ -34,8 +32,7 @@ public class CreateHair : MonoBehaviour
     public SteamVR_Action_Boolean spawn = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("InteractUI");
 
     public Texture HairTexture, HairNormal;
-    public GameObject HairModelG,HairModelB,HairPos;
-    float AimHairG;
+    public GameObject HairModelG,HairPos;
 
     //undo & redo
     public static List<GameObject> ListExistHair = new List<GameObject>(); //給Undo用
@@ -49,7 +46,6 @@ public class CreateHair : MonoBehaviour
     {
         Pose = GetComponent<SteamVR_Behaviour_Pose>();
         HairModelG = GameObject.Find("Girl/Hairs");
-        HairModelB = GameObject.Find("Boy2/Hairs");
         HairPos = GameObject.Find("Salon/Trolley/paint1/HairPoint");
         PosCreater = gameObject.AddComponent<PosGenerate>(); //加入PosGenerate
         HairTexture = Resources.Load<Texture2D>("Textures/F00_000_Hair_00");
@@ -58,21 +54,19 @@ public class CreateHair : MonoBehaviour
 
     void Update()
     {
-        Dawer();
-        //AimHairG = Vector3.Distance(HairModelG.transform.position, Pose.transform.position);
-                
+        Dawer();                
     }
     void Dawer() 
     {
-        if (TriggerDown == 0 && Gather1.icon == 1) //沒被按下
+        if (TriggerDown == 0 && GatherControl.icon == 1) //沒被按下
         {
             if (TriggerClick.GetStateDown(Pose.inputSource)) //偵測被按下的瞬間
             {
-                Debug.Log("Aim:" + AimHairG);
                 GameObject Model = new GameObject(); //創建model gameobj
                 HairModel.Add(Model); //加入list
                 Model.transform.SetParent(HairModelG.transform);//還需要判定到底是做男做女
                 HairModel[HairCounter].name = "HairModel" + HairCounter; //設定名字 
+                HairModel[HairCounter].tag = "Hairs";
                 OldPos = NewPos = HairPos.transform.position;
                 PosCreater.VectorCross(HairPos.transform.up, HairPos.transform.forward, HairPos.transform.right);
                 PointPos.Add(OldPos);
@@ -80,9 +74,6 @@ public class CreateHair : MonoBehaviour
                 HairRig.transform.SetParent(GameObject.Find("Girl/Root/J_Bip_C_Hips/J_Bip_C_Spine/J_Bip_C_Chest/J_Bip_C_UpperChest/J_Bip_C_Neck/J_Bip_C_Head").transform);
                 HairModelRig.Add(HairRig);
                 HairModelRig[HairCounter].name = "HairRig" + HairCounter;
-
-                Debug.Log("HairStytle" + ButtonTransitioner.HairStyleState);
-
                 TriggerDown = 1;
             }
         }
@@ -100,7 +91,6 @@ public class CreateHair : MonoBehaviour
                 PointPos.Add(NewPos);
                 PosCreater = gameObject.GetComponent<PosGenerate>(); //加入PosGenerate
                 PosCreater.VectorCross(HairPos.transform.up, HairPos.transform.forward, HairPos.transform.right);
-                //PosCreater.GetPosition(OldPos, NewPos, InputRange);
                 if (ButtonTransitioner.HairStyleState == 1) PosCreater.Straight_HairStyle(PointPos, ButtonTransitioner.HairWidth, ButtonTransitioner.HairThickness, HairTail);
                 if (ButtonTransitioner.HairStyleState == 2) PosCreater.WaveHairStyle(PointPos, ButtonTransitioner.HairWidth, ButtonTransitioner.HairThickness, Curve1, HairTail);
                 if (ButtonTransitioner.HairStyleState == 3) PosCreater.TwistHairStyle(PointPos, ButtonTransitioner.HairWidth, Curve2, HairTail);
@@ -137,13 +127,8 @@ public class CreateHair : MonoBehaviour
                 }
                 PointPos.Clear();
                 direction.Clear();
-                Gather1.GridState = false;
                 TriggerDown = 0;
 
-                /*for(int i = 0; i < HairCounter; i++)
-                {
-                    ListExistHair.Add(HairModel[i]);
-                }*/
             }
         }
         
@@ -202,9 +187,10 @@ public class CreateHair : MonoBehaviour
 
     public static void Eraser() //Gather1.state ==2;
     {
-        if (EraserCollider.Contact != null)
+        if (EraserCollider.ForContact==1)
         {
             PushObj = Instantiate(EraserCollider.Contact);
+            PushObj.tag = "Hairs";
             StackExistHair.Push(PushObj);
             EraserCollider.Contact.SetActive(false);
             Destroy(EraserCollider.Contact);
@@ -220,6 +206,7 @@ public class CreateHair : MonoBehaviour
     public static void PushStuff() //push staff into 
     {
         PushObj = Instantiate(ListExistHair[ListExistHair.Count - 1]); //生成ListExitstHair中count-1的物件
+        PushObj.tag = "Hairs";
         StackExistHair.Push(PushObj); //生成的物件(pushobj)push進stack存，之後要redo要用
         PushObj.SetActive(false); //場景上不再看得見
         Destroy(ListExistHair[ListExistHair.Count - 1]); //刪除ListExitstHair中count-1的物件
@@ -230,6 +217,7 @@ public class CreateHair : MonoBehaviour
     {
         PopObj = StackExistHair.Pop(); //從stack中pop東西出來
         ListExistHair.Add(PopObj); //加回ListExitstsHair中
+        PopObj.tag = "Hairs";
         PopObj.SetActive(true); //場景上要看得見
     }
 

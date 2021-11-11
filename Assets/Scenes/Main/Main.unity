@@ -243,12 +243,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!4 &47730836 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 254c5938b86faf249a2fbd26c4e34b14,
-    type: 3}
-  m_PrefabInstance: {fileID: 47730830}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &90951280 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2526477048686642483, guid: 11c0bac3c5b6290459893550457f2cf9,
@@ -270,6 +264,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!4 &102331978 stripped
 Transform:
@@ -382,6 +377,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1 &295519971
 GameObject:
@@ -1360,6 +1356,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1 &792608294 stripped
 GameObject:
@@ -1463,7 +1460,7 @@ PrefabInstance:
     - target: {fileID: 114000010591715100, guid: dc06161b6d97feb419f45f03b62e14b9,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114000011734077242, guid: dc06161b6d97feb419f45f03b62e14b9,
         type: 3}
@@ -1524,22 +1521,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 814377582}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4690175fe9f111447b18e86d2000750e, type: 3}
+  m_Script: {fileID: 11500000, guid: cc942d3c123dc6f4ca452dcf0ee501b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Joint: {fileID: 0}
-  TriggerClick:
+  m_Pinch:
     actionPath: /actions/default/in/GrabPinch
     needsReinit: 0
   m_Grip:
     actionPath: /actions/default/in/GrabGrip
     needsReinit: 0
-  ClearPos: {fileID: 47730836}
-  EraserPos: {fileID: 1397895223}
-  PaintPos: {fileID: 2062297682}
-  erasercopy: {fileID: 360950989}
-  paintcopy: {fileID: 1469918867}
-  clearcopy: {fileID: 742304245}
+  m_Joint: {fileID: 0}
+  ClearPos: {fileID: 0}
+  EraserPos: {fileID: 0}
+  PaintPos: {fileID: 0}
+  erasercopy: {fileID: 0}
+  paintcopy: {fileID: 0}
+  clearcopy: {fileID: 0}
 --- !u!114 &814377585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1647,7 +1644,7 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: 64363adc6e229b4419da1f60b4290e76,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 64363adc6e229b4419da1f60b4290e76,
         type: 3}
@@ -1770,7 +1767,6 @@ MonoBehaviour:
   color_Vtemp: 0
   headcolor: {fileID: 2100000, guid: 0731f0b8f3d26fc4fa2c98dadd087b1a, type: 2}
   headcolortemp: {fileID: 2100000, guid: 0bdd2e2f291adac4b9b1d9f5d66f6eb9, type: 2}
-  mouseLine: {fileID: 0}
 --- !u!114 &1065330530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2261,6 +2257,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1097505659
 MonoBehaviour:
@@ -2277,6 +2274,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1097505660
 MonoBehaviour:
@@ -2411,6 +2409,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1001 &1258491247
 PrefabInstance:
@@ -3844,6 +3843,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491268
 MonoBehaviour:
@@ -3860,6 +3860,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491269
 MonoBehaviour:
@@ -3876,6 +3877,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491270
 MonoBehaviour:
@@ -3892,6 +3894,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491271
 MonoBehaviour:
@@ -3908,6 +3911,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491272
 MonoBehaviour:
@@ -3924,6 +3928,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491273
 MonoBehaviour:
@@ -3940,6 +3945,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491274
 MonoBehaviour:
@@ -3956,6 +3962,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491275
 MonoBehaviour:
@@ -3972,6 +3979,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491276
 MonoBehaviour:
@@ -3988,6 +3996,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491277
 MonoBehaviour:
@@ -4004,6 +4013,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491278
 MonoBehaviour:
@@ -4020,6 +4030,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491279
 MonoBehaviour:
@@ -4036,6 +4047,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491280
 MonoBehaviour:
@@ -4052,6 +4064,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491281
 MonoBehaviour:
@@ -4068,6 +4081,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491282
 MonoBehaviour:
@@ -4084,6 +4098,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491284
 MonoBehaviour:
@@ -4100,6 +4115,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491285
 MonoBehaviour:
@@ -4116,6 +4132,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1 &1277568922
 GameObject:
@@ -4181,11 +4198,42 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1284442864}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.01, y: 0.01, z: 0.01}
   m_Center: {x: 0, y: -2.3283064e-10, z: 0}
+--- !u!114 &1284442868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284442864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0671087752a3214fb5f561cdff94be7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  erasercopy: {fileID: 0}
+  paintcopy: {fileID: 0}
+  clearcopy: {fileID: 0}
+--- !u!54 &1284442869
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284442864}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1335962513 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7826040276990230741, guid: 213e98af2a067424583442136218c51e,
@@ -4367,12 +4415,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba543519b42592d4c9e19a33bd98feed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1397895223 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3925dec13f995e84891a45dd6dc88708,
-    type: 3}
-  m_PrefabInstance: {fileID: 1397895216}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1418144923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4498,6 +4540,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1 &1469918866
 GameObject:
@@ -4851,10 +4894,10 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1721723251}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1721723255
@@ -6384,6 +6427,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1 &2019194721
 GameObject:
@@ -6736,8 +6780,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.029429082, y: 0.013910234, z: 0.21000001}
-  m_Center: {x: 0.70668435, y: -0.47304484, z: -0.36000052}
+  m_Size: {x: 0.029429082, y: 0.011127889, z: 0.21000001}
+  m_Center: {x: 0.70668703, y: -0.47443584, z: -0.36000156}
 --- !u!114 &2062297685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6788,6 +6832,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  Hair: {fileID: 0}
   animator: {fileID: 0}
 --- !u!4 &2102633254 stripped
 Transform:

@@ -14,32 +14,26 @@ public class Lasercontroller : MonoBehaviour, IPointerEnterHandler, IPointerExit
         Point = GameObject.Find("Player/SteamVRObjects/RightHand/PR_Pointer");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnPointerEnter(PointerEventData eventData)
     {
         Point.SetActive(true);
-        if (Gather1.m_object == null) return;
-        foreach (Transform obj in Gather1.m_object.transform)
+        if (GatherControl.m_object == null) return;
+        foreach (Transform obj in GatherControl.m_object.transform)
         {
             obj.GetComponent<MeshRenderer>().enabled = false;
         }
-        Gather1.icon = 4;
+        GatherControl.icon = 4;
 
     }
     public void OnPointerExit(PointerEventData eventData)
     {
         Point.SetActive(false);
-        if (Gather1.m_object == null) return;
-        foreach (Transform obj in Gather1.m_object.transform)
+        if (GatherControl.m_object == null) return;
+        foreach (Transform obj in GatherControl.m_object.transform)
         {
             obj.GetComponent<MeshRenderer>().enabled = true;
         }
-        Gather1.icon = Gather1.state;
+        GatherControl.icon = GatherControl.state;
 
     }
     

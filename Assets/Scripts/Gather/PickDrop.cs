@@ -51,7 +51,7 @@ public class PickDrop : MonoBehaviour
         if (m_object == null) return;
         if (m_object.GetComponent<InteractableContrallor>().m_ActiveHand != null)
         {
-            m_object.GetComponent<InteractableContrallor>().m_ActiveHand.Drop();
+           // m_object.GetComponent<InteractableContrallor>().m_ActiveHand.Drop();
         }
         Rigidbody target = m_object.GetComponent<Rigidbody>();
         m_Joint.connectedBody = target;

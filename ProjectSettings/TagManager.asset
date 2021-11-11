@@ -46,6 +46,7 @@ TagManager:
   - MediumRoll
   - BigRoll
   - coll_SV
+  - Hairs
   layers:
   - Default
   - TransparentFX

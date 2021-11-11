@@ -12,7 +12,6 @@ public class Gather1 : MonoBehaviour
     GameObject RightHand;
     public static bool RightDown = false;
 
-    
     public static SteamVR_Behaviour_Pose Pose = null;
     public FixedJoint m_Joint = null;
     public static GameObject m_object = null;
@@ -23,9 +22,6 @@ public class Gather1 : MonoBehaviour
 
     public Transform ClearPos,EraserPos,PaintPos,erasercopy,paintcopy,clearcopy;
 
-
-    Vector3 ObjectPos;
-    Quaternion objRotatePos,TrolleyRotate;
 
     void Awake()
     {
@@ -42,14 +38,13 @@ public class Gather1 : MonoBehaviour
         GridState = false;
         RightHand.AddComponent<CreateHair>();
         GetComponent<CreateHair>().enabled = true;
-
     }
 
     void Update()
     {
         //Debug.Log("右:"+ Pose.transform.position);
         //cpicker_material.color = cpicker.color;
-        GetobjPos();
+        //GetobjPos();
         if (m_Grip.GetStateDown(Pose.inputSource))
         {
             Drop();
@@ -61,7 +56,7 @@ public class Gather1 : MonoBehaviour
             {
                 Pickup();
             }
-            else if (TriggerClick.GetStateUp(Pose.inputSource) && m_object != null) 
+            if (TriggerClick.GetStateUp(Pose.inputSource) && m_object != null) 
             {
                 icon = state;//放開才能換功能
             }
@@ -184,11 +179,11 @@ public class Gather1 : MonoBehaviour
         //Debug.Log("PickUp" + ObjectPos);
         if (m_object.GetComponent<InteractableContrallor>().m_ActiveHand != null)
         {
-            m_object.GetComponent<InteractableContrallor>().m_ActiveHand.Drop();
+           //m_object.GetComponent<InteractableContrallor>().m_ActiveHand.Drop();
         }
         Rigidbody target = m_object.GetComponent<Rigidbody>();
         m_Joint.connectedBody = target;
-        m_object.GetComponent<InteractableContrallor>().m_ActiveHand = this;
+        //m_object.GetComponent<InteractableContrallor>().m_ActiveHand = this;
 
     }
     public void Drop()

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EraserCollider : MonoBehaviour
 {
     public static GameObject Contact;
+    public static int ForContact=0;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +17,15 @@ public class EraserCollider : MonoBehaviour
     {
         
     }
-    void OnCollisionEnter(Collision collision) //Eraser
+    /*void OnTriggerEnter(Collider other) //Eraser
     {
-        //Debug.Log("Get");
-        Contact = GameObject.Find(collision.gameObject.name);
+        Contact = GameObject.Find(other.gameObject.name);
+        if (Contact.tag == "Hairs") ForContact = 1;
+    }*/
+    void OnCollisionEnter(Collision other) //Eraser
+    {
+        Debug.Log("GET");
+        Contact = GameObject.Find(other.gameObject.name);
+        if (Contact.tag == "Hairs") ForContact = 1;
     }
 }

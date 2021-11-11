@@ -10,16 +10,7 @@ public class ButtonSave : MonoBehaviour, IPointerDownHandler
     public VRMSave SaveModel;
     public GameObject role;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void OnPointerDown(PointerEventData eventData)
     {
         FindPadCTag();
@@ -37,7 +28,7 @@ public class ButtonSave : MonoBehaviour, IPointerDownHandler
             animator = GameObject.Find("Girl").GetComponent<Animator>();
             animator.SetTrigger("Pose2");
             role = GameObject.Find("Girl");
-            role.transform.position = new Vector3(0.094f, -0.138f, 3.442f);
+            role.transform.position = new Vector3(0.094f, -0.179f, 3.478f);
 
         }
         else if (gameObject.tag == "PadCNo")
@@ -46,7 +37,7 @@ public class ButtonSave : MonoBehaviour, IPointerDownHandler
             animator = GameObject.Find("Girl").GetComponent<Animator>();
             animator.SetTrigger("Pose2");
             role = GameObject.Find("Girl");
-            role.transform.position = new Vector3(0.094f, -0.034f, 3.478f);
+            role.transform.position = new Vector3(0.094f, -0.179f, 3.478f);
         }
 
     }

@@ -77,8 +77,8 @@ public class PosGenerate : MonoBehaviour
             //if (w < range * 0.005f) w += w1;
             if (w < range * 0.005f && i < GetPointPos.Count / 2) w += w1;
             else if (i > GetPointPos.Count / 2) w -= w1;
-            if (waveSize < 0.01f && i % 7 == 0 && i < GetPointPos.Count/2) waveSize += 0.005f;
-            if (waveSize < 0.01f && i % 7 == 0 && i > GetPointPos.Count / 2) waveSize -= 0.005f;
+            if (waveSize < 0.01f &&  i < GetPointPos.Count - 8) waveSize += 0.001f;
+            if (i > GetPointPos.Count- 8) waveSize -= 0.001f;
             //if (i > GetPointPos.Count - 5) waveSize = 0.01f;
             angle += WaveCurve;//0.9f
         }
@@ -109,8 +109,8 @@ public class PosGenerate : MonoBehaviour
             TempPoint.Add(Vec - directionA[n + 1] * w * 0.5f);
 
             d += TwistCurve;//原:0.5f
-            if (a < 0.01f && i % (10 * TwistCurve) == 0 && i < GetPointPos.Count/2) a += 0.01f;
-            if (i % (10* TwistCurve) == 0 && i > GetPointPos.Count / 2) a -= 0.01f;
+            if (a < 0.01f && i < GetPointPos.Count-8) a += 0.001f;
+            if (i > GetPointPos.Count-8) a -= 0.001f;
             if (w < range * 0.005f && i < GetPointPos.Count / 2) w += w1;
             if (i > GetPointPos.Count / 2 && HairTail == true) w -= w1;
        

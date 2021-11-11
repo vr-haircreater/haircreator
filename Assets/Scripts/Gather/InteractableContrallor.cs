@@ -7,6 +7,6 @@ using Valve.VR;
 public class InteractableContrallor : MonoBehaviour
 {
     [HideInInspector]
-    public Gather1 m_ActiveHand = null;
+    public GatherControl m_ActiveHand = null;
 
 }
