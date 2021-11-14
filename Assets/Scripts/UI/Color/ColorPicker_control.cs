@@ -72,11 +72,6 @@ public class ColorPicker_control : MonoBehaviour
         color_V = color_Vtemp;
         if (ButtonTransitioner.btn10down==1) //頭皮顏色 
         {
-            //if (ButtonTransitioner.headcolorN == 0)
-            //{
-            //    headcolor.color = headcolortemp.color;
-            //    ButtonTransitioner.headcolorN = 3;
-            //}
             headcolor.color = Color.HSVToRGB(color_H, color_S, color_V);
             colorshow.color = Color.HSVToRGB(color_H, color_S, color_V);
         }
@@ -86,11 +81,7 @@ public class ColorPicker_control : MonoBehaviour
         }
         
     }
-    //public void headcolorYN()
-    //{
-    //    if (ButtonTransitioner.headcolorN == 2) headcolor.color = headcolortemp.color;
-    //    if (ButtonTransitioner.headcolorN == 1) headcolortemp.color = headcolor.color;
-    //}
+
 
     private static Vector3 Calcute_Cross(GameObject obj, Vector3 Vec)
     {

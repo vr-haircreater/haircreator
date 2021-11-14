@@ -264,7 +264,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!4 &102331978 stripped
 Transform:
@@ -281,8 +281,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 117656708}
-  - component: {fileID: 117656709}
   - component: {fileID: 117656710}
+  - component: {fileID: 117656709}
+  - component: {fileID: 117656711}
   m_Layer: 0
   m_Name: HairPoint
   m_TagString: Untagged
@@ -304,8 +305,8 @@ Transform:
   m_Father: {fileID: 2062297682}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &117656709
-BoxCollider:
+--- !u!135 &117656709
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -315,8 +316,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1
+  m_Center: {x: 0, y: 0.8, z: 1}
 --- !u!23 &117656710
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -356,6 +357,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!136 &117656711
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117656707}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 2
+  m_Height: 10
+  m_Direction: 0
+  m_Center: {x: 0.06992846, y: -4.992334e-11, z: 2}
 --- !u!1 &216915151 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2354081667971995547, guid: 76cd34f90dd36724ea2e67ecef21926c,
@@ -377,7 +392,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1 &295519971
 GameObject:
@@ -1356,7 +1371,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1 &792608294 stripped
 GameObject:
@@ -1406,7 +1421,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.23
+      value: 3.875
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1577,8 +1592,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.05
+  m_Center: {x: 0, y: -0.03, z: 0.01}
 --- !u!1001 &847662418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2257,7 +2272,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1097505659
 MonoBehaviour:
@@ -2274,7 +2289,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1097505660
 MonoBehaviour:
@@ -2409,7 +2424,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1001 &1258491247
 PrefabInstance:
@@ -3293,6 +3308,21 @@ PrefabInstance:
       propertyPath: m_CullTransparentMesh
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3830057379278036832, guid: 76cd34f90dd36724ea2e67ecef21926c,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.990566
+      objectReference: {fileID: 0}
+    - target: {fileID: 3830057379278036832, guid: 76cd34f90dd36724ea2e67ecef21926c,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.9672036
+      objectReference: {fileID: 0}
+    - target: {fileID: 3830057379278036832, guid: 76cd34f90dd36724ea2e67ecef21926c,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.9672036
+      objectReference: {fileID: 0}
     - target: {fileID: 3830057379397375932, guid: 76cd34f90dd36724ea2e67ecef21926c,
         type: 3}
       propertyPath: m_Maskable
@@ -3508,6 +3538,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3830057379664063852, guid: 76cd34f90dd36724ea2e67ecef21926c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.9000015
+      objectReference: {fileID: 0}
+    - target: {fileID: 3830057379664063853, guid: 76cd34f90dd36724ea2e67ecef21926c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Handle1
       objectReference: {fileID: 0}
     - target: {fileID: 3830057379688417087, guid: 76cd34f90dd36724ea2e67ecef21926c,
         type: 3}
@@ -3843,7 +3883,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491268
 MonoBehaviour:
@@ -3860,7 +3900,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491269
 MonoBehaviour:
@@ -3877,7 +3917,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491270
 MonoBehaviour:
@@ -3894,7 +3934,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491271
 MonoBehaviour:
@@ -3911,7 +3951,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491272
 MonoBehaviour:
@@ -3928,7 +3968,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491273
 MonoBehaviour:
@@ -3945,7 +3985,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491274
 MonoBehaviour:
@@ -3962,7 +4002,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491275
 MonoBehaviour:
@@ -3979,7 +4019,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491276
 MonoBehaviour:
@@ -3996,7 +4036,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491277
 MonoBehaviour:
@@ -4013,7 +4053,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491278
 MonoBehaviour:
@@ -4030,7 +4070,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491279
 MonoBehaviour:
@@ -4047,7 +4087,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491280
 MonoBehaviour:
@@ -4064,7 +4104,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491281
 MonoBehaviour:
@@ -4081,7 +4121,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491282
 MonoBehaviour:
@@ -4098,7 +4138,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491284
 MonoBehaviour:
@@ -4115,7 +4155,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &1258491285
 MonoBehaviour:
@@ -4132,7 +4172,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1 &1277568922
 GameObject:
@@ -4540,7 +4580,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1 &1469918866
 GameObject:
@@ -6128,6 +6168,99 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1906952766
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1906952767}
+  - component: {fileID: 1906952770}
+  - component: {fileID: 1906952769}
+  - component: {fileID: 1906952768}
+  m_Layer: 26
+  m_Name: Sphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1906952767
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906952766}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_Children: []
+  m_Father: {fileID: 814377581}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1906952768
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906952766}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1906952769
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906952766}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1906952770
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906952766}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1907498276
 GameObject:
   m_ObjectHideFlags: 0
@@ -6427,7 +6560,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1 &2019194721
 GameObject:
@@ -6832,7 +6965,7 @@ MonoBehaviour:
   PadA: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
-  Hair: {fileID: 0}
+  Head: {fileID: 0}
   animator: {fileID: 0}
 --- !u!4 &2102633254 stripped
 Transform:
@@ -6937,6 +7070,61 @@ PrefabInstance:
     - target: {fileID: 6730876920160973731, guid: f8466dcfd038eed40a58ed6f4f935e41,
         type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730876920160973731, guid: f8466dcfd038eed40a58ed6f4f935e41,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 0.9056604
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730876920160973731, guid: f8466dcfd038eed40a58ed6f4f935e41,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0.85866857
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730876920160973731, guid: f8466dcfd038eed40a58ed6f4f935e41,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 0.85866857
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730876920160973731, guid: f8466dcfd038eed40a58ed6f4f935e41,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.ctime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730876920160973731, guid: f8466dcfd038eed40a58ed6f4f935e41,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.ctime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730876920160973731, guid: f8466dcfd038eed40a58ed6f4f935e41,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 0.9811321
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730876920160973731, guid: f8466dcfd038eed40a58ed6f4f935e41,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.032395888
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730876920160973731, guid: f8466dcfd038eed40a58ed6f4f935e41,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 0.032395888
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730876920160973731, guid: f8466dcfd038eed40a58ed6f4f935e41,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.atime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730876920160973731, guid: f8466dcfd038eed40a58ed6f4f935e41,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730876920160973731, guid: f8466dcfd038eed40a58ed6f4f935e41,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6730876920160973791, guid: f8466dcfd038eed40a58ed6f4f935e41,
