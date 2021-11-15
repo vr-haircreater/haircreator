@@ -19,7 +19,7 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
     public static int btn10down=0, headcolorN=0;
 
     public static bool HairTail = true;
-    public Material Hair;
+    public Material Head;
 
     float H, S, V;
 
@@ -28,7 +28,7 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
 
     private void Awake()
     {
-        Hair = Resources.Load<Material>("Materials/F00_000_00_HairBack_00_HAIR");
+        Head = Resources.Load<Material>("Materials/F00_000_00_HairBack_00_HAIR");
         PadA = GameObject.Find("Player/SteamVRObjects/LeftHand/PadA");
         if (PadA.activeSelf == true) FindPadAObject();
     }
@@ -38,12 +38,12 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         if (PadA.activeSelf == true)
         {
             HairColor = showimg.GetComponent<Image>().color;
-            SliderWT();  
+            //SliderWT();  
             Slider1();
         }
     }
    
-    public void OnPointerDown(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData pointerEventData)
     {
         Debug.Log("state=" + CallerPad.state);
         if (CallerPad.state == 0)
@@ -55,13 +55,30 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         if (CallerPad.state == 1) FindPadBTag();
         if (CallerPad.state == 2) FindPadDTag();
     }
-   
+
 
     public void Slider1() //調動深淺
     {
         Color.RGBToHSV(showimg.GetComponent<Image>().color, out H, out S, out V);
         Sslider1.value = S * 100.0f;
+        showimg.GetComponent<Image>().color = Color.clear;
+        showimg.GetComponent<Image>().color = Color.HSVToRGB(H, Sslider1.value / 100f, V);
+        HairColor = showimg.GetComponent<Image>().color;
         Sslider1.onValueChanged.AddListener(delegate { ValueChangeCheck0(); }); //一直ADD
+    }
+    public void ValueChangeCheck0()
+    {
+        showimg.GetComponent<Image>().color = Color.HSVToRGB(H, Sslider1.value / 100f, V);
+        HairColor = showimg.GetComponent<Image>().color;
+    }
+    public void Slider_Drag() 
+    {
+        Color.RGBToHSV(showimg.GetComponent<Image>().color, out H, out S, out V);
+        S = Sslider1.value/100f;
+        showimg.GetComponent<Image>().color = Color.clear;
+        showimg.GetComponent<Image>().color = Color.HSVToRGB(H, S, V);
+
+
     }
     
     public void SliderWT() //薄厚
@@ -70,53 +87,58 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         if (Sslider3.value > Sslider2.value) Sslider3.value = Sslider2.value;
         HairThickness = (int)Sslider3.value;
     }
-    public void ValueChangeCheck0()
-    {
-        showimg.GetComponent<Image>().color = Color.HSVToRGB(H, Sslider1.value / 100f, V);
-        HairColor = showimg.GetComponent<Image>().color;
-    }
 
     public void FindPadATag()
     {
         //===== PadA-Buttons
         if (gameObject.tag == "button0")
         {
+            showimg.GetComponent<Image>().color = Color.clear;//先清顏色才不會一直覆蓋
             showimg.GetComponent<Image>().color = Colorbtns[0];
         }
         else if (gameObject.tag == "button1")
         {
+            showimg.GetComponent<Image>().color = Color.clear;
             showimg.GetComponent<Image>().color = Colorbtns[1];
         }
         else if (gameObject.tag == "button2")
         {
+            showimg.GetComponent<Image>().color = Color.clear;
             showimg.GetComponent<Image>().color = Colorbtns[2];
         }
         else if (gameObject.tag == "button3")
         {
+            showimg.GetComponent<Image>().color = Color.clear;
             showimg.GetComponent<Image>().color = Colorbtns[3];
         }
         else if (gameObject.tag == "button4")
         {
+            showimg.GetComponent<Image>().color = Color.clear;
             showimg.GetComponent<Image>().color = Colorbtns[4];
         }
         else if (gameObject.tag == "button5")
         {
+            showimg.GetComponent<Image>().color = Color.clear;
             showimg.GetComponent<Image>().color = Colorbtns[5];
         }
         else if (gameObject.tag == "button6")
         {
+            showimg.GetComponent<Image>().color = Color.clear;
             showimg.GetComponent<Image>().color = Colorbtns[6];
         }
         else if (gameObject.tag == "button7")
         {
+            showimg.GetComponent<Image>().color = Color.clear;
             showimg.GetComponent<Image>().color = Colorbtns[7];
         }
         else if (gameObject.tag == "button8")
         {
+            showimg.GetComponent<Image>().color = Color.clear;
             showimg.GetComponent<Image>().color = Colorbtns[8];
         }
         else if (gameObject.tag == "button9")
         {
+            showimg.GetComponent<Image>().color = Color.clear;
             showimg.GetComponent<Image>().color = Colorbtns[9];
         }
         else if (gameObject.tag == "button10") //頭皮顏色
@@ -175,17 +197,25 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         //===== PadB-yes/no 
         if (gameObject.tag == "PadBYes")
         {
-            headcolorN = 1;
+            //頭皮暫存成功
+            ColorPicker_control.headcolort.color = Color.clear;
+            ColorPicker_control.headcolort.color = Head.color;
+            
             CallerPad.PadAShow();
-            if(btn10down==0)showimg.GetComponent<Image>().color = ColorPicker_control.colorshow.color;
+            if (btn10down == 0)
+            {
+                showimg.GetComponent<Image>().color = Color.clear;
+                showimg.GetComponent<Image>().color = ColorPicker_control.colorshow.color;
+            }           
             btn10down = 0;
         }
         else if (gameObject.tag == "PadBNo") //按取消未成功返回前一個顏色
         {
-            headcolorN = 2;
             btn10down = 0;
-            Hair.color = ColorPicker_control.headcolort.color;
+            Head.color = Color.clear;
+            Head.color = ColorPicker_control.headcolort.color;
             CallerPad.PadAShow();
+
         }
 
     }
