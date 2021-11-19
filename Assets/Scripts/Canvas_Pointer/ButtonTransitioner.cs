@@ -38,8 +38,8 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         if (PadA.activeSelf == true)
         {
             HairColor = showimg.GetComponent<Image>().color;
-            //SliderWT();  
             Slider1();
+            SliderWT();
         }
     }
    
@@ -240,8 +240,8 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         }
         else if (gameObject.tag == "SmallRoll")
         {
-            CreateHair.Curve1 = 0.6f;
-            CreateHair.Curve2 = 0.4f;
+            CreateHair.Curve1 = 1.0f;
+            CreateHair.Curve2 = 1.1f;
         }
         else if (gameObject.tag == "MediumRoll")
         {
@@ -250,8 +250,8 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         }
         else if (gameObject.tag == "BigRoll")
         {
-            CreateHair.Curve1 = 1.0f;
-            CreateHair.Curve2 = 1.1f;
+            CreateHair.Curve1 = 0.6f;
+            CreateHair.Curve2 = 0.4f;
         }
 
     }

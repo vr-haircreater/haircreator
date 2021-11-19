@@ -16,7 +16,7 @@ public class MeshGenerate : MonoBehaviour
     int[] triangle;
     BoneWeight[] weights;
 
-    MeshCollider HairCollider;
+    //MeshCollider HairCollider;
     Rigidbody HairRigidbody;
 
     public void GenerateMesh(List<Vector3> PointPos,List<Vector3> GetPointPos, int Getwidth,int count)
@@ -30,14 +30,14 @@ public class MeshGenerate : MonoBehaviour
         mesh = new Mesh();
         mesh.name = "HairModel";
 
-        if (gameObject.GetComponent<MeshCollider>() == null)
+        /*if (gameObject.GetComponent<MeshCollider>() == null)
         {
             HairCollider = gameObject.AddComponent<MeshCollider>();
         }
         else HairCollider = gameObject.GetComponent<MeshCollider>();
         HairCollider.sharedMesh = mesh;
         HairCollider.convex = true;
-        HairCollider.isTrigger = true;
+        HairCollider.isTrigger = true;*/
 
         if (gameObject.GetComponent<Rigidbody>() == null)
         {
