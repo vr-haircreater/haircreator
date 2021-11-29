@@ -90,39 +90,61 @@ public class MeshGenerate : MonoBehaviour
         mesh.RecalculateNormals();
 
         //架設骨架
-        weights = new BoneWeight[PointPos.Count * 4];
+        weights = new BoneWeight[mesh.vertexCount];
         for (int i = 0, n = 0; i < weights.Length; i++)
         {
             weights[i].boneIndex0 = n;
-            weights[i].weight0 = 1;
-            if ((i + 1) % 4 == 0) n++;
+            weights[i].weight0 = 1f;
+            if ((i + 1) % 8 == 0) n++;
         }
         mesh.boneWeights = weights;
 
-        Transform[] bones = new Transform[PointPos.Count];
-        Matrix4x4[] bindPoses = new Matrix4x4[PointPos.Count];
+        Transform[] bones = new Transform[PointPos.Count / 2];
+        Matrix4x4[] bindPoses = new Matrix4x4[PointPos.Count / 2];
+        if (PointPos.Count % 2 != 0)
+        {
+            bones = new Transform[PointPos.Count / 2 + 1];
+            bindPoses = new Matrix4x4[PointPos.Count / 2 + 1];
+        }
 
+        //清舊的骨架
         int z = 0;
         foreach (Transform obj in GameObject.Find("Root/J_Bip_C_Hips/J_Bip_C_Spine/J_Bip_C_Chest/J_Bip_C_UpperChest/J_Bip_C_Neck/J_Bip_C_Head/HairRig" + count).transform)
         {
             if (obj.name == "Hair" + z)
             {
                 Destroy(obj.gameObject);
-                Debug.Log("Yes");
             }
             if (z < bones.Length - 1) z++;
         }
 
-        for (int i = 0; i < bones.Length; i++)
+        for (int i = 0, n = 0; i < bones.Length; i++, n += 2)
         {
-            bones[i] = new GameObject("Hair" + i).transform;
-            bones[i].parent = GameObject.Find("Root/J_Bip_C_Hips/J_Bip_C_Spine/J_Bip_C_Chest/J_Bip_C_UpperChest/J_Bip_C_Neck/J_Bip_C_Head/HairRig" + count).transform;
+            if (i == 0)
+            {
+                bones[i] = new GameObject("Hair" + i).transform;
+                bones[i].parent = GameObject.Find("Root/J_Bip_C_Hips/J_Bip_C_Spine/J_Bip_C_Chest/J_Bip_C_UpperChest/J_Bip_C_Neck/J_Bip_C_Head/HairRig" + count).transform;
+            }
+            else
+            {
+                bones[i] = new GameObject("Hair" + i).transform;
+                bones[i].parent = bones[i - 1].transform;
+            }
 
-            bones[i].localRotation = Quaternion.identity;
-            bones[i].localPosition = PointPos[i];
+            if (i == bones.Length - 1)
+            {
+                bones[i].localRotation = Quaternion.identity;
+                bones[i].position = PointPos[PointPos.Count - 1];
+            }
+            else
+            {
+                bones[i].localRotation = Quaternion.identity;
+                bones[i].position = PointPos[n];
+            }
 
             bindPoses[i] = bones[i].worldToLocalMatrix * transform.localToWorldMatrix;
         }
+
         mesh.bindposes = bindPoses;
         rend.bones = bones;
         rend.sharedMesh = mesh;

@@ -4546,6 +4546,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Girl
       objectReference: {fileID: 0}
+    - target: {fileID: 359687156019832726, guid: 213e98af2a067424583442136218c51e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 784313118855197353, guid: 213e98af2a067424583442136218c51e,
         type: 3}
       propertyPath: m_IsActive
