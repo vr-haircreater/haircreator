@@ -21,7 +21,9 @@ public class GatherControl : MonoBehaviour
     public static bool ColorRightDown = false;
 
     //讓物件回到原位
-    public Transform ClearPos, EraserPos, PaintPos, erasercopy, paintcopy, clearcopy;
+    public Transform ClearPos, EraserPos, PaintPos, erasercopy, paintcopy, clearcopy,ObjPos;
+
+    public bool GetObjstate = true;
 
 
     // Start is called before the first frame update
@@ -36,21 +38,23 @@ public class GatherControl : MonoBehaviour
         erasercopy = GameObject.Find("Salon/Trolley/erasercopy").transform;
         clearcopy = GameObject.Find("Salon/Trolley/clearcopy").transform;
         paintcopy = GameObject.Find("Salon/Trolley/paintcopy").transform;
+        ObjPos = GameObject.Find("Player/SteamVRObjects/RightHand/ObjPos").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
         //拿起物件 & 切功能
-        if (icon == 0)
+        if (icon == 0 && GetObjstate==false)
         {
-            if (m_Pinch.GetStateDown(Pose.inputSource))
+            if (m_Grip.GetStateDown(Pose.inputSource))
             {
                 if(m_object!=null)Pickup();    
             }
-            if (m_Pinch.GetStateUp(Pose.inputSource) && m_object != null)//拿起後放開物件功能狀態才轉變
+            if (m_Grip.GetStateUp(Pose.inputSource) && m_object != null)//拿起後放開物件功能狀態才轉變
             {
                 icon = state;
+                GetObjstate = true;
             }
         }
         else if (icon == 2) //eraser
@@ -67,7 +71,7 @@ public class GatherControl : MonoBehaviour
         else if (m_Pinch.GetStateUp(Pose.inputSource)) ColorRightDown = false;
 
         //放下物件
-        if (m_Grip.GetStateDown(Pose.inputSource)) Drop();
+        if (m_Grip.GetStateDown(Pose.inputSource) && GetObjstate == true) Drop();
 
 
     }
@@ -75,6 +79,7 @@ public class GatherControl : MonoBehaviour
     public void Pickup()
     {
         if (m_object == null) return;
+        
         if (m_object.GetComponent<InteractableContrallor>().m_ActiveHand != null)
         {
             m_object.GetComponent<InteractableContrallor>().m_ActiveHand.Drop();
@@ -82,6 +87,7 @@ public class GatherControl : MonoBehaviour
         Rigidbody targetBody = m_object.GetComponent<Rigidbody>();
         m_Joint.connectedBody = targetBody;
         m_object.GetComponent<InteractableContrallor>().m_ActiveHand = this;
+        m_object.transform.position = ObjPos.position;
 
     }
     public void Drop()
@@ -110,7 +116,7 @@ public class GatherControl : MonoBehaviour
             m_object.transform.rotation = clearcopy.rotation;
             m_object.transform.position = clearcopy.position;
         }
-
+        GetObjstate = false;
         m_object = null;
         state = 0;
         icon = 0;

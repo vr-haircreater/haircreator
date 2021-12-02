@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
+using UnityEditor;
+using System.Text;
+using System.IO;
+using VRM;
+using VRMShaders;
+
 public class CreateHair : MonoBehaviour
 {
     int TriggerDown = 0;  //沒被按下
@@ -42,6 +48,11 @@ public class CreateHair : MonoBehaviour
     public static int u_Freq = 0, c_Freq = 0;
     public static int TempListExistHair = 0;
 
+    //頭髮動態
+    public VRMSpringBone SpringDyanmic;
+    VRMSpringBoneColliderGroup[] OBJCollider;
+
+
     private void Awake()
     {
         Pose = GetComponent<SteamVR_Behaviour_Pose>();
@@ -51,6 +62,19 @@ public class CreateHair : MonoBehaviour
         PosCreater = gameObject.AddComponent<PosGenerate>(); //加入PosGenerate
         HairTexture = Resources.Load<Texture2D>("Textures/F00_000_Hair_00");
         HairNormal = Resources.Load<Texture2D>("Textures/F00_000_Hair_00_nml");
+
+        OBJCollider = new VRMSpringBoneColliderGroup[10];
+        OBJCollider[0] = GameObject.Find("Girl/Root/J_Bip_C_Hips/J_Bip_C_Spine/J_Bip_C_Chest/J_Bip_C_UpperChest/J_Bip_C_Neck/J_Bip_C_Head").GetComponent<VRMSpringBoneColliderGroup>();
+        OBJCollider[1] = GameObject.Find("Girl/Root/J_Bip_C_Hips/J_Bip_C_Spine/J_Bip_C_Chest/J_Bip_C_UpperChest/J_Bip_L_Shoulder/J_Bip_L_UpperArm").GetComponent<VRMSpringBoneColliderGroup>();
+        OBJCollider[2] = GameObject.Find("Girl/Root/J_Bip_C_Hips/J_Bip_C_Spine/J_Bip_C_Chest/J_Bip_C_UpperChest/J_Bip_R_Shoulder/J_Bip_R_UpperArm").GetComponent<VRMSpringBoneColliderGroup>();
+        OBJCollider[3] = GameObject.Find("Girl/Root/J_Bip_C_Hips/J_Bip_C_Spine/J_Bip_C_Chest/J_Bip_C_UpperChest/J_Bip_L_Shoulder/J_Bip_L_UpperArm/J_Bip_L_LowerArm").GetComponent<VRMSpringBoneColliderGroup>();
+        OBJCollider[4] = GameObject.Find("Girl/Root/J_Bip_C_Hips/J_Bip_C_Spine/J_Bip_C_Chest/J_Bip_C_UpperChest/J_Bip_R_Shoulder/J_Bip_R_UpperArm/J_Bip_R_LowerArm").GetComponent<VRMSpringBoneColliderGroup>();
+        OBJCollider[5] = GameObject.Find("Girl/Root/J_Bip_C_Hips/J_Bip_C_Spine/J_Bip_C_Chest/J_Bip_C_UpperChest/J_Bip_L_Shoulder/J_Bip_L_UpperArm/J_Bip_L_LowerArm/J_Bip_L_Hand").GetComponent<VRMSpringBoneColliderGroup>();
+        OBJCollider[6] = GameObject.Find("Girl/Root/J_Bip_C_Hips/J_Bip_C_Spine/J_Bip_C_Chest/J_Bip_C_UpperChest/J_Bip_R_Shoulder/J_Bip_R_UpperArm/J_Bip_R_LowerArm/J_Bip_R_Hand").GetComponent<VRMSpringBoneColliderGroup>();
+        OBJCollider[7] = GameObject.Find("Girl/Root/J_Bip_C_Hips/J_Bip_C_Spine/J_Bip_C_Chest/J_Bip_C_UpperChest").GetComponent<VRMSpringBoneColliderGroup>();
+        OBJCollider[8] = GameObject.Find("Girl/Root/J_Bip_C_Hips/J_Bip_C_Spine").GetComponent<VRMSpringBoneColliderGroup>();
+        OBJCollider[9] = GameObject.Find("Girl/Root/J_Bip_C_Hips/J_Bip_C_Spine/J_Bip_C_Chest/J_Bip_C_UpperChest/J_Bip_C_Neck").GetComponent<VRMSpringBoneColliderGroup>();
+
     }
 
     void Update()
@@ -73,6 +97,7 @@ public class CreateHair : MonoBehaviour
                 PointPos.Add(OldPos);
                 GameObject HairRig = new GameObject();
                 HairRig.transform.SetParent(GameObject.Find("Girl/Root/J_Bip_C_Hips/J_Bip_C_Spine/J_Bip_C_Chest/J_Bip_C_UpperChest/J_Bip_C_Neck/J_Bip_C_Head").transform);
+                HairRig.transform.position = OldPos;
                 HairModelRig.Add(HairRig);
                 HairModelRig[HairCounter].name = "HairRig" + HairCounter;
                 TriggerDown = 1;
@@ -112,6 +137,7 @@ public class CreateHair : MonoBehaviour
             {
                 if (PointPos.Count >= 2)
                 {
+                    AddDymatic();
                     HairCounter++;
                     ExistHair = GameObject.Find("HairModel" + (HairCounter - 1)); //找到相應的hairmodel名稱丟給 ExistHair GameObj
                     ListExistHair.Add(ExistHair);
@@ -135,9 +161,21 @@ public class CreateHair : MonoBehaviour
         
     }
 
+    private void AddDymatic()
+    {
+        GameObject Spring = GameObject.Find("Girl/secondary");
+        SpringDyanmic = Spring.AddComponent<VRMSpringBone>();
+        SpringDyanmic.m_center = GameObject.Find("Girl/Root").transform;
+        SpringDyanmic.RootBones.Add(GameObject.Find($"Girl/Root/J_Bip_C_Hips/J_Bip_C_Spine/J_Bip_C_Chest/J_Bip_C_UpperChest/J_Bip_C_Neck/J_Bip_C_Head/HairRig{HairCounter}").transform);
+        SpringDyanmic.ColliderGroups = OBJCollider;
+        SpringDyanmic.m_dragForce = 0.4f;
+        SpringDyanmic.m_stiffnessForce = 0.4f;
+        SpringDyanmic.m_hitRadius = 0.01f;
+    }
+
+
     public static void Undo()
     {
-        
         if (c_Freq == 0)
         {
             u_Freq += 1;
