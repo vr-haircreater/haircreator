@@ -36,8 +36,8 @@ public class MeshGenerate : MonoBehaviour
         }
         else HairCollider = gameObject.GetComponent<MeshCollider>();
         HairCollider.sharedMesh = mesh;
-        HairCollider.convex = true;
-        HairCollider.isTrigger = true;*/
+        //HairCollider.convex = true;
+        //HairCollider.isTrigger = true;*/
 
         if (gameObject.GetComponent<Rigidbody>() == null)
         {
@@ -124,11 +124,18 @@ public class MeshGenerate : MonoBehaviour
             {
                 bones[i] = new GameObject("Hair" + i).transform;
                 bones[i].parent = GameObject.Find("Root/J_Bip_C_Hips/J_Bip_C_Spine/J_Bip_C_Chest/J_Bip_C_UpperChest/J_Bip_C_Neck/J_Bip_C_Head/HairRig" + count).transform;
+                /*bones[i].gameObject.AddComponent<SphereCollider>();
+                bones[i].GetComponent<SphereCollider>().center = new Vector3(0,0,0);
+                bones[i].GetComponent<SphereCollider>().radius = 0.005f;*/
+
             }
             else
             {
                 bones[i] = new GameObject("Hair" + i).transform;
                 bones[i].parent = bones[i - 1].transform;
+                /*bones[i].gameObject.AddComponent<SphereCollider>();
+                bones[i].GetComponent<SphereCollider>().center = new Vector3(0, 0, 0);
+                bones[i].GetComponent<SphereCollider>().radius = 0.005f;*/
             }
 
             if (i == bones.Length - 1)
