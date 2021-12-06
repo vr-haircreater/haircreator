@@ -156,22 +156,20 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         {
             Slider1();
         }
-        //===== PadA-choose 直/波浪/螺旋
-        else if (gameObject.tag == "Straight_HairStyle") //直髮
+        //===== PadA-choose 回到原點/進階髮片/動畫
+        else if (gameObject.tag == "StartPoint")
         {
-            HairStyleState = 1;
+            Transform Pos = GameObject.Find("Player").transform;
+            Pos.position = new Vector3(-0.1f,0.1f,2.6f);
+            Pos.rotation = new Quaternion(0f,-110f,0f,0f);
         }
-        else if (gameObject.tag == "WaveHairStyle") //波浪
-        {
-            HairStyleState = 2;
-        }
-        else if (gameObject.tag == "TwistHairStyle") //螺旋
-        {
-            HairStyleState = 3;
-        }
-        else if (gameObject.tag == "ArrowButton")
+        else if (gameObject.tag == "ChooseHair")
         {
             CallerPad.PadCShow();
+        }
+        else if (gameObject.tag == "Animation")
+        {
+            
         }
         //===== PadA-lower (BUG:undo刪兩個)
         else if (gameObject.tag == "UndoButton")
@@ -252,6 +250,18 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         {
             CreateHair.Curve1 = 0.6f;
             CreateHair.Curve2 = 0.4f;
+        }
+        else if (gameObject.tag == "Straight_HairStyle") //直髮
+        {
+            HairStyleState = 1;
+        }
+        else if (gameObject.tag == "WaveHairStyle") //波浪
+        {
+            HairStyleState = 2;
+        }
+        else if (gameObject.tag == "TwistHairStyle") //螺旋
+        {
+            HairStyleState = 3;
         }
 
     }

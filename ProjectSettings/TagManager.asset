@@ -48,6 +48,9 @@ TagManager:
   - coll_SV
   - Hairs
   - Handle1
+  - StartPoint
+  - ChooseHair
+  - Animation
   layers:
   - Default
   - TransparentFX

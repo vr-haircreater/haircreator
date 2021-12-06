@@ -1310,6 +1310,29 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1097505651}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &725471357 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2161518642933953915, guid: 11c0bac3c5b6290459893550457f2cf9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1555995681}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &725471362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725471357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca9174e6b2095a48aca64f7d285a119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PadA: {fileID: 0}
+  role: {fileID: 0}
+  rolehair: {fileID: 0}
+  Head: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!1 &729380123
 GameObject:
   m_ObjectHideFlags: 0
@@ -2777,7 +2800,7 @@ PrefabInstance:
     - target: {fileID: 3830057377942422379, guid: 76cd34f90dd36724ea2e67ecef21926c,
         type: 3}
       propertyPath: m_TagString
-      value: TwistHairStyle
+      value: Animation
       objectReference: {fileID: 0}
     - target: {fileID: 3830057378025219335, guid: 76cd34f90dd36724ea2e67ecef21926c,
         type: 3}
@@ -3754,7 +3777,7 @@ PrefabInstance:
     - target: {fileID: 3830057379597160515, guid: 76cd34f90dd36724ea2e67ecef21926c,
         type: 3}
       propertyPath: m_TagString
-      value: WaveHairStyle
+      value: ChooseHair
       objectReference: {fileID: 0}
     - target: {fileID: 3830057379619561559, guid: 76cd34f90dd36724ea2e67ecef21926c,
         type: 3}
@@ -3814,7 +3837,7 @@ PrefabInstance:
     - target: {fileID: 3830057379619561561, guid: 76cd34f90dd36724ea2e67ecef21926c,
         type: 3}
       propertyPath: m_TagString
-      value: Straight_HairStyle
+      value: StartPoint
       objectReference: {fileID: 0}
     - target: {fileID: 3830057379664063852, guid: 76cd34f90dd36724ea2e67ecef21926c,
         type: 3}
@@ -4875,6 +4898,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 213e98af2a067424583442136218c51e, type: 3}
+--- !u!1 &1418707883 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5892616783283963476, guid: 11c0bac3c5b6290459893550457f2cf9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1555995681}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1418707888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418707883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca9174e6b2095a48aca64f7d285a119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PadA: {fileID: 0}
+  role: {fileID: 0}
+  rolehair: {fileID: 0}
+  Head: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!1 &1425295570 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2526477048853325176, guid: 11c0bac3c5b6290459893550457f2cf9,
@@ -4941,6 +4987,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 532041905}
     m_Modifications:
+    - target: {fileID: 505532981895869110, guid: 11c0bac3c5b6290459893550457f2cf9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Straight_HairStyle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2161518642933953915, guid: 11c0bac3c5b6290459893550457f2cf9,
+        type: 3}
+      propertyPath: m_TagString
+      value: TwistHairStyle
+      objectReference: {fileID: 0}
     - target: {fileID: 2526477047248392506, guid: 11c0bac3c5b6290459893550457f2cf9,
         type: 3}
       propertyPath: m_Camera
@@ -5095,6 +5151,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: BigRoll
+      objectReference: {fileID: 0}
+    - target: {fileID: 5892616783283963476, guid: 11c0bac3c5b6290459893550457f2cf9,
+        type: 3}
+      propertyPath: m_TagString
+      value: WaveHairStyle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11c0bac3c5b6290459893550457f2cf9, type: 3}
@@ -7257,6 +7318,29 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2057133207 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 505532981895869110, guid: 11c0bac3c5b6290459893550457f2cf9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1555995681}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2057133212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057133207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca9174e6b2095a48aca64f7d285a119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PadA: {fileID: 0}
+  role: {fileID: 0}
+  rolehair: {fileID: 0}
+  Head: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!1 &2061570047 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5283357775618552653, guid: 320cd40194e1cd34db5e61e1558adac2,

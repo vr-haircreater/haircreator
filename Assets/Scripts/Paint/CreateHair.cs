@@ -75,6 +75,7 @@ public class CreateHair : MonoBehaviour
         OBJCollider[8] = GameObject.Find("Girl/Root/J_Bip_C_Hips/J_Bip_C_Spine").GetComponent<VRMSpringBoneColliderGroup>();
         OBJCollider[9] = GameObject.Find("Girl/Root/J_Bip_C_Hips/J_Bip_C_Spine/J_Bip_C_Chest/J_Bip_C_UpperChest/J_Bip_C_Neck").GetComponent<VRMSpringBoneColliderGroup>();
 
+        
     }
 
     void Update()
