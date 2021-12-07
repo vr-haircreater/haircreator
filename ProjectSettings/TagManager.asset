@@ -51,6 +51,7 @@ TagManager:
   - StartPoint
   - ChooseHair
   - Animation
+  - HairPoint
   layers:
   - Default
   - TransparentFX

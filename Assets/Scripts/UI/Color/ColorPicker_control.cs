@@ -63,7 +63,7 @@ public class ColorPicker_control : MonoBehaviour
             if (ColorPicker_h.CollGet_H == true)
             {
                 h_slider.transform.position = mousePos;
-                color_Htemp = V1.x / 0.1399244f;
+                color_Htemp = V1.x / 0.14f;
                 Debug.Log("H:" + color_Htemp);
             }
         }
