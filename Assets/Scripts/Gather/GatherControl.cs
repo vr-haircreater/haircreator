@@ -31,7 +31,7 @@ public class GatherControl : MonoBehaviour
     {
         Pose = GetComponent<SteamVR_Behaviour_Pose>();
         m_Joint = GetComponent<FixedJoint>();
-        gameObject.AddComponent<CreateHair>();
+        //gameObject.AddComponent<CreateHair>();
         ClearPos = GameObject.Find("Salon/Trolley/clear1").transform;
         EraserPos = GameObject.Find("Salon/Trolley/eraser1").transform;
         PaintPos = GameObject.Find("Salon/Trolley/paint1").transform;
@@ -116,6 +116,11 @@ public class GatherControl : MonoBehaviour
             m_object.transform.rotation = clearcopy.rotation;
             m_object.transform.position = clearcopy.position;
         }
+        foreach (Transform obj in m_object.transform)
+        {
+            obj.GetComponent<MeshRenderer>().enabled = true;
+        }
+
         GetObjstate = false;
         m_object = null;
         state = 0;

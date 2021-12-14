@@ -37,7 +37,7 @@ public class VRMSave : MonoBehaviour
 #if false
         var path = FileDialogForWindows.SaveDialog("save VRM", Application.dataPath + "/export.vrm");
 #else
-        var path = Application.dataPath + "/../SaveRole/ExportRole.vrm";
+        var path = Application.dataPath + "ExportRole.vrm";
 #endif
         if (string.IsNullOrEmpty(path))
         {

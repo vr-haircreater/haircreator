@@ -60,8 +60,8 @@ public class CreateHair : MonoBehaviour
         HairPos = GameObject.Find("Salon/Trolley/paint1/HairPoint");
         //HairPos = GameObject.Find("Player/SteamVRObjects/RightHand/Sphere");
         PosCreater = gameObject.AddComponent<PosGenerate>(); //加入PosGenerate
-        HairTexture = Resources.Load<Texture2D>("Textures/F00_000_Hair_00");
-        HairNormal = Resources.Load<Texture2D>("Textures/F00_000_Hair_00_nml");
+        //HairTexture = Resources.Load<Texture2D>("Textures/F00_000_Hair_00");
+        //HairNormal = Resources.Load<Texture2D>("Textures/F00_000_Hair_00_nml");
 
         OBJCollider = new VRMSpringBoneColliderGroup[10];
         OBJCollider[0] = GameObject.Find("Girl/Root/J_Bip_C_Hips/J_Bip_C_Spine/J_Bip_C_Chest/J_Bip_C_UpperChest/J_Bip_C_Neck/J_Bip_C_Head").GetComponent<VRMSpringBoneColliderGroup>();

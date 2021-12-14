@@ -36,9 +36,7 @@ public class ColorPicker_control : MonoBehaviour
         pvx0 = new Vector3(-0.1399244f/2, -0.1399244f / 2, 0);//改
 
         headcolort = new Material(Shader.Find("Specular"));
-        AssetDatabase.CreateAsset(headcolort, "Assets/Materials/headcolortemp2.mat");
         headcolort.color = headcolor.color;
-
     }
     
     void Update()

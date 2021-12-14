@@ -12,11 +12,15 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
     public static Slider Sslider1, Sslider2, Sslider3;
     public static GameObject Gslider1, Wslider1, Tslider1;
     public static Color HairColor;
-    public GameObject PadA,role,rolehair;
-  
+    public GameObject PadA,PadB,role,rolehair;
+    public static Image[] coloraddimgs = new Image[5];
+    public static GameObject[] addbtns = new GameObject[5];
+    public static Color[] Coloradd = new Color[5];
+    
+
     public static int HairWidth;//調整寬度
     public static int HairThickness;//調整厚度
-    public static int btn10down=0, headcolorN=0;
+    public static int btn10down=0, headcolorN=0, coloraddcount = 0;
 
     public static bool HairTail = true;
     public Material Head;
@@ -31,6 +35,8 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         Head = Resources.Load<Material>("Materials/F00_000_00_HairBack_00_HAIR");
         PadA = GameObject.Find("Player/SteamVRObjects/LeftHand/PadA");
         if (PadA.activeSelf == true) FindPadAObject();
+        PadB = GameObject.Find("Player/SteamVRObjects/LeftHand/PadB");
+        if (PadB.activeSelf == true) FindPadBObject();
     }
 
     public void Update()
@@ -215,9 +221,42 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
             CallerPad.PadAShow();
 
         }
+        else if (gameObject.tag == "PadBAdd") //新增一個顏色
+        {
+            Coloradd[coloraddcount] = ColorPicker_control.colorshow.color;
+            coloraddcount++;
+            coloraddimgs[coloraddcount] = addbtns[coloraddcount].GetComponent<Image>();
+            coloraddimgs[coloraddcount].GetComponent<Image>().color = Coloradd[coloraddcount];
+            if (coloraddcount >= 5) coloraddcount = 0;
+        }
+        else if (gameObject.tag == "ButtonA")
+        {
+            showimg.GetComponent<Image>().color = Color.clear;
+            showimg.GetComponent<Image>().color = Coloradd[0];
+        }
+        else if (gameObject.tag == "ButtonB")
+        {
+            showimg.GetComponent<Image>().color = Color.clear;
+            showimg.GetComponent<Image>().color = Coloradd[1];
+        }
+        else if (gameObject.tag == "ButtonC")
+        {
+            showimg.GetComponent<Image>().color = Color.clear;
+            showimg.GetComponent<Image>().color = Coloradd[2];
+        }
+        else if (gameObject.tag == "ButtonD")
+        {
+            showimg.GetComponent<Image>().color = Color.clear;
+            showimg.GetComponent<Image>().color = Coloradd[3];
+        }
+        else if (gameObject.tag == "ButtonE")
+        {
+            showimg.GetComponent<Image>().color = Color.clear;
+            showimg.GetComponent<Image>().color = Coloradd[4];
+        }
 
     }
-  
+
     public void FindPadDTag()
     {
         if (gameObject.tag == "PadDYes")
@@ -314,6 +353,14 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         Sslider3 = Tslider1.GetComponent<Slider>();
 
         showimg.GetComponent<Image>().color = Colorbtns[0];
+    }
+    public void FindPadBObject()
+    {
+        addbtns[0] = GameObject.FindGameObjectWithTag("ButtonA");
+        addbtns[1] = GameObject.FindGameObjectWithTag("ButtonB");
+        addbtns[2] = GameObject.FindGameObjectWithTag("ButtonC");
+        addbtns[3] = GameObject.FindGameObjectWithTag("ButtonD");
+        addbtns[4] = GameObject.FindGameObjectWithTag("ButtonE");
     }
 
 

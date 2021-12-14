@@ -52,6 +52,12 @@ TagManager:
   - ChooseHair
   - Animation
   - HairPoint
+  - ButtonA
+  - ButtonB
+  - ButtonC
+  - ButtonD
+  - ButtonE
+  - PadBAdd
   layers:
   - Default
   - TransparentFX
