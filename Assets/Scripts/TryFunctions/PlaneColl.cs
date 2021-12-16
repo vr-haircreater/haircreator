@@ -21,8 +21,8 @@ public class PlaneColl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)//判定碰沒碰到
     {
-        Debug.Log(other.gameObject.name);
-        Debug.Log("FFF");
+        //Debug.Log(other.gameObject.name);
+        //Debug.Log("FFF");
         if (other.gameObject.CompareTag("Paint"))
         {
             other.gameObject.transform.rotation = paintcopy.rotation;

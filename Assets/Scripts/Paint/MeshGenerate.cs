@@ -1,6 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+
+
 
 [RequireComponent(typeof(SkinnedMeshRenderer))]
 public class MeshGenerate : MonoBehaviour
@@ -19,6 +20,13 @@ public class MeshGenerate : MonoBehaviour
     //MeshCollider HairCollider;
     Rigidbody HairRigidbody;
 
+    //[System.Flags]
+    //public enum MeshColliderCookingOptions
+    //{ 
+    
+    
+    //}
+
     public void GenerateMesh(List<Vector3> PointPos,List<Vector3> GetPointPos, int Getwidth,int count)
     {
         GethairColor = GetComponent<Renderer>().material;
@@ -30,13 +38,17 @@ public class MeshGenerate : MonoBehaviour
         mesh = new Mesh();
         mesh.name = "HairModel";
 
-        /*if (gameObject.GetComponent<MeshCollider>() == null)
-        {
-            HairCollider = gameObject.AddComponent<MeshCollider>();
-        }
-        else HairCollider = gameObject.GetComponent<MeshCollider>();
-        HairCollider.sharedMesh = mesh;
+        //if (gameObject.GetComponent<MeshCollider>() == null)
+        //{
+        //    HairCollider = gameObject.AddComponent<MeshCollider>();
+        //}
+        //else HairCollider = gameObject.GetComponent<MeshCollider>();
+        //HairCollider.sharedMesh = mesh;
+        
+
+        
         //HairCollider.convex = true;
+        //HairCollider.cookingOptions = MeshColliderCookingOptions.None;
         //HairCollider.isTrigger = true;*/
 
         if (gameObject.GetComponent<Rigidbody>() == null)
@@ -124,9 +136,9 @@ public class MeshGenerate : MonoBehaviour
             {
                 bones[i] = new GameObject("Hair" + i).transform;
                 bones[i].parent = GameObject.Find("Root/J_Bip_C_Hips/J_Bip_C_Spine/J_Bip_C_Chest/J_Bip_C_UpperChest/J_Bip_C_Neck/J_Bip_C_Head/HairRig" + count).transform;
-                /*bones[i].gameObject.AddComponent<SphereCollider>();
-                bones[i].GetComponent<SphereCollider>().center = new Vector3(0,0,0);
-                bones[i].GetComponent<SphereCollider>().radius = 0.005f;*/
+                //bones[i].gameObject.AddComponent<SphereCollider>();
+                //bones[i].GetComponent<SphereCollider>().center = new Vector3(0,0,0);
+                //bones[i].GetComponent<SphereCollider>().radius = 0.005f;
 
             }
             else

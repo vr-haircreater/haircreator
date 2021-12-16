@@ -24,6 +24,7 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
 
     public static bool HairTail = true;
     public Material Head;
+    public bool advancedColor = false;
 
     float H, S, V;
 
@@ -51,7 +52,7 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
    
     public void OnPointerDown(PointerEventData pointerEventData)
     {
-        Debug.Log("state=" + CallerPad.state);
+        //Debug.Log("state=" + CallerPad.state);
         if (CallerPad.state == 0)
         {
             FindPadATag();
@@ -198,9 +199,12 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
     }
     public void FindPadBTag()
     {
+
+        Debug.Log("Hi B");
         //===== PadB-yes/no 
         if (gameObject.tag == "PadBYes")
         {
+            Debug.Log("Yes color");
             //頭皮暫存成功
             ColorPicker_control.headcolort.color = Color.clear;
             ColorPicker_control.headcolort.color = Head.color;
@@ -212,8 +216,9 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
                 showimg.GetComponent<Image>().color = ColorPicker_control.colorshow.color;
             }           
             btn10down = 0;
+            
         }
-        else if (gameObject.tag == "PadBNo") //按取消未成功返回前一個顏色
+        else if (gameObject.tag == "PadBNo") //按取消返回前一個顏色
         {
             btn10down = 0;
             Head.color = Color.clear;
@@ -223,36 +228,48 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         }
         else if (gameObject.tag == "PadBAdd") //新增一個顏色
         {
+            Debug.Log("Addcolor");
             Coloradd[coloraddcount] = ColorPicker_control.colorshow.color;
-            coloraddcount++;
             coloraddimgs[coloraddcount] = addbtns[coloraddcount].GetComponent<Image>();
+            coloraddimgs[coloraddcount].GetComponent<Image>().color = Color.clear;
             coloraddimgs[coloraddcount].GetComponent<Image>().color = Coloradd[coloraddcount];
+            coloraddcount++;
             if (coloraddcount >= 5) coloraddcount = 0;
         }
         else if (gameObject.tag == "ButtonA")
         {
             showimg.GetComponent<Image>().color = Color.clear;
             showimg.GetComponent<Image>().color = Coloradd[0];
+            Color.RGBToHSV(Coloradd[0], out ColorPicker_control.addcolorH, out ColorPicker_control.addcolorS, out ColorPicker_control.addcolorV);
+            CallerPad.PadAShow();
         }
         else if (gameObject.tag == "ButtonB")
         {
             showimg.GetComponent<Image>().color = Color.clear;
             showimg.GetComponent<Image>().color = Coloradd[1];
+            Color.RGBToHSV(Coloradd[1], out ColorPicker_control.addcolorH, out ColorPicker_control.addcolorS, out ColorPicker_control.addcolorV);
+            CallerPad.PadAShow();
         }
         else if (gameObject.tag == "ButtonC")
         {
             showimg.GetComponent<Image>().color = Color.clear;
             showimg.GetComponent<Image>().color = Coloradd[2];
+            Color.RGBToHSV(Coloradd[2], out ColorPicker_control.addcolorH, out ColorPicker_control.addcolorS, out ColorPicker_control.addcolorV);
+            CallerPad.PadAShow();
         }
         else if (gameObject.tag == "ButtonD")
         {
             showimg.GetComponent<Image>().color = Color.clear;
             showimg.GetComponent<Image>().color = Coloradd[3];
+            Color.RGBToHSV(Coloradd[3], out ColorPicker_control.addcolorH, out ColorPicker_control.addcolorS, out ColorPicker_control.addcolorV);
+            CallerPad.PadAShow();
         }
         else if (gameObject.tag == "ButtonE")
         {
             showimg.GetComponent<Image>().color = Color.clear;
             showimg.GetComponent<Image>().color = Coloradd[4];
+            Color.RGBToHSV(Coloradd[4], out ColorPicker_control.addcolorH, out ColorPicker_control.addcolorS, out ColorPicker_control.addcolorV);
+            CallerPad.PadAShow();
         }
 
     }

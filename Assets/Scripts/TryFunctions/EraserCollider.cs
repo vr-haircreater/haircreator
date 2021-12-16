@@ -17,15 +17,18 @@ public class EraserCollider : MonoBehaviour
     {
         
     }
-    /*void OnTriggerEnter(Collider other) //Eraser
+    void OnTriggerEnter(Collider other) //Eraser
     {
+        
         Contact = GameObject.Find(other.gameObject.name);
-        if (Contact.tag == "Hairs") ForContact = 1;
-    }*/
+        Debug.Log("collider (name) : " + Contact.name);
+        //if (Contact.tag == "Hairs") ForContact = 1;
+    }
+    /*
     void OnCollisionEnter(Collision other) //Eraser
     {
         Debug.Log("GET");
         Contact = GameObject.Find(other.gameObject.name);
         if (Contact.tag == "Hairs") ForContact = 1;
-    }
+    }*/
 }

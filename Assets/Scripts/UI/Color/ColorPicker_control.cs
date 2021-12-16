@@ -7,7 +7,7 @@ using UnityEditor;
 
 public class ColorPicker_control : MonoBehaviour
 {    
-    public static float color_H, color_S, color_V;
+    public static float color_H, color_S, color_V,addcolorH, addcolorS, addcolorV;
     public GameObject sv_img, h_img, sv_slider, h_slider;
     public GameObject dot, ColorPanel;
     Vector3 svPos,hPos,mousePos, SVsliderPos, HsliderPos;
@@ -61,8 +61,8 @@ public class ColorPicker_control : MonoBehaviour
             if (ColorPicker_h.CollGet_H == true)
             {
                 h_slider.transform.position = mousePos;
-                color_Htemp = V1.x / 0.14f;
-                Debug.Log("H:" + color_Htemp);
+                color_Htemp = V1.x / 0.2011f;
+                //Debug.Log("H:" + color_Htemp);
             }
         }
         color_H = color_Htemp;

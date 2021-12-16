@@ -51,7 +51,7 @@ public class CreateHair : MonoBehaviour
     //頭髮動態
     public VRMSpringBone SpringDyanmic;
     VRMSpringBoneColliderGroup[] OBJCollider;
-
+    SphereCollider Ecollder;
 
     private void Awake()
     {
@@ -84,6 +84,7 @@ public class CreateHair : MonoBehaviour
     }
     void Dawer() 
     {
+
         if (TriggerDown == 0 && GatherControl.icon == 1) //沒被按下
         {
             if (TriggerClick.GetStateDown(Pose.inputSource)) //偵測被按下的瞬間
@@ -101,6 +102,13 @@ public class CreateHair : MonoBehaviour
                 HairRig.transform.position = OldPos;
                 HairModelRig.Add(HairRig);
                 HairModelRig[HairCounter].name = "HairRig" + HairCounter;
+
+                
+                Ecollder = HairModel[HairCounter].AddComponent<SphereCollider>();
+                Ecollder.center = OldPos;
+                Ecollder.radius = 0.005f;
+
+
                 TriggerDown = 1;
             }
         }
@@ -121,6 +129,10 @@ public class CreateHair : MonoBehaviour
                 if (ButtonTransitioner.HairStyleState == 1) PosCreater.Straight_HairStyle(PointPos, ButtonTransitioner.HairWidth, ButtonTransitioner.HairThickness, HairTail);
                 if (ButtonTransitioner.HairStyleState == 2) PosCreater.WaveHairStyle(PointPos, ButtonTransitioner.HairWidth, ButtonTransitioner.HairThickness, Curve1, HairTail);
                 if (ButtonTransitioner.HairStyleState == 3) PosCreater.TwistHairStyle(PointPos, ButtonTransitioner.HairWidth, Curve2, HairTail);
+                
+                Ecollder = HairModel[HairCounter].AddComponent<SphereCollider>();
+                Ecollder.center = OldPos;
+                Ecollder.radius = 0.005f;
                 OldPos = NewPos;
             }
 
