@@ -8,11 +8,11 @@ public class CallerPad : MonoBehaviour
     public SteamVR_Action_Boolean CallClick;
     public static SteamVR_Behaviour_Pose Pose;
 
-    public static GameObject PadA, PadB, PadC, PadD; 
-    public static int state = 0,N = 4;
-    public static GameObject[] ClosePad = new GameObject[4];
+    public static GameObject PadA, PadB, PadC, PadD, PadE; 
+    public static int state = 0,N = 5;
+    public static GameObject[] ClosePad = new GameObject[5];
     public static GameObject nowPad;
-    public static GameObject[] Pads = new GameObject[4];
+    public static GameObject[] Pads = new GameObject[5];
     public static bool ox;
     public static int i;
 
@@ -26,6 +26,7 @@ public class CallerPad : MonoBehaviour
         Pads[1] = PadB = GameObject.Find("Player/SteamVRObjects/LeftHand/PadB");
         Pads[2] = PadC = GameObject.Find("Player/SteamVRObjects/LeftHand/PadD");
         Pads[3] = PadD = GameObject.Find("Player/SteamVRObjects/LeftHand/PadC");
+        Pads[4] = PadE = GameObject.Find("Player/SteamVRObjects/LeftHand/PadE");
         /*PadA = GameObject.Find("Player/SteamVRObjects/LeftHand/PadA");
         PadB = GameObject.Find("Player/SteamVRObjects/LeftHand/PadB");
         PadC = GameObject.Find("Player/SteamVRObjects/LeftHand/PadD");
@@ -50,6 +51,11 @@ public class CallerPad : MonoBehaviour
     public static void PadDShow()
     {
         state = 3;
+        PadSwitcher();
+    }
+    public static void PadEShow()
+    {
+        state = 4;
         PadSwitcher();
     }
     /*public static void PadSwitcher() //A1 B2 C3 D4
@@ -95,7 +101,7 @@ public class CallerPad : MonoBehaviour
     public static void PadSwitcher()
     {
         FindPad();
-        for(i = 0; i < 4; i++)
+        for(i = 0; i < 5; i++)
         {
             print(state); ox = (i==state) ? true : false; print(ox);
             Pads[i].SetActive(ox);

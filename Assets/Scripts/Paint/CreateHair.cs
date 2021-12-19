@@ -12,8 +12,9 @@ public class CreateHair : MonoBehaviour
 {
     int TriggerDown = 0;  //沒被按下
     int HairCounter = 0; //Hair片數
+    public static int CloneCount = 0;
     public static int HairWidth = 1;//髮片寬度
-    
+
     public static bool HairTail = true;
 
     float length = 0.015f; //點距離，原本0.05
@@ -26,7 +27,7 @@ public class CreateHair : MonoBehaviour
     public static List<Vector3> PointPos = new List<Vector3>(); //Pos座標存取
     public static List<Vector3> UpdatePointPos = new List<Vector3>();//變形更新點座標
     public static List<Vector3> direction = new List<Vector3>();
-    public List<GameObject> HairModel = new List<GameObject>(); //髮片Gameobj存取
+    public static List<GameObject> HairModel = new List<GameObject>(); //髮片Gameobj存取
     public List<GameObject> HairModelRig = new List<GameObject>();//髮片骨架
 
     public MeshGenerate MeshCreater; //呼叫 MeshGenerate.cs 中的東西給 MeshCreater 用
@@ -38,7 +39,7 @@ public class CreateHair : MonoBehaviour
     public SteamVR_Action_Boolean spawn = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("InteractUI");
 
     public Texture HairTexture, HairNormal;
-    public GameObject HairModelG,HairPos;
+    public static GameObject HairModelG, HairPos;
 
     //undo & redo
     public static List<GameObject> ListExistHair = new List<GameObject>(); //給Undo用
@@ -75,14 +76,14 @@ public class CreateHair : MonoBehaviour
         OBJCollider[8] = GameObject.Find("Girl/Root/J_Bip_C_Hips/J_Bip_C_Spine").GetComponent<VRMSpringBoneColliderGroup>();
         OBJCollider[9] = GameObject.Find("Girl/Root/J_Bip_C_Hips/J_Bip_C_Spine/J_Bip_C_Chest/J_Bip_C_UpperChest/J_Bip_C_Neck").GetComponent<VRMSpringBoneColliderGroup>();
 
-        
+
     }
 
     void Update()
     {
-        Dawer();                
+        Dawer();
     }
-    void Dawer() 
+    void Dawer()
     {
 
         if (TriggerDown == 0 && GatherControl.icon == 1) //沒被按下
@@ -103,7 +104,7 @@ public class CreateHair : MonoBehaviour
                 HairModelRig.Add(HairRig);
                 HairModelRig[HairCounter].name = "HairRig" + HairCounter;
 
-                
+
                 Ecollder = HairModel[HairCounter].AddComponent<SphereCollider>();
                 Ecollder.center = OldPos;
                 Ecollder.radius = 0.005f;
@@ -129,7 +130,7 @@ public class CreateHair : MonoBehaviour
                 if (ButtonTransitioner.HairStyleState == 1) PosCreater.Straight_HairStyle(PointPos, ButtonTransitioner.HairWidth, ButtonTransitioner.HairThickness, HairTail);
                 if (ButtonTransitioner.HairStyleState == 2) PosCreater.WaveHairStyle(PointPos, ButtonTransitioner.HairWidth, ButtonTransitioner.HairThickness, Curve1, HairTail);
                 if (ButtonTransitioner.HairStyleState == 3) PosCreater.TwistHairStyle(PointPos, ButtonTransitioner.HairWidth, Curve2, HairTail);
-                
+
                 Ecollder = HairModel[HairCounter].AddComponent<SphereCollider>();
                 Ecollder.center = OldPos;
                 Ecollder.radius = 0.005f;
@@ -141,7 +142,7 @@ public class CreateHair : MonoBehaviour
                 if (HairModel[HairCounter].GetComponent<MeshGenerate>() == null)
                     MeshCreater = HairModel[HairCounter].AddComponent<MeshGenerate>();
                 else MeshCreater = HairModel[HairCounter].GetComponent<MeshGenerate>();
-                MeshCreater.GenerateMesh(PointPos,UpdatePointPos, HairWidth, HairCounter);
+                MeshCreater.GenerateMesh(PointPos, UpdatePointPos, HairWidth, HairCounter);
                 MeshGenerate.GethairColor.SetTexture("_MainTex", HairTexture);
                 MeshGenerate.GethairColor.SetTexture("_BumpMap", HairNormal);
             }
@@ -161,17 +162,16 @@ public class CreateHair : MonoBehaviour
                     //清除不夠長所以沒加到程式碼的的髮片gameobj
                     int least = HairModel.Count - 1;
                     Destroy(HairModel[least]);
-                    HairModel.RemoveAt(least);                    
+                    HairModel.RemoveAt(least);
                     Destroy(HairModelRig[least]);
                     HairModelRig.RemoveAt(least);
                 }
                 PointPos.Clear();
                 direction.Clear();
                 TriggerDown = 0;
-
             }
         }
-        
+
     }
 
     private void AddDymatic()
@@ -194,7 +194,7 @@ public class CreateHair : MonoBehaviour
             u_Freq += 1;
             PushStuff();
         }
-        if(c_Freq == 1)
+        if (c_Freq == 1)
         {
             u_Freq = 1; // after clear function excuted, undo can be excuted once.
             for (int i = 0; i < TempListExistHair; i++)
@@ -202,12 +202,17 @@ public class CreateHair : MonoBehaviour
                 PopStuff();
             }
         }
+        if (c_Freq == 2)
+        {
+            u_Freq += 1; // after eraser function excuted, undo can be excuted once.
+            PopStuff();
+        }
 
     }
     public static void Redo()
     {
         //redo need to be excuted after undo, but not after clear function.
-        
+
         if (u_Freq != 0 && c_Freq == 0)
         {
             PopStuff();
@@ -220,6 +225,12 @@ public class CreateHair : MonoBehaviour
                 PushStuff();
             }
             u_Freq = 0;
+        }
+        if (u_Freq != 0 && c_Freq == 2)
+        {
+            PushStuff();
+            u_Freq -= 1;
+            if (u_Freq == 0) c_Freq = 0;
         }
     }
 
@@ -239,38 +250,53 @@ public class CreateHair : MonoBehaviour
 
     public static void Eraser() //Gather1.state ==2;
     {
-        if (EraserCollider.ForContact==1)
+        if (EraserCollider.ForContact == 1)
         {
-            PushObj = Instantiate(EraserCollider.Contact);
+            //保有原始的物件狀態&位置
+            Vector3 OriginalPos = EraserCollider.Contact.transform.position;
+            Quaternion OriginalRotate = EraserCollider.Contact.transform.rotation;
+            PushObj = Instantiate(EraserCollider.Contact, OriginalPos, OriginalRotate, HairModelG.transform.parent);
+            PushObj.transform.localScale = EraserCollider.Contact.transform.localScale;
             PushObj.tag = "Hairs";
+            PushObj.name = "HairClone" + CloneCount;
+            PushObj.SetActive(false);
             StackExistHair.Push(PushObj);
-            EraserCollider.Contact.SetActive(false);
-            Destroy(EraserCollider.Contact);
-        }
-        
-    }
+            int index = ListExistHair.IndexOf(EraserCollider.Contact);
 
-    public static void ResetPos()
-    {
-        OldPos = NewPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
+            Destroy(EraserCollider.Contact);
+            ListExistHair.RemoveAt(index);
+            CloneCount++;
+            EraserCollider.ForContact = 0;
+            c_Freq = 2; //eraser functions had been excuted. (for undo)
+        }
+
     }
 
     public static void PushStuff() //push staff into 
     {
-        PushObj = Instantiate(ListExistHair[ListExistHair.Count - 1]); //生成ListExitstHair中count-1的物件
-        PushObj.tag = "Hairs";
-        StackExistHair.Push(PushObj); //生成的物件(pushobj)push進stack存，之後要redo要用
-        PushObj.SetActive(false); //場景上不再看得見
-        Destroy(ListExistHair[ListExistHair.Count - 1]); //刪除ListExitstHair中count-1的物件
-        ListExistHair.RemoveAt(ListExistHair.Count - 1); //從ListExistHair中移除count-1的物件
+        if (ListExistHair.Count != 0)
+        {
+            Vector3 OriginalPos = ListExistHair[ListExistHair.Count - 1].transform.position;
+            Quaternion OriginalRotate = ListExistHair[ListExistHair.Count - 1].transform.rotation;
+            PushObj = Instantiate(ListExistHair[ListExistHair.Count - 1], OriginalPos, OriginalRotate, HairModelG.transform.parent); //生成ListExitstHair中count-1的物件
+            PushObj.transform.localScale = ListExistHair[ListExistHair.Count - 1].transform.localScale;
+            PushObj.tag = "Hairs";
+            StackExistHair.Push(PushObj); //生成的物件(pushobj)push進stack存，之後要redo要用
+            PushObj.SetActive(false); //場景上不再看得見
+            Destroy(ListExistHair[ListExistHair.Count - 1]); //刪除ListExitstHair中count-1的物件
+            ListExistHair.RemoveAt(ListExistHair.Count - 1); //從ListExistHair中移除count-1的物件
+        }
     }
 
     public static void PopStuff()
     {
-        PopObj = StackExistHair.Pop(); //從stack中pop東西出來
-        ListExistHair.Add(PopObj); //加回ListExitstsHair中
-        PopObj.tag = "Hairs";
-        PopObj.SetActive(true); //場景上要看得見
+        if (StackExistHair.Count != 0)
+        {
+            PopObj = StackExistHair.Pop(); //從stack中pop東西出來
+            ListExistHair.Add(PopObj); //加回ListExitstsHair中
+            PopObj.tag = "Hairs";
+            PopObj.SetActive(true); //場景上要看得見
+        }
     }
 
 }

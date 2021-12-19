@@ -61,6 +61,7 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         }
         if (CallerPad.state == 1) FindPadBTag();
         if (CallerPad.state == 2) FindPadDTag();
+        if (CallerPad.state == 4) FindPadETag();
     }
 
 
@@ -176,7 +177,15 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         }
         else if (gameObject.tag == "Animation")
         {
-            
+            CallerPad.PadEShow();
+            Transform Pos = GameObject.Find("Player").transform;
+            Pos.position = new Vector3(-0.1f, 0.1f, 2.6f);
+            Pos.rotation = new Quaternion(0f, 110f, 0f, 0f);
+
+            animator = GameObject.Find("Girl").GetComponent<Animator>();
+            animator.SetTrigger("Pose");
+            role = GameObject.Find("Girl");
+            role.transform.position = new Vector3(0f, 0f, 0f);
         }
         //===== PadA-lower (BUG:undo刪兩個)
         else if (gameObject.tag == "UndoButton")
@@ -319,6 +328,43 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         {
             HairStyleState = 3;
         }
+
+    }
+    public void FindPadETag() 
+    {
+
+        animator = GameObject.Find("Girl").GetComponent<Animator>();
+        role = GameObject.Find("Girl");
+        role.transform.position = new Vector3(0f, 0f, 0f);
+        if (gameObject.tag == "Action1")
+        {
+            animator.SetBool("wave", true);
+            animator.SetBool("look", false);
+            animator.SetBool("dan", false);
+        }
+        else if (gameObject.tag == "Action2")
+        {
+            animator.SetBool("look", true);
+            animator.SetBool("dan", false);
+            animator.SetBool("wave", false);
+        }
+        else if (gameObject.tag == "Action3")
+        {
+            animator.SetBool("dan", true);
+            animator.SetBool("wave", false);
+            animator.SetBool("look", false);
+        }
+        else if (gameObject.tag == "Back") 
+        {
+            CallerPad.PadAShow();
+            animator.SetBool("dan", false);
+            animator.SetBool("wave", false);
+            animator.SetBool("look", false);
+            
+            animator.SetTrigger("Pose2");
+            role.transform.position = new Vector3(0.094f, -0.179f, 3.478f);
+        }
+
 
     }
 

@@ -15,7 +15,6 @@ public class ColorPicker_control : MonoBehaviour
     public static Material colorshow;
     public Material headcolor;
     public static Material headcolort = null;
-    public Material headcolortemp;
 
     Vector3 p0, pvx1, pvx0;//起始原點、滑鼠座標、相對座標
     Vector3 V1, N_mouse;
