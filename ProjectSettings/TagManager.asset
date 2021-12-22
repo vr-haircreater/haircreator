@@ -62,6 +62,7 @@ TagManager:
   - Action2
   - Action3
   - Back
+  - closevedio
   layers:
   - Default
   - TransparentFX

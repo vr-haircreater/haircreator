@@ -62,6 +62,7 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         if (CallerPad.state == 1) FindPadBTag();
         if (CallerPad.state == 2) FindPadDTag();
         if (CallerPad.state == 4) FindPadETag();
+        if (CallerPad.state == 5) FindAnimationTag();
     }
 
 
@@ -186,6 +187,10 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
             animator.SetTrigger("Pose");
             role = GameObject.Find("Girl");
             role.transform.position = new Vector3(0f, 0f, 0f);
+        }
+        else if (gameObject.tag == "ArrowButton")
+        {
+            CallerPad.AnimationShow();
         }
         //===== PadA-lower (BUG:undo刪兩個)
         else if (gameObject.tag == "UndoButton")
@@ -363,6 +368,15 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
             
             animator.SetTrigger("Pose2");
             role.transform.position = new Vector3(0.094f, -0.179f, 3.478f);
+        }
+
+
+    }
+    public void FindAnimationTag() 
+    {
+        if (gameObject.tag == "closevedio") 
+        {
+            CallerPad.PadAShow();
         }
 
 

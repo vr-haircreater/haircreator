@@ -16,6 +16,8 @@ public class Lasercontroller : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        Debug.Log("Pointer");
+
         Point.SetActive(true);
         if (GatherControl.m_object == null) return;
         foreach (Transform obj in GatherControl.m_object.transform)
