@@ -8,7 +8,7 @@ public class CallerPad : MonoBehaviour
     public SteamVR_Action_Boolean CallClick;
     public static SteamVR_Behaviour_Pose Pose;
 
-    public static GameObject PadA, PadB, PadC, PadD, PadE; 
+    public static GameObject PadA, PadB, PadC, PadD, PadE, PadF; 
     public static int state = 5,N = 6;
     public static GameObject[] ClosePad = new GameObject[6];
     public static GameObject nowPad;
@@ -27,7 +27,7 @@ public class CallerPad : MonoBehaviour
         Pads[2] = PadC = GameObject.Find("Player/SteamVRObjects/LeftHand/PadD");
         Pads[3] = PadD = GameObject.Find("Player/SteamVRObjects/LeftHand/PadC");
         Pads[4] = PadE = GameObject.Find("Player/SteamVRObjects/LeftHand/PadE");
-        Pads[5] = PadE = GameObject.Find("Player/SteamVRObjects/LeftHand/Animation");
+        Pads[5] = PadF = GameObject.Find("Player/SteamVRObjects/LeftHand/Animation");
         /*PadA = GameObject.Find("Player/SteamVRObjects/LeftHand/PadA");
         PadB = GameObject.Find("Player/SteamVRObjects/LeftHand/PadB");
         PadC = GameObject.Find("Player/SteamVRObjects/LeftHand/PadD");

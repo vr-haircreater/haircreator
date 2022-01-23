@@ -12,7 +12,7 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
     public static Slider Sslider1, Sslider2, Sslider3;
     public static GameObject Gslider1, Wslider1, Tslider1;
     public static Color HairColor;
-    public GameObject PadA,PadB,role,rolehair;
+    public GameObject PadA,PadB,role,rolehair,pointer;
     public static Image[] coloraddimgs = new Image[5];
     public static GameObject[] addbtns = new GameObject[5];
     public static Color[] Coloradd = new Color[5];
@@ -374,8 +374,11 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
     }
     public void FindAnimationTag() 
     {
+        
         if (gameObject.tag == "closevedio") 
         {
+            pointer = GameObject.Find("Player/SteamVRObjects/RightHand/PR_Pointer");
+            pointer.SetActive(false);
             CallerPad.PadAShow();
         }
 

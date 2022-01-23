@@ -265,6 +265,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -423,6 +424,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -630,6 +632,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -1188,6 +1191,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -1238,6 +1242,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -1285,6 +1290,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -1647,6 +1653,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -1765,6 +1772,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -2128,6 +2136,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -2475,6 +2484,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -2568,7 +2578,7 @@ GameObject:
   - component: {fileID: 874219144}
   - component: {fileID: 874219146}
   - component: {fileID: 874219145}
-  m_Layer: 26
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2648,7 +2658,7 @@ GameObject:
   - component: {fileID: 876275983}
   - component: {fileID: 876275982}
   - component: {fileID: 876275985}
-  m_Layer: 26
+  m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2665,9 +2675,12 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 916634083}
+  - {fileID: 2067167653}
+  - {fileID: 1088328259}
   m_Father: {fileID: 1803349450}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2694,13 +2707,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 876275980}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.990566, g: 0.98589355, b: 0.98589355, a: 0.392}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2742,7 +2755,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -2799,6 +2812,19 @@ MonoBehaviour:
   color_Stemp: 0
   color_Vtemp: 0
   headcolor: {fileID: 2100000, guid: 0731f0b8f3d26fc4fa2c98dadd087b1a, type: 2}
+--- !u!114 &890116997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890116991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808d96ce109cc9440932b4c452e6fb85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Point: {fileID: 0}
 --- !u!1 &896760275 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 338186474509597618, guid: 081189ef9d2cd804faee2ecc669e5c65,
@@ -2821,6 +2847,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -2837,8 +2864,7 @@ GameObject:
   - component: {fileID: 916634085}
   - component: {fileID: 916634084}
   - component: {fileID: 916634087}
-  - component: {fileID: 916634088}
-  m_Layer: 26
+  m_Layer: 5
   m_Name: Button
   m_TagString: closevedio
   m_Icon: {fileID: 0}
@@ -2852,17 +2878,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 916634082}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
-  m_LocalScale: {x: 0.45821112, y: 2.3899431, z: 2.7688305}
+  m_LocalRotation: {x: -0, y: 0.00000003071518, z: -5.167022e-10, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2.000103}
+  m_LocalScale: {x: 0.4582112, y: 2.3899431, z: 2.7688305}
   m_Children:
   - {fileID: 874219144}
-  m_Father: {fileID: 1803349450}
+  m_Father: {fileID: 876275981}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -80, y: -70}
+  m_AnchoredPosition: {x: -80.000015, y: -69.99986}
   m_SizeDelta: {x: 160, y: 33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &916634084
@@ -2961,22 +2987,10 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
---- !u!114 &916634088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 916634082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 808d96ce109cc9440932b4c452e6fb85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Point: {fileID: 0}
 --- !u!1 &938328117 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5283357776286130267, guid: 320cd40194e1cd34db5e61e1558adac2,
@@ -3020,6 +3034,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -3368,7 +3383,7 @@ GameObject:
   - component: {fileID: 1088328262}
   - component: {fileID: 1088328261}
   - component: {fileID: 1088328260}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3382,11 +3397,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088328258}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -2, z: 12}
-  m_LocalScale: {x: 971.0225, y: 536.8571, z: 4.041741}
+  m_LocalRotation: {x: -0, y: 0.00000003071518, z: -5.167022e-10, w: 1}
+  m_LocalPosition: {x: -0.000045784156, y: -1.9999871, z: 14.000067}
+  m_LocalScale: {x: 971.02264, y: 536.85706, z: 4.041741}
   m_Children: []
-  m_Father: {fileID: 1803349450}
+  m_Father: {fileID: 876275981}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1088328260
@@ -3449,6 +3464,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088328258}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1105155153 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7625087364970564583, guid: 081189ef9d2cd804faee2ecc669e5c65,
+    type: 3}
+  m_PrefabInstance: {fileID: 985570885}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1105155158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105155153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808d96ce109cc9440932b4c452e6fb85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Point: {fileID: 0}
 --- !u!4 &1144810989 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2329473178392267527, guid: 213e98af2a067424583442136218c51e,
@@ -3477,6 +3511,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -3502,6 +3537,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -3594,6 +3630,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -5188,6 +5225,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -5207,6 +5245,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -5226,6 +5265,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -5245,6 +5285,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -5264,6 +5305,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -5283,6 +5325,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -5302,6 +5345,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -5321,6 +5365,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -5340,6 +5385,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -5359,6 +5405,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -5378,6 +5425,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -5397,6 +5445,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -5416,6 +5465,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -5435,6 +5485,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -5454,6 +5505,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -5473,6 +5525,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -5492,6 +5545,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -5511,6 +5565,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -5989,6 +6044,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -6014,6 +6070,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -6577,6 +6634,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -6763,6 +6821,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -6778,7 +6837,7 @@ GameObject:
   - component: {fileID: 1803349453}
   - component: {fileID: 1803349452}
   - component: {fileID: 1803349451}
-  m_Layer: 26
+  m_Layer: 5
   m_Name: Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6796,9 +6855,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0.15}
   m_LocalScale: {x: 0.0006509309, y: 0.0006509309, z: 0.0006509309}
   m_Children:
-  - {fileID: 916634083}
-  - {fileID: 2067167653}
-  - {fileID: 1088328259}
   - {fileID: 876275981}
   m_Father: {fileID: 532041905}
   m_RootOrder: 9
@@ -8629,6 +8685,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -8777,6 +8834,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
@@ -9065,7 +9123,7 @@ GameObject:
   - component: {fileID: 2067167655}
   - component: {fileID: 2067167654}
   - component: {fileID: 2067167657}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CCD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9079,11 +9137,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2067167652}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: -2, z: 5}
-  m_LocalScale: {x: 971.02246, y: 536.85706, z: 4.0417414}
+  m_LocalRotation: {x: 5.167022e-10, y: 1, z: -0, w: -0.00000003071518}
+  m_LocalPosition: {x: -0.00032048908, y: -2, z: 7.000194}
+  m_LocalScale: {x: 971.0225, y: 536.85706, z: 4.041742}
   m_Children: []
-  m_Father: {fileID: 1803349450}
+  m_Father: {fileID: 876275981}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!65 &2067167654
@@ -9202,6 +9260,7 @@ MonoBehaviour:
   PadB: {fileID: 0}
   role: {fileID: 0}
   rolehair: {fileID: 0}
+  pointer: {fileID: 0}
   Head: {fileID: 0}
   advancedColor: 0
   animator: {fileID: 0}
