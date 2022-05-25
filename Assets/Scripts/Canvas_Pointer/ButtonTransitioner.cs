@@ -22,7 +22,7 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
     public static int HairThickness;//調整厚度
     public static int btn10down=0, headcolorN=0, coloraddcount = 0;
 
-    public static bool HairTail = true;
+    public static bool HairTail = true,HeadState = false;
     public Material Head;
     public bool advancedColor = false;
 
@@ -152,8 +152,8 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         }
         else if (gameObject.tag == "button10") //頭皮顏色
         {
-            btn10down = 1;
             headcolorN = 0;
+            HeadState = true;
             CallerPad.PadBShow();
         }
         else if (gameObject.tag == "button11") //髮片顏色
@@ -219,24 +219,35 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         if (gameObject.tag == "PadBYes")
         {
             Debug.Log("Yes color");
-            //頭皮暫存成功
-            ColorPicker_control.headcolort.color = Color.clear;
-            ColorPicker_control.headcolort.color = Head.color;
+            
             
             CallerPad.PadAShow();
-            if (btn10down == 0)
+            if (HeadState == false)
             {
                 showimg.GetComponent<Image>().color = Color.clear;
                 showimg.GetComponent<Image>().color = ColorPicker_control.colorshow.color;
-            }           
-            btn10down = 0;
+            }
+            else
+            {
+                //頭皮暫存成功
+                Head.color = Color.clear;
+                Head.color = ColorPicker_control.colorshow.color;
+                //ColorPicker_control.headcolort.color = Color.clear;
+                //ColorPicker_control.headcolort.color = Head.color;
+                HeadState = false;
+            }
             
         }
         else if (gameObject.tag == "PadBNo") //按取消返回前一個顏色
         {
-            btn10down = 0;
-            Head.color = Color.clear;
-            Head.color = ColorPicker_control.headcolort.color;
+            
+            if (HeadState == true)
+            {
+                Head.color = Color.clear;
+                Head.color = ColorPicker_control.headcolort.color;
+                HeadState = false;
+            }
+                
             CallerPad.PadAShow();
 
         }
@@ -252,37 +263,93 @@ public class ButtonTransitioner : MonoBehaviour,  IPointerDownHandler
         }
         else if (gameObject.tag == "ButtonA")
         {
-            showimg.GetComponent<Image>().color = Color.clear;
-            showimg.GetComponent<Image>().color = Coloradd[0];
-            Color.RGBToHSV(Coloradd[0], out ColorPicker_control.addcolorH, out ColorPicker_control.addcolorS, out ColorPicker_control.addcolorV);
+
+            if (HeadState == true)
+            {
+                Head.color = Color.clear;
+                Head.color = Coloradd[0];
+                ColorPicker_control.headcolort.color = Color.clear;
+                ColorPicker_control.headcolort.color = Head.color;
+                HeadState = false;
+            }
+            else
+            {
+                showimg.GetComponent<Image>().color = Color.clear;
+                showimg.GetComponent<Image>().color = Coloradd[0];
+                Color.RGBToHSV(Coloradd[0], out ColorPicker_control.addcolorH, out ColorPicker_control.addcolorS, out ColorPicker_control.addcolorV);
+            }          
             CallerPad.PadAShow();
         }
         else if (gameObject.tag == "ButtonB")
         {
-            showimg.GetComponent<Image>().color = Color.clear;
-            showimg.GetComponent<Image>().color = Coloradd[1];
-            Color.RGBToHSV(Coloradd[1], out ColorPicker_control.addcolorH, out ColorPicker_control.addcolorS, out ColorPicker_control.addcolorV);
+            if (HeadState == true)
+            {
+                Head.color = Color.clear;
+                Head.color = Coloradd[1];
+                ColorPicker_control.headcolort.color = Color.clear;
+                ColorPicker_control.headcolort.color = Head.color;
+                HeadState = false;
+            }
+            else
+            {
+                showimg.GetComponent<Image>().color = Color.clear;
+                showimg.GetComponent<Image>().color = Coloradd[1];
+                Color.RGBToHSV(Coloradd[1], out ColorPicker_control.addcolorH, out ColorPicker_control.addcolorS, out ColorPicker_control.addcolorV);
+            }
             CallerPad.PadAShow();
         }
         else if (gameObject.tag == "ButtonC")
         {
-            showimg.GetComponent<Image>().color = Color.clear;
-            showimg.GetComponent<Image>().color = Coloradd[2];
-            Color.RGBToHSV(Coloradd[2], out ColorPicker_control.addcolorH, out ColorPicker_control.addcolorS, out ColorPicker_control.addcolorV);
+            if (HeadState == true)
+            {
+                Head.color = Color.clear;
+                Head.color = Coloradd[2];
+                ColorPicker_control.headcolort.color = Color.clear;
+                ColorPicker_control.headcolort.color = Head.color;
+                HeadState = false;
+            }
+            else
+            {
+                showimg.GetComponent<Image>().color = Color.clear;
+                showimg.GetComponent<Image>().color = Coloradd[2];
+                Color.RGBToHSV(Coloradd[2], out ColorPicker_control.addcolorH, out ColorPicker_control.addcolorS, out ColorPicker_control.addcolorV);
+            }
             CallerPad.PadAShow();
         }
         else if (gameObject.tag == "ButtonD")
         {
-            showimg.GetComponent<Image>().color = Color.clear;
-            showimg.GetComponent<Image>().color = Coloradd[3];
-            Color.RGBToHSV(Coloradd[3], out ColorPicker_control.addcolorH, out ColorPicker_control.addcolorS, out ColorPicker_control.addcolorV);
+            if (HeadState == true)
+            {
+                Head.color = Color.clear;
+                Head.color = Coloradd[3];
+                ColorPicker_control.headcolort.color = Color.clear;
+                ColorPicker_control.headcolort.color = Head.color;
+                HeadState = false;
+            }
+            else
+            {
+                showimg.GetComponent<Image>().color = Color.clear;
+                showimg.GetComponent<Image>().color = Coloradd[3];
+                Color.RGBToHSV(Coloradd[3], out ColorPicker_control.addcolorH, out ColorPicker_control.addcolorS, out ColorPicker_control.addcolorV);
+            }
             CallerPad.PadAShow();
         }
         else if (gameObject.tag == "ButtonE")
         {
-            showimg.GetComponent<Image>().color = Color.clear;
-            showimg.GetComponent<Image>().color = Coloradd[4];
-            Color.RGBToHSV(Coloradd[4], out ColorPicker_control.addcolorH, out ColorPicker_control.addcolorS, out ColorPicker_control.addcolorV);
+            if (HeadState == true)
+            {
+                Head.color = Color.clear;
+                Head.color = Coloradd[4];
+                ColorPicker_control.headcolort.color = Color.clear;
+                ColorPicker_control.headcolort.color = Head.color;
+                HeadState = false;
+            }
+            else
+            {
+                showimg.GetComponent<Image>().color = Color.clear;
+                showimg.GetComponent<Image>().color = Coloradd[4];
+                Color.RGBToHSV(Coloradd[4], out ColorPicker_control.addcolorH, out ColorPicker_control.addcolorS, out ColorPicker_control.addcolorV);
+            }
             CallerPad.PadAShow();
         }
 
